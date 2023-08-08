@@ -1,38 +1,22 @@
-.App {
-  text-align: center;
+.webHeader {
+  padding: 15px;
+  background-color: #290025;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#brandName {
+  text-decoration: overline underline;
+  font-family: Arial, Helvetica, sans-serif;
+  color:white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+/*
+Thinking of having a colour palette like this
+3A015C - Russion Violet
+4F0147 - Palatinate
+35012C - Dark Purple
+290025 - Even Darker Purple
+11001C - Darkest Purple
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+<a href="https://www.flaticon.com/free-icons/cinema" title="cinema icons">Cinema icons created by IYAHICON - Flaticon</a>
+*/
