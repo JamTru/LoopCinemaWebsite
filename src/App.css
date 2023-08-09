@@ -1,12 +1,39 @@
 .webHeader {
   padding: 15px;
+  text-align: center;
   background-color: #290025;
+}
+.mainLogo {
+  padding: 5px;
+  width: 150px;
+  border-radius: 4px;
 }
 
 #brandName {
   text-decoration: overline underline;
   font-family: Arial, Helvetica, sans-serif;
   color:white;
+}
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #290025;
+  color: aliceblue;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #c76464;
+  font-weight: bold;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
 }
 
 
