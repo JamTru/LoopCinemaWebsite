@@ -1,0 +1,20 @@
+{
+  "slides": [
+    {
+      "src":"./MoviePoster/HP_horizontal.jpg",
+      "alt":"Harry Potter and The Goblet of Fire"
+    },
+    {
+      "src":"./MoviePoster/PC_horizontal.jpg",
+      "alt":"Pacific Rim"
+    },
+    {
+      "src":"./MoviePoster/SI_horizontal.jpg",
+      "alt":"Shutter Island"
+    },
+    {
+      "src":"./MoviePoster/SM_horizontal.jpg",
+      "alt":"Spider-Man: Into The Spider-verse"
+    }
+  ]
+}
