@@ -1,0 +1,30 @@
+.cinemagoers {
+  float: right;
+  max-width: 40%;
+  max-height: 40%;
+  margin-left: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
+  filter: drop-shadow(2px 2px 20px rgb(0 0 0 / 50%));
+}
+.textbox {
+  padding-left: 2rem;
+  border-style: solid solid solid none;
+  border-radius: 0px 25px 25px 0px;
+  background-color: #290025;
+}
+.textbox h2{
+  text-decoration: underline;
+  text-decoration-style: double;
+  text-decoration-thickness: 0.5px;
+  color: white;
+  font-family: "Verdana";
+}
+.textbox p {
+  color:white;
+}
+.AboutUsContainer {
+  display:flex;
+  padding-bottom: 2rem;
+}

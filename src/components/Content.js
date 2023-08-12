@@ -1,12 +1,12 @@
 import React from 'react';
 import MovieDisplay from './MovieDisplay';
 import slides from "./MovieDisplayData.json";
+import AboutUs from './AboutUs.js';
 const Content = () => {
   return (
     <div className="main">
-      <div className="NowShowing" style={{}}>
-        <MovieDisplay data={slides} />
-      </div>
+      <MovieDisplay data={slides} />
+      <AboutUs />
     </div>
   );
 };
