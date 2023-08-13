@@ -29,16 +29,7 @@ export const MovieDisplay = ({data}) => { //Accepts any JSON, so this component 
       </div>
       {
         data.slides.map((item, index,) => {
-          return <UpcomingSchedule name={item.alt} schedule={[
-            item.upcoming[0],
-            item.upcoming[1],
-            item.upcoming[2],
-            item.upcoming[3],
-            item.upcoming[4],
-            item.upcoming[5],
-            item.upcoming[6]
-          ]
-        } className={ slide === index ? "schedule" : "schedule schedule-hidden"} />
+          return <UpcomingSchedule className={slide === index ? "schedule" : "schedule schedule-hidden"} name={item.alt} schedule={item.upcoming} />
         })
       }
     </div>
