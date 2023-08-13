@@ -44,3 +44,13 @@
 .arrow-next {
   right:1rem;
 }
+.schedule {
+  display:grid;
+  grid-column-gap: 1rem;
+  grid-row-gap: 0.1px;
+  grid-template-columns: auto auto auto auto auto auto auto auto;
+  grid-templace-rows:auto auto;
+}
+.schedule-hidden {
+  display:none;
+}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./MovieDisplay.css";
+import UpcomingSchedule from "./UpcomingSchedule.js";
 export const MovieDisplay = ({data}) => { //Accepts any JSON, so this component isn't automatically reliant on hardcode
   const [slide, setSlide] = useState(0); //Sets initial slide to array 0
   const nextSlide = () => {
@@ -26,7 +27,20 @@ export const MovieDisplay = ({data}) => { //Accepts any JSON, so this component 
         }
         <button className="arrow arrow-next" onClick={nextSlide}>&#10095;</button>
       </div>
-
+      {
+        data.slides.map((item, index,) => {
+          return <UpcomingSchedule name={item.alt} schedule={[
+            item.upcoming[0],
+            item.upcoming[1],
+            item.upcoming[2],
+            item.upcoming[3],
+            item.upcoming[4],
+            item.upcoming[5],
+            item.upcoming[6]
+          ]
+        } className={ slide === index ? "schedule" : "schedule schedule-hidden"} />
+        })
+      }
     </div>
   )
 }

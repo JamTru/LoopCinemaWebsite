@@ -2,19 +2,55 @@
   "slides": [
     {
       "src":"./MoviePoster/HP_horizontal.jpg",
-      "alt":"Harry Potter and The Goblet of Fire"
+      "alt":"Harry Potter and The Goblet of Fire",
+      "upcoming": [{
+        "Monday": "10:00",
+        "Tuesday": "16:00",
+        "Wednesday": "14:00",
+        "Thursday": "12:00",
+        "Friday": "12:00",
+        "Saturday":"12:30",
+        "Sunday":"10:00"
+      }]
     },
     {
       "src":"./MoviePoster/PC_horizontal.jpg",
-      "alt":"Pacific Rim"
+      "alt":"Pacific Rim",
+      "upcoming": [{
+        "Monday": "12:00",
+        "Tuesday": "8:00",
+        "Wednesday": "15:30",
+        "Thursday": "10:00",
+        "Friday": "17:30",
+        "Saturday":"16:30",
+        "Sunday":"18:00"
+      }]
     },
     {
       "src":"./MoviePoster/SI_horizontal.jpg",
-      "alt":"Shutter Island"
+      "alt":"Shutter Island",
+      "upcoming": [{
+        "Monday": "12:00",
+        "Tuesday": "8:00",
+        "Wednesday": "15:30",
+        "Thursday": "10:00",
+        "Friday": "17:30",
+        "Saturday":"16:30",
+        "Sunday":"18:00"
+      }]
     },
     {
       "src":"./MoviePoster/SM_horizontal.jpg",
-      "alt":"Spider-Man: Into The Spider-verse"
+      "alt":"Spider-Man: Into The Spider-verse",
+      "upcoming": [{
+        "Monday": "10:00",
+        "Tuesday": "16:00",
+        "Wednesday": "14:00",
+        "Thursday": "12:00",
+        "Friday": "12:00",
+        "Saturday":"12:30",
+        "Sunday":"10:00"
+      }]
     }
   ]
 }
