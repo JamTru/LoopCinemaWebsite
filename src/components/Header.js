@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import logo from '../movie.png'
 import SignUpModal from "../modals/SignUpModal";
-import { Button } from 'react-bootstrap'
 
 const Header = () => {
   const [signUpModalOn, setSignUpModalOn] = useState(false);
