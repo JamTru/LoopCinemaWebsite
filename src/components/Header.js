@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import logo from '../movie.png'
 import SignUpModal from "../modals/SignUpModal";
-import {Modal, Button} from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 const Header = () => {
   const [signUpModalOn, setSignUpModalOn] = useState(false);
@@ -19,14 +19,14 @@ const Header = () => {
         <img src={logo} alt="logo" class="mainLogo"></img>
         <h1 id="brandName">Loop Cinemas</h1>
         
-        <button type="button"
-        className='signUp_button' onClick={ ()=> setSignUpModalOn(true)}>
+        <button type="button" className='signUp_button' onClick={ ()=> setSignUpModalOn(true)}>
           Sign Up
         </button>
         
-        <button type="button" className='signIn_button' onClick={ ()=> {}}>
+        <button type="button" className='signIn_button' onClick={ ()=> {}}> 
           Sign In
         </button>
+        
       </div>
     </>
   );

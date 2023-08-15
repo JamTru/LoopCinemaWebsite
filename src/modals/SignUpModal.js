@@ -4,6 +4,7 @@ import { Modal, Button } from 'react-bootstrap'
 const SignUpModal = ({ show, onHide }) => {
     return (
         <Modal
+            animation={false}
             show={show}
             onHide={onHide}
             size="lg"
