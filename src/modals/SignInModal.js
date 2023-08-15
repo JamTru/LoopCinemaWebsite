@@ -1,7 +1,7 @@
 import React from 'react'
 import { Modal, Button, Form, Container } from 'react-bootstrap'
 
-const SignUpModal = ({ show, onHide }) => {
+const SignInModal = ({ show, onHide }) => {
     return (
         <Modal
             animation={false}
@@ -20,11 +20,6 @@ const SignUpModal = ({ show, onHide }) => {
 
                 <Modal.Body>
                     <Form>
-                        <Form.Group className="mb-3" controlId="formBasicName">
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter your name" />
-                        </Form.Group>
-
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
                             <Form.Control type="email" placeholder="Enter email" />
@@ -35,12 +30,8 @@ const SignUpModal = ({ show, onHide }) => {
                             <Form.Control type="password" placeholder="Password" />
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
-                            <Form.Label>Confirm Password</Form.Label>
-                            <Form.Control type="password" placeholder="Confirm Password" />
-                        </Form.Group>
-                        <Button class="btn btn-success col-12" variant="info" type="button">
-                            Sign Up
+                        <Button block variant="info" type="button">
+                            Sign In
                         </Button>
                 
                     </Form>
@@ -51,4 +42,4 @@ const SignUpModal = ({ show, onHide }) => {
     )
 }
 
-export default SignUpModal
+export default SignInModal

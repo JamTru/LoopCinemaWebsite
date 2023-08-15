@@ -1,9 +1,11 @@
 import React, { useState } from "react"
 import logo from '../movie.png'
 import SignUpModal from "../modals/SignUpModal";
+import SignInModal from "../modals/SignInModal";
 
 const Header = () => {
   const [signUpModalOn, setSignUpModalOn] = useState(false);
+  const [signInModalOn, setSignInModalOn] = useState(false);
 
   return (
     <>
@@ -11,6 +13,11 @@ const Header = () => {
         show={signUpModalOn}
         onHide={ ()=> setSignUpModalOn(false)} 
       />
+      <SignInModal
+        show={signInModalOn}
+        onHide={ () => setSignInModalOn(false)}
+      />
+      
       {/* show prop allows user to see the modal */}
       {/* onHide is to hide the modal */}
     
@@ -22,7 +29,7 @@ const Header = () => {
           Sign Up
         </button>
         
-        <button type="button" className='signIn_button' onClick={ ()=> {}}> 
+        <button type="button" className='signIn_button' onClick={ ()=> setSignInModalOn(true)}> 
           Sign In
         </button>
         
