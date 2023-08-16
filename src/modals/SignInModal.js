@@ -5,7 +5,7 @@ import { Modal,Container } from 'react-bootstrap'
 
 function SignInModal(props) {
     const [fields, setFields] = useState({ username: "", password: "" });
-    // const [errorMessage, setErrorMessage] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate();
 
     // <SignInModal
@@ -58,8 +58,8 @@ function SignInModal(props) {
       temp.password = "";
       setFields(temp);
   
-      // Set error message.
-      // setErrorMessage("Username and / or password invalid, please try again.");
+      //Set error message.
+      setErrorMessage("Username and / or password invalid, please try again.");
     }
     return (
         <Modal
@@ -93,11 +93,11 @@ function SignInModal(props) {
                         <div className="form-group">
                             <input type="submit" className="btn btn-primary" value="Sign in" />
                         </div>
-                        {/* {errorMessage !== null &&
+                        {errorMessage !== null &&
                         <div className="form-group">
                             <span className="text-danger">{errorMessage}</span>
                         </div>
-                        } */}
+                        }
                     </form>
                 </Modal.Body>
 

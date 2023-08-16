@@ -32,7 +32,7 @@ function App() {
           <div className="container my-3">
             <Routes>
               {/* <Route path="/" element={<Home username={username} />} /> */}
-              <Route path="/modals/SignInModal" element={<SignInModal username={loginUser} />} />
+              {/* <Route path="/modals/SignInModal" element={<SignInModal username={loginUser} />} /> */}
               {/* <Route path="/profile" element={<MyProfile username={username} />} /> */}
             </Routes>
           </div>
