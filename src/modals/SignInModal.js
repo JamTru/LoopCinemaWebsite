@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useNavigate } from "react-router-dom";
 import { verifyUser } from "../data/repository";
-import { Modal, Button, Form, Container } from 'react-bootstrap'
+import { Modal,Container } from 'react-bootstrap'
 
 function SignInModal(props) {
     const [fields, setFields] = useState({ username: "", password: "" });
@@ -61,29 +61,28 @@ function SignInModal(props) {
                 </Modal.Header>
 
                 <Modal.Body>
-                    
-                    <div className="form-group">
-                        <label htmlFor="username" className="control-label">Username</label>
-                        <input name="username" id="username" className="form-control"
-                            value={fields.username} onChange={handleInputChange}/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password" className="control-label">Password</label>
-                        <input type="password" name="password" id="password" className="form-control"
-                            value={fields.password} onChange={handleInputChange}/>
-                    </div>
-                    <div className="form-group">
-                        <input type="submit" className="btn btn-primary" value="Sign in" />
-                    </div>
-                    {/* {errorMessage !== null &&
-                    <div className="form-group">
-                        <span className="text-danger">{errorMessage}</span>
-                    </div>
-                    } */}
-                
-                    
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="username" className="control-label">Username</label>
+                            <input name="username" id="username" className="form-control"
+                                value={fields.username} onChange={handleInputChange}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password" className="control-label">Password</label>
+                            <input type="password" name="password" id="password" className="form-control"
+                                value={fields.password} onChange={handleInputChange}/>
+                        </div>
+                        <div className="form-group">
+                            <input type="submit" className="btn btn-primary" value="Sign in" />
+                        </div>
+                        {/* {errorMessage !== null &&
+                        <div className="form-group">
+                            <span className="text-danger">{errorMessage}</span>
+                        </div>
+                        } */}
+                    </form>
                 </Modal.Body>
-            
+
             </Container>
         </Modal>
     )

@@ -56,6 +56,9 @@ function Header(props) {
             {/* <li className="nav-item">
               <Link className="nav-link" to="/login" onClick={props.logoutUser}>Logout</Link>
             </li> */}
+            <button type="button" className='signOut_button' onClick={ props.logoutUser}> 
+              Sign Out
+            </button>
           </>
         }
       </ul>

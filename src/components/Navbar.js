@@ -2,7 +2,7 @@ import React from 'react';
 import {Container} from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+function Navbar(){
   return (
     <div className="navbar">
       <a href="#" >Home </a>
