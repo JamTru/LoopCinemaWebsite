@@ -50,6 +50,7 @@ function SignInModal(props) {
     
           // Navigate to the home page.
           navigate("/");
+          props.onHide(false)
           return;
         }
       // Reset password field to blank.
