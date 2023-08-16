@@ -2,7 +2,7 @@ import React from 'react';
 import MovieDisplay from './MovieDisplay';
 import slides from "./MovieDisplayData.json";
 import AboutUs from './AboutUs.js';
-const Content = () => {
+function Content () {
   return (
     <div className="main">
       <MovieDisplay data={slides} />

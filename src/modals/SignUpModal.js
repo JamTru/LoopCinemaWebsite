@@ -19,31 +19,22 @@ const SignUpModal = ({ show, onHide }) => {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <Form>
-                        <Form.Group className="mb-3" controlId="formBasicName">
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter your name" />
-                        </Form.Group>
+    
+                    <div className="form-group">
+                        <label htmlFor="username" className="control-label">Username</label>
+                        <input name="username" id="username" className="form-control"
+                                />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="password" className="control-label">Password</label>
+                        <input type="password" name="password" id="password" className="form-control"
+                                />
+                    </div>
 
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email" />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Password" />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
-                            <Form.Label>Confirm Password</Form.Label>
-                            <Form.Control type="password" placeholder="Confirm Password" />
-                        </Form.Group>
-                        <Button class="btn btn-success col-12" variant="info" type="button">
-                            Sign Up
-                        </Button>
+                    <div className="form-group">
+                        <input type="submit" className="btn btn-primary" value="Sign Up" />
+                    </div>
                 
-                    </Form>
                 </Modal.Body>
             
             </Container>
