@@ -12,7 +12,7 @@ const UpcomingSchedule = (props) => {
       <h5>Saturday</h5>
       <h5>Sunday</h5>
       <p>Times</p>
-      {Object.values(props.schedule).map(([day,time]) =>{
+      {Object.entries(props.schedule).map(([day,time]) =>{
           console.log(time);
           return <p>{time}</p>
           //Need to fix, this won't render times properly
