@@ -25,14 +25,14 @@ function App() {
   return (
     <div>
       <Router>
-        <Header username={username} logoutUser={logoutUser}/>
+        <Header username={username} logoutUser={logoutUser} loginUser={loginUser}/>
         <Navbar />
         <Content />
         <main role="main">
           <div className="container my-3">
             <Routes>
               {/* <Route path="/" element={<Home username={username} />} /> */}
-              {/* <Route path="/modals/SignInModal" element={<SignInModal loginUser={loginUser} />} /> */}
+              <Route path="/modals/SignInModal" element={<SignInModal username={loginUser} />} />
               {/* <Route path="/profile" element={<MyProfile username={username} />} /> */}
             </Routes>
           </div>

@@ -8,19 +8,38 @@ import { Link } from "react-router-dom";
 function Header(props) {
   const [signUpModalOn, setSignUpModalOn] = useState(false);
   const [signInModalOn, setSignInModalOn] = useState(false);
-  const [signInUser, setSignInUser] = useState(App.getUser);
-  
+  const [loginUser, setloginUser] = useState(false);
+  const [logoutUser, setlogoutUser] = useState(false);
+  // const [signInUser, setSignInUser] = useState(App.getUser);
+  const test = () => {
+    // to Check loginUser is in props
+    if ("loginUser" in props) {
+      // we have loginUser
+      console.log("We have that in props in Header")
+    } else {
+        console.log("loginUser wasn't in props!")
+        console.log(props)
+    }
+
+  }
   return (
     <>
+       
+      
       <SignUpModal 
         show={signUpModalOn}
+        setloginUser={props.username}
+        setlogoutUser={props.logoutUser}
         onHide={ ()=> setSignUpModalOn(false)}
          
       />
       <SignInModal
         show={signInModalOn}
+        setloginUser = {props.loginUser}
+        //setloginUser = {props.username}
+        // setlogioutUser = {props.logoutUser}
         onHide={ () => setSignInModalOn(false)}
-        loginUser={signInUser}
+        
       />
 
       {/* show prop allows user to see the modal */}
@@ -48,7 +67,7 @@ function Header(props) {
             </li>
           </>  
           :
-          // if the user exsits showing wlecome message
+          // OR if the user exsits showing wlecome message
           <> 
             <li className="header-item">
               <span className="nav-link text-light">Welcome, {props.username}</span>
@@ -56,9 +75,11 @@ function Header(props) {
             {/* <li className="nav-item">
               <Link className="nav-link" to="/login" onClick={props.logoutUser}>Logout</Link>
             </li> */}
-            <button type="button" className='signOut_button' onClick={ props.logoutUser}> 
-              Sign Out
-            </button>
+            <Link to="/">
+              <button type="button" className='signOut_button' onClick={ props.logoutUser}> 
+                Sign Out
+              </button>
+            </Link>  
           </>
         }
       </ul>

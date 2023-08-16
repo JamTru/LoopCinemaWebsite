@@ -8,6 +8,14 @@ function SignInModal(props) {
     // const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate();
 
+    // <SignInModal
+    //     show={signInModalOn}
+    //     setloginUser={props.username}
+    //     setlogoutUser={props.logoutUser}
+    //     onHide={ () => setSignInModalOn(false)}
+    //   />
+    // console.log(props)
+
     // Generic change handler.
     const handleInputChange = (event) => {
         const name = event.target.name;
@@ -24,12 +32,21 @@ function SignInModal(props) {
     }
     const handleSubmit = (event) => {
         event.preventDefault();
-    
+        console.log(fields)
         const verified = verifyUser(fields.username, fields.password);
-    
+
+        // to Check loginUser is in props
+        if ("setloginUser" in props) {
+            // we have loginUser
+            console.log("We have that prop in SignInMOdal ")
+        } else {
+            console.log("loginUser wasn't in props!")
+            console.log(props)
+        }
+
         // If verified login the user.
         if(verified === true) {
-          props.loginUser(fields.username);
+          props.setloginUser(fields.username);
     
           // Navigate to the home page.
           navigate("/");
@@ -48,7 +65,7 @@ function SignInModal(props) {
             animation={false}
             show={props.show}
             onHide={props.onHide}
-            signInUser={props.loginUser}
+            signInUser={props.setloginUser}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
