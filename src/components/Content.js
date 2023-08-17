@@ -1,12 +1,12 @@
 import React from 'react';
 import MovieDisplay from './MovieDisplay';
-import slides from "./MovieDisplayData.json";
+import slides from "../data/MovieDisplayData.json";
 import AboutUs from './AboutUs.js';
 function Content () {
   return (
     <div className="main">
       <MovieDisplay data={slides} />
-      <AboutUs />
+      <AboutUs id="About-Us" />
     </div>
   );
 };

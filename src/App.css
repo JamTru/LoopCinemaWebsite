@@ -108,7 +108,7 @@
   font-weight: bold;
 }
 
-.navbar a {
+.navbar Link {
   float: left;
   display: block;
   color: white;
@@ -117,11 +117,16 @@
   text-decoration: none;
 }
 
-.navbar a:hover {
+.navbar Link:hover {
   transform: scale(1.1);
   cursor: pointer;
   color: #290025;
 }
+.navbar ul {
+  list-style-type: none;
+  display:block;
+}
+
 
 
 /*

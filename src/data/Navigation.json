@@ -1,0 +1,32 @@
+{
+	"menuItems": [
+    {
+			"title": "Home",
+			"url": "/"
+		},
+		{
+			"title": "New Movies",
+			"url": "/newmovies",
+			"submenu": [{
+				"title": "Harry Potter and The Goblet of Fire",
+				"url": "HP_mov.js"
+			},
+      {
+				"title": "Pacific Rim",
+				"url": "PR_mov.js"
+			},
+      {
+				"title": "Shutter Island",
+				"url": "SI_mov.js"
+			},
+      {
+				"title": "Spider-Man: Into the Spider-Verse",
+				"url": "SM_mov.js"
+			}]
+		},
+		{
+			"title": "About Us",
+			"url": "#About-Us"
+		}
+	]
+}
