@@ -1,3 +1,4 @@
+
 const USERS_KEY = "users";
 const USER_KEY = "user";
 
@@ -31,6 +32,41 @@ function getUsers() {
   return JSON.parse(data);
 }
 
+function signupVerify(username, password) {
+  const users_storage = getUsers(); // get the users fromm localStorage
+  let i = 1; // i is used to count to add new account if there is no same username in the array.
+  const users = [];
+  
+  console.log(users_storage)
+  for(const user of users_storage) {
+    users.push(user)
+    
+    if(username !== user.username){
+
+      if(users_storage.length === i) {
+        console.log(users_storage.length === i)
+        
+        users.push(({username,password}))     
+        console.log("this is the users data = " + users)
+        
+        localStorage.setItem(USERS_KEY, JSON.stringify(users));
+        console.log(users)
+        return true; 
+      }
+    } 
+    i++;
+  }
+  
+  // console.log(users);
+  return false;
+}
+function setUsers(username, password){
+  // const users = getUsers()
+  // users.push(JSON.stringify({username, password}))
+  // console.log("THIS IS THE USERS DATA = "+ users)
+  // localStorage.setItem(USERS_KEY, users);
+}
+
 // NOTE: In this example the login is also persistent as it is stored in local storage.
 function verifyUser(username, password) {
   const users = getUsers();
@@ -44,6 +80,7 @@ function verifyUser(username, password) {
 
   return false;
 }
+
 
 function setUser(username) {
   localStorage.setItem(USER_KEY, username);
@@ -61,5 +98,7 @@ export {
   initUsers,
   verifyUser,
   getUser,
-  removeUser
+  removeUser,
+  signupVerify,
+  setUsers
 }
