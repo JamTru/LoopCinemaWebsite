@@ -1,13 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import MoviePage from '../components/MoviePage.js';
 
 function HP_mov() {
+  const stringSummary = "The fourth movie in the Harry Potter franchise sees Harry (Daniel Radcliffe) returning for his fourth year at Hogwarts School of Witchcraft and Wizardry, along with his friends, Ron (Rupert Grint) and Hermione (Emma Watson). There is an upcoming tournament between the three major schools of magic, with one participant selected from each school by the Goblet of Fire. When Harry's name is drawn, even though he is not eligible and is a fourth player, he must compete in the dangerous contest.";
   return (
     <div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque et erat imperdiet, luctus mauris vel, luctus mi. Mauris in lectus id urna pretium pharetra nec a leo. Pellentesque posuere felis turpis, in molestie est tempor vitae. Suspendisse interdum et enim nec dapibus. Curabitur finibus tortor quis dapibus faucibus. Praesent tincidunt semper laoreet. Cras dolor lacus, lobortis vel diam sit amet, condimentum porta sem.
-
-      Maecenas a dui ac mauris volutpat facilisis id ut diam. Duis ac magna interdum, molestie erat ut, maximus quam. Maecenas sollicitudin molestie est, quis elementum magna congue eu. Pellentesque vehicula tortor elit, a pulvinar nulla volutpat quis. Vestibulum cursus dolor vitae mi commodo tincidunt. Fusce tempor mollis posuere. Nam elementum metus metus, et mollis neque commodo at. Integer finibus est eu rutrum commodo. Mauris luctus lectus vel justo mollis, eget porttitor eros tincidunt. In non mi finibus nisi congue laoreet. Sed ornare nisi urna, volutpat aliquet magna maximus ut. Nunc auctor vehicula magna, et blandit nulla bibendum vitae. Cras velit orci, ornare eu pretium at, dapibus et diam. Donec ut rhoncus purus, vitae bibendum elit. Curabitur nibh dolor, maximus at metus a, egestas posuere diam.
-      </p>
+      <MoviePage name="Harry Potter and the Goblet of Fire" summary={stringSummary} rating="M" genre="Fantasy / Adventure" release="18/11/2005" trailer="7lJ6Suyp1ok" />
     </div>
   );
 }
