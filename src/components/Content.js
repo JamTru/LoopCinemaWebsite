@@ -1,12 +1,14 @@
 import React from 'react';
+import {useEffect, useRef} from 'react'
 import MovieDisplay from './MovieDisplay';
 import slides from "../data/MovieDisplayData.json";
 import AboutUs from './AboutUs.js';
-function Content () {
+import {useLocation} from "react-router-dom";
+const Content = () => {
   return (
     <div className="main">
       <MovieDisplay data={slides} />
-      <AboutUs id="About-Us" />
+      <AboutUs />
     </div>
   );
 };

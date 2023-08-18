@@ -11,13 +11,13 @@ const MenuItems = ({items}) => {
         {
           items.submenu ? (
             <>
-              <button type="button" onClick={() => setDropdown((prev) => !prev)}>
+              <button type="button" onClick={() =>  setDropdown((prev) => !prev)}>
                 {items.title}{' '}
               </button>
               <Dropdown submenus={items.submenu} dropdown={dropdown} />
             </>
           ) : (
-            <Link to={items.url}>{items.title}</Link>
+            <Link className="LinkTo" to={items.url}>{items.title}</Link>
           )
         }
       </li>
