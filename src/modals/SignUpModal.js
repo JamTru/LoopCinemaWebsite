@@ -1,11 +1,13 @@
 import React, {useState} from 'react'
 import { useNavigate } from "react-router-dom";
-import { signupVerify, setUsers } from "../data/repository";
+import { signupVerify} from "../data/repository";
 import { Modal, Container } from 'react-bootstrap'
 
 function SignUpModal(props) {
     const [fields, setFields] = useState({ username: "", password: "" });
     const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState(null);
+
 
     const handleInputChange = (event) => {
         const name = event.target.name;
@@ -53,7 +55,7 @@ function SignUpModal(props) {
       setFields(temp);
   
       //Set error message.
-    //   setErrorMessage("Username and / or password invalid, please try again.");
+      setErrorMessage("Username already exists, please try again.");
     }
     
     return (
@@ -88,6 +90,11 @@ function SignUpModal(props) {
                         <div className="form-group">
                             <input type="submit" className="btn btn-primary" value="Sign Up" />
                         </div>
+                        {errorMessage !== null &&
+                        <div className="form-group">
+                            <span className="text-danger">{errorMessage}</span>
+                        </div>
+                        }
                     </form>
                 </Modal.Body>
             

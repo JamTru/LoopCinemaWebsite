@@ -60,12 +60,7 @@ function signupVerify(username, password) {
   // console.log(users);
   return false;
 }
-function setUsers(username, password){
-  // const users = getUsers()
-  // users.push(JSON.stringify({username, password}))
-  // console.log("THIS IS THE USERS DATA = "+ users)
-  // localStorage.setItem(USERS_KEY, users);
-}
+
 
 // NOTE: In this example the login is also persistent as it is stored in local storage.
 function verifyUser(username, password) {
@@ -100,5 +95,4 @@ export {
   getUser,
   removeUser,
   signupVerify,
-  setUsers
 }
