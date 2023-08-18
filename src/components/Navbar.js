@@ -1,14 +1,18 @@
 import React from 'react';
+import menuItems from '../data/Navigation.json';
+import MenuItems from './MenuItems.js';
 import {Container} from 'react-bootstrap';
 import { Link } from "react-router-dom";
-
-function Navbar(){
+const Navbar = () => {
   return (
-    <div className="navbar">
-      <a href="#" >Home </a>
-      <a href="#" >New Movies </a>
-      <a href="#AboutUsContainer">About </a>
-      <a href="#" class="right">Contact</a>
+    <div class="navbar">
+      <nav>
+        <ul className="menu">
+          {menuItems.menuItems.map((menu, index) => {
+            return <MenuItems items={menu} key={index} />;
+          })}
+        </ul>
+      </nav>
     </div>
   );
 };
