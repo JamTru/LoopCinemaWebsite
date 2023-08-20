@@ -1,22 +1,19 @@
 import React from 'react';
 import YoutubeEmbed from './YoutubeEmbed.js';
 import './MoviePage.css';
-const MoviePage = ({name, summary, rating, genre, release, trailer}) => {
+const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef}) => {
   return (
-    <>
-      <h2 className="title">{name}</h2>
-      <br />
-      <p className="summary">{summary}</p>
-      <br />
-      <p className="ageRating">{rating}</p>
-      <br />
-      <p>{genre}</p>
-      <br />
-      <p>{release}</p>
-      <br />
+    <div>
+      <div className="movieInfo">
+        <img src={imageRef} className="promophoto"></img>
+        <h2 className="title">{name}</h2>
+        <p className="summary">{summary}</p>
+        <p className="ageRating" lang={rating == "MA15+" ? "MA" : rating}>{rating}</p>
+        <p>{genre}</p>
+        <p>{release}</p>
+      </div>
       <YoutubeEmbed embedID={trailer} />
-
-    </>
+    </div>
   );
 }
 
