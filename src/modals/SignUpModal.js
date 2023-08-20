@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import { signupVerify} from "../data/repository";
-import { Modal, Container } from 'react-bootstrap'
+import { Modal, Container } from 'react-bootstrap';
 
 function SignUpModal(props) {
     const [fields, setFields] = useState({ username: "", password: "" });
@@ -40,10 +40,10 @@ function SignUpModal(props) {
 
         // If onCreat sign-up the user.
         if(signupVerified === true) {
-            //setUsers(fields.username, fields.password);    
+            //setUsers(fields.username, fields.password);
             // localStorage.setItem(Number(localStorage.length)+1, JSON.stringify(fields))
             props.setloginUser(fields.username);
-    
+
             // Navigate to the home page.
             navigate("/");
             props.onHide(false)
@@ -53,11 +53,11 @@ function SignUpModal(props) {
       const temp = { ...fields };
       temp.password = "";
       setFields(temp);
-  
+
       //Set error message.
       setErrorMessage("Username already exists, please try again.");
     }
-    
+
     return (
         <Modal
             animation={false}
@@ -97,7 +97,7 @@ function SignUpModal(props) {
                         }
                     </form>
                 </Modal.Body>
-            
+
             </Container>
         </Modal>
     )
