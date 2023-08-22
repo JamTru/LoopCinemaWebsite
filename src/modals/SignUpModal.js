@@ -78,7 +78,11 @@ function SignUpModal(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        
+        console.log(usernameVaild)
+        if (usernameVaild === false){
+            setErrorMessage("Please, enter Username ")
+            return;
+        }
         const signupVerified = signupVerify(fields.email, fields.username, fields.password, setUsernameValid);
         
         // to Check loginUser is in props
@@ -98,7 +102,6 @@ function SignUpModal(props) {
             // localStorage.setItem(Number(localStorage.length)+1, JSON.stringify(fields))
             
             if (emailValid && pwValid){
-                console.log(" userVaild value " + emailValid + " " + pwValid +  " " + usernameVaild) 
 
                 props.setloginUser(fields.email, fields.username);
                 
