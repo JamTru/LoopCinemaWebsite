@@ -52,7 +52,7 @@ function SignInModal(props) {
             props.setloginUser(fields.email, JSON.parse(localStorage.getItem("user")).username);
         
             // Navigate to the home page.
-            navigate("/");
+            navigate("/Profile");
             props.onHide(false)
             return;
         }

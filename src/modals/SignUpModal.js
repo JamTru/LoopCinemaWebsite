@@ -106,7 +106,7 @@ function SignUpModal(props) {
                 props.setloginUser(fields.email, fields.username);
                 
                 // Navigate to the home page.
-                navigate("/");
+                navigate("/Profile");
                 props.onHide(false)
                 return;
             }

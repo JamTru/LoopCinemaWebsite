@@ -4,6 +4,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Header from './components/Header';
 import Navbar from './components/Navbar';
+import Profile from './components/Profile'
 import Content from './components/Content';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
@@ -32,6 +33,7 @@ function App() {
     <div>
       <Router>
         <Header email={email} username={username} logoutUser={logoutUser} loginUser={loginUser}/>
+          <Profile email={email} username={username} logoutUser={logoutUser} loginUser={loginUser}/>
         <Navbar />
         <Routes>
           <Route path="/" element={<Content />} />

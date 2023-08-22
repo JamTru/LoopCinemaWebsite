@@ -78,11 +78,20 @@ function Header(props) {
             {/* <li className="nav-item">
               <Link className="nav-link" to="/login" onClick={props.logoutUser}>Logout</Link>
             </li> */}
-            <Link to="/">
-              <button type="button" className='signOut_button' onClick={ props.logoutUser}> 
-                Sign Out
-              </button>
-            </Link>  
+            <li>
+              <Link to="/Profile">
+                <button type="button" className="profile_button" >
+                  My profile
+                </button>
+              </Link>
+            </li> 
+            <li>
+              <Link to="/">
+                <button type="button" className='signOut_button' onClick={ props.logoutUser}> 
+                  Sign Out
+                </button>
+              </Link>
+            </li>
           </>
         }
       </ul>
