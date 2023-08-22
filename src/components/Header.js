@@ -10,8 +10,10 @@ function Header(props) {
   const [signInModalOn, setSignInModalOn] = useState(false);
   const [loginUser, setloginUser] = useState(false);
   const [logoutUser, setlogoutUser] = useState(false);
+  // const [username, setUsername] = useState(props.username)
   // const [signInUser, setSignInUser] = useState(App.getUser);
   const test = () => {
+
     // to Check loginUser is in props
     if ("loginUser" in props) {
       // we have loginUser
@@ -31,15 +33,17 @@ function Header(props) {
         setloginUser={props.loginUser}
         setlogoutUser={props.logoutUser}
         onHide={ ()=> setSignUpModalOn(false)}
+
          
       />
       <SignInModal
         show={signInModalOn}
         setloginUser = {props.loginUser}
-        //setloginUser = {props.username}
-        // setlogioutUser = {props.logoutUser}
+        // setloginUser = {props.username}
+        setlogioutUser = {props.logoutUser}
         onHide={ () => setSignInModalOn(false)}
         
+        // setUsername = {props.username}
       />
 
       {/* show prop allows user to see the modal */}
@@ -49,7 +53,7 @@ function Header(props) {
       <ul className="webHeader">
         <img src={logo} alt="logo" class="mainLogo"></img>
         <h1 id="brandName">Loop Cinemas</h1>
-        {props.username === null ? //if username doesn't exsit shwoing SignIn/Out
+        {props.email === null ? //if Email doesn't exsit shwoing SignIn/Out
           <>
             <li className="header-item">
               <button type="button" className='signUp_button' onClick={ ()=> setSignUpModalOn(true)}>

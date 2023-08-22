@@ -16,20 +16,22 @@ import SM_mov from './pages/SM_mov.js';
 
 function App() {
   const [username, setUsername] = useState(getUser());
+  const [email, setEmail] = useState(getUser());
 
-  const loginUser = (username) => {
+  const loginUser = (email, username) => {
+    setEmail(email);
     setUsername(username);
   }
 
   const logoutUser = () => {
     removeUser();
-    setUsername(null);
+    setEmail(null);
   }
 
   return (
     <div>
       <Router>
-        <Header username={username} logoutUser={logoutUser} loginUser={loginUser}/>
+        <Header email={email} username={username} logoutUser={logoutUser} loginUser={loginUser}/>
         <Navbar />
         <Routes>
           <Route path="/" element={<Content />} />

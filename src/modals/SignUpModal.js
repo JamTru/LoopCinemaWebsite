@@ -4,17 +4,18 @@ import { signupVerify} from "../data/repository";
 import { Modal, Container } from 'react-bootstrap';
 
 function SignUpModal(props) {
-    const [fields, setFields] = useState({ username: "", password: "" });
+    const [fields, setFields] = useState({ email: "", username: "", password: "" });
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState(null);
 
 
     const handleInputChange = (event) => {
+
         const name = event.target.name;
         const value = event.target.value;
 
         // Copy fields.
-        const temp = { username: fields.username, password: fields.password };
+        const temp = { email: fields.email, username: fields.username, password: fields.password };
         // OR use spread operator.
         // const temp = { ...fields };
 
@@ -26,12 +27,13 @@ function SignUpModal(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(fields)
-        const signupVerified = signupVerify(fields.username, fields.password);
+        const signupVerified = signupVerify(fields.email, fields.username, fields.password);
 
         // to Check loginUser is in props
         if ("setloginUser" in props) {
             // we have loginUser
             console.log("We have that prop in SignInMOdal ")
+            console.log(props)
         } else {
             console.log("loginUser wasn't in props!")
             console.log(props)
@@ -42,7 +44,7 @@ function SignUpModal(props) {
         if(signupVerified === true) {
             //setUsers(fields.username, fields.password);
             // localStorage.setItem(Number(localStorage.length)+1, JSON.stringify(fields))
-            props.setloginUser(fields.username);
+            props.setloginUser(fields.email, fields.username);
 
             // Navigate to the home page.
             navigate("/");
@@ -76,6 +78,11 @@ function SignUpModal(props) {
 
                 <Modal.Body>
                     <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                            <label htmlFor="email" className="control-label">Email</label>
+                            <input type="email" name="email" id="email" className="form-control"
+                                value={fields.email}  onChange={handleInputChange}/>
+                        </div>
                         <div className="form-group">
                             <label htmlFor="username" className="control-label">Username</label>
                             <input name="username" id="username" className="form-control"

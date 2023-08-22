@@ -11,10 +11,12 @@ function initUsers() {
   // User data is hard-coded, passwords are in plain-text.
   const users = [
     {
+      email: "mbolger@gmail.com",
       username: "mbolger",
       password: "abc123"
     },
     {
+      email: "shekhar@gmail.com",
       username: "shekhar",
       password: "def456"
     }
@@ -32,7 +34,7 @@ function getUsers() {
   return JSON.parse(data);
 }
 
-function signupVerify(username, password) {
+function signupVerify(email, username, password) {
   const users_storage = getUsers(); // get the users fromm localStorage
   let i = 1; // i is used to count to add new account if there is no same username in the array.
   const users = [];
@@ -41,12 +43,12 @@ function signupVerify(username, password) {
   for(const user of users_storage) {
     users.push(user)
     
-    if(username !== user.username){
+    if(email !== user.email){
 
       if(users_storage.length === i) {
         console.log(users_storage.length === i)
         
-        users.push(({username,password}))     
+        users.push(({email,username,password}))     
         console.log("this is the users data = " + users)
         
         localStorage.setItem(USERS_KEY, JSON.stringify(users));
@@ -63,12 +65,12 @@ function signupVerify(username, password) {
 
 
 // NOTE: In this example the login is also persistent as it is stored in local storage.
-function verifyUser(username, password) {
+function verifyUser(email, password) {
   const users = getUsers();
   for(const user of users) {
-    if(username === user.username && password === user.password)
+    if(email === user.email && password === user.password)
     {
-      setUser(username);
+      setUser(email, user.username);
       return true;
     }
   }
@@ -77,8 +79,8 @@ function verifyUser(username, password) {
 }
 
 
-function setUser(username) {
-  localStorage.setItem(USER_KEY, username);
+function setUser(email, username) {
+  localStorage.setItem(USER_KEY, JSON.stringify({email, username}));
 }
 
 function getUser() {
