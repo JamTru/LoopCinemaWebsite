@@ -92,6 +92,8 @@ function getUser() {
   return localStorage.getItem(USER_KEY);
 }
 
+
+
 function removeUser() {
   localStorage.removeItem(USER_KEY);
 }

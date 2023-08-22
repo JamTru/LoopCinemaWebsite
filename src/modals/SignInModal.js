@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { useNavigate } from "react-router-dom";
 import { verifyUser } from "../data/repository";
 import { Modal,Container } from 'react-bootstrap'
-import { getUser, removeUser } from "../data/repository";
+// import { getUser, removeUser } from "../data/repository";
 
 function SignInModal(props) {
     const [fields, setFields] = useState({ email: "", username: "", password: "" });

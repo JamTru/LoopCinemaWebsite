@@ -49,8 +49,8 @@
   cursor: pointer;
 }
 .signOut_button {
-  margin-top: -5.8%;
-  margin-right: 3%;
+  margin-top: -45px;
+  margin-right: 20px;
   float: right;
   position:relative;
   border: none;
@@ -72,10 +72,9 @@
   cursor: pointer;
 }
 
-
 .profile_button{
-  margin-top: -3.5%;
-  margin-right: 15%;
+  margin-top: -45px;
+  margin-right: 155px;
   float: right;
   position:relative;
   border: none;
@@ -173,6 +172,36 @@
   margin-left: 5%;
   margin-bottom: 5%;
   color: red;
+}
+
+.profile_box {
+  box-shadow: 12px 12px 7px 3px #555555;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: left;
+  border: 1px solid #11001C;
+  padding-bottom: 30px;
+  width: 40%;
+ 
+}
+
+.profile_title{
+  text-decoration: none;
+  font-weight: 600;
+  font-style: bold;
+  font-size: 24px;
+  background-color: #ede9e9;
+  color: #3A015C;
+  padding-left: 30px;
+  padding-top: 20px;
+  padding-bottom: 5px;
+}
+
+.profile_body {
+  text-align: left;
+  margin-left: 120px;
 }
 
 /*

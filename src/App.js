@@ -17,7 +17,15 @@ import SM_mov from './pages/SM_mov.js';
 
 function App() {
   const [username, setUsername] = useState(getUser());
+
+  // if (username !== null) {
+  //   setUsername = JSON.parse(getUser()).username;
+  // }
   const [email, setEmail] = useState(getUser());
+  // if (email !== null) {
+  //   setEmail = JSON.parse(getUser()).email;
+  // }
+  // props.setloginUser(fields.email, JSON.parse(localStorage.getItem("user")).username);
 
   const loginUser = (email, username) => {
     setEmail(email);
@@ -28,12 +36,14 @@ function App() {
     removeUser();
     setEmail(null);
   }
+  useEffect(() => {
+    console.log("refresh result" + username);
+  }, []);
 
   return (
     <div>
       <Router>
         <Header email={email} username={username} logoutUser={logoutUser} loginUser={loginUser}/>
-          <Profile email={email} username={username} logoutUser={logoutUser} loginUser={loginUser}/>
         <Navbar />
         <Routes>
           <Route path="/" element={<Content />} />
@@ -42,6 +52,7 @@ function App() {
           <Route path="/SI_mov.js"  element={<SI_mov />} />
           <Route path="/SM_mov.js" element={<SM_mov />} />
         </Routes>
+          <Profile email={email} username={username} logoutUser={logoutUser} loginUser={loginUser}/>
         <Footer />
       </Router>
     </div>

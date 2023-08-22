@@ -51,7 +51,7 @@ function Header(props) {
 
         
       <ul className="webHeader">
-        <img src={logo} alt="logo" class="mainLogo"></img>
+        <img src={logo} alt="logo" className="mainLogo"></img>
         <h1 id="brandName">Loop Cinemas</h1>
         {props.email === null ? //if Email doesn't exsit shwoing SignIn/Out
           <>
@@ -84,8 +84,6 @@ function Header(props) {
                   My profile
                 </button>
               </Link>
-            </li> 
-            <li>
               <Link to="/">
                 <button type="button" className='signOut_button' onClick={ props.logoutUser}> 
                   Sign Out

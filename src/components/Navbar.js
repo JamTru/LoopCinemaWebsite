@@ -5,7 +5,7 @@ import {Container} from 'react-bootstrap';
 import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
-    <div class="navbar">
+    <div className="navbar">
       <nav>
         <ul className="menu">
           {menuItems.menuItems.map((menu, index) => {

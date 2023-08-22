@@ -2,7 +2,7 @@ import React from 'react';
 
 const UpcomingSchedule = (props) => {
   return (
-    <div class={props.className}>
+    <div className={props.className}>
       <h4>{props.name}</h4>
       <h5>Monday</h5>
       <h5>Tuesday</h5>
