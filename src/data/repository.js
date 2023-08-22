@@ -13,12 +13,14 @@ function initUsers() {
     {
       email: "mbolger@gmail.com",
       username: "mbolger",
-      password: "abc123"
+      password: "abc123",
+      date: "2023-08-22T18:49:45.304Z"
     },
     {
       email: "shekhar@gmail.com",
       username: "shekhar",
-      password: "def456"
+      password: "def456",
+      date: "2023-08-22T18:49:45.304Z"
     }
   ];
 
@@ -34,7 +36,7 @@ function getUsers() {
   return JSON.parse(data);
 }
 
-function signupVerify(email, username, password) {
+function signupVerify(email, username, password, date) {
   const users_storage = getUsers(); // get the users fromm localStorage
   let i = 1; // i is used to count to add new account if there is no same username in the array.
   const users = [];
@@ -50,10 +52,11 @@ function signupVerify(email, username, password) {
       
         console.log(users_storage.length === i)
         
-        users.push(({email,username,password}))     
+        users.push(({email,username,password,date}))     
         console.log("this is the users data = " + users)
         
         localStorage.setItem(USERS_KEY, JSON.stringify(users));
+        setUser(email, username, date)
         console.log(users)
         return true;
       
@@ -75,7 +78,7 @@ function verifyUser(email, password) {
     if(email === user.email && password === user.password)
     {
       
-      setUser(email, user.username);
+      setUser(email, user.username, user.date);
       return true;
     }
   }
@@ -84,8 +87,8 @@ function verifyUser(email, password) {
 }
 
 
-function setUser(email, username) {
-  localStorage.setItem(USER_KEY, JSON.stringify({email, username}));
+function setUser(email, username, date) {
+  localStorage.setItem(USER_KEY, JSON.stringify({email, username, date}));
 }
 
 function getUser() {
@@ -107,6 +110,15 @@ function getEmail() {
   }
   return localStorage.getItem(USER_KEY);
 }
+function getDate() {
+  
+
+  if (localStorage.getItem(USER_KEY) !== null){
+    console.log(JSON.parse(localStorage.getItem(USER_KEY)).date);
+    return JSON.parse(localStorage.getItem(USER_KEY)).date;  
+  }
+  return localStorage.getItem(USER_KEY);
+}
 
 function removeUser() {
   localStorage.removeItem(USER_KEY);
@@ -117,6 +129,7 @@ export {
   verifyUser,
   getUser,
   getEmail,
+  getDate,
   removeUser,
   signupVerify,
 }

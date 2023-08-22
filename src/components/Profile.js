@@ -22,8 +22,9 @@ function Profile(props) {
                             <label>{props.email}</label>
                         </div>
                     </div>
-                    <div>
-                        <hr></hr>
+                    <hr></hr>
+                    <div className="profile_footer">
+                        <label>{props.date}</label>
                     </div>
                 </div>
                 

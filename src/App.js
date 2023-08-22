@@ -9,7 +9,7 @@ import Content from './components/Content';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import SignInModal from "./modals/SignInModal";
-import { getEmail, getUser, removeUser } from "./data/repository";
+import { getEmail, getUser, getDate, removeUser } from "./data/repository";
 import HP_mov from './pages/HP_mov.js';
 import PR_mov from './pages/PR_mov.js';
 import SI_mov from './pages/SI_mov.js';
@@ -18,10 +18,11 @@ import SM_mov from './pages/SM_mov.js';
 function App() {
   const [username, setUsername] = useState(getUser());
   const [email, setEmail] = useState(getEmail());
-
-  const loginUser = (email, username) => {
+  const [date, setDate] =useState(getDate());
+  const loginUser = (email, username, date) => {
     setEmail(email);
     setUsername(username);
+    setDate(date);
   }
 
   const logoutUser = () => {
@@ -42,7 +43,7 @@ function App() {
   //   console.log("Now : ", date);
   //   console.log("Now : ", day);
   // },[]);
-  
+
   return (
     <div>
       <Router>
@@ -56,7 +57,7 @@ function App() {
           <Route path="/SM_mov.js" element={<SM_mov />} />
           {/* <Route path="/Profile.js" element={<Profile />} email={email} username={username} logoutUser={logoutUser} loginUser={loginUser}/> */}
         </Routes>
-        <Profile email={email} username={username} logoutUser={logoutUser} loginUser={loginUser}/>
+        <Profile email={email} username={username} date = {date} logoutUser={logoutUser} loginUser={loginUser}/>
         <Footer />
       </Router>
     </div>

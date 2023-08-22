@@ -78,12 +78,13 @@ function SignUpModal(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        var date = new Date();
         console.log(usernameVaild)
         if (usernameVaild === false){
             setErrorMessage("Please, enter Username ")
             return;
         }
-        const signupVerified = signupVerify(fields.email, fields.username, fields.password, setUsernameValid);
+        const signupVerified = signupVerify(fields.email, fields.username, fields.password, date);
         
         // to Check loginUser is in props
         if ("setloginUser" in props) {
@@ -103,7 +104,7 @@ function SignUpModal(props) {
             
             if (emailValid && pwValid){
 
-                props.setloginUser(fields.email, fields.username);
+                props.setloginUser(fields.email, fields.username, date);
                 
                 // Navigate to the home page.
                 navigate("/Profile");
