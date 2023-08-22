@@ -34,7 +34,7 @@ function getUsers() {
   return JSON.parse(data);
 }
 
-function signupVerify(email, username, password) {
+function signupVerify(email, username, password, setUsernameValid) {
   const users_storage = getUsers(); // get the users fromm localStorage
   let i = 1; // i is used to count to add new account if there is no same username in the array.
   const users = [];
@@ -46,14 +46,18 @@ function signupVerify(email, username, password) {
     if(email !== user.email){
 
       if(users_storage.length === i) {
-        console.log(users_storage.length === i)
-        
-        users.push(({email,username,password}))     
-        console.log("this is the users data = " + users)
-        
-        localStorage.setItem(USERS_KEY, JSON.stringify(users));
-        console.log(users)
-        return true; 
+
+        if(setUsernameValid === true) {
+
+          console.log(users_storage.length === i)
+          
+          users.push(({email,username,password}))     
+          console.log("this is the users data = " + users)
+          
+          localStorage.setItem(USERS_KEY, JSON.stringify(users));
+          console.log(users)
+          return true;
+        }
       }
     } 
     i++;
@@ -68,8 +72,10 @@ function signupVerify(email, username, password) {
 function verifyUser(email, password) {
   const users = getUsers();
   for(const user of users) {
+    
     if(email === user.email && password === user.password)
     {
+      
       setUser(email, user.username);
       return true;
     }

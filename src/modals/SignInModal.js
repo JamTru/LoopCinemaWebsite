@@ -21,7 +21,8 @@ function SignInModal(props) {
     const handleInputChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
-
+        
+        
         // Copy fields.
         const temp = { email: fields.email, username: fields.username, password: fields.password };
         // OR use spread operator.
@@ -47,12 +48,13 @@ function SignInModal(props) {
 
         // If verified login the user.
         if(verified === true) {
-          props.setloginUser(fields.email, JSON.parse(localStorage.getItem("user")).username);
-    
-          // Navigate to the home page.
-          navigate("/");
-          props.onHide(false)
-          return;
+
+            props.setloginUser(fields.email, JSON.parse(localStorage.getItem("user")).username);
+        
+            // Navigate to the home page.
+            navigate("/");
+            props.onHide(false)
+            return;
         }
       // Reset password field to blank.
       const temp = { ...fields };
@@ -60,7 +62,7 @@ function SignInModal(props) {
       setFields(temp);
   
       //Set error message.
-      setErrorMessage("Username and / or password invalid, please try again.");
+      setErrorMessage("Email and / or password invalid, please try again.");
     }
     return (
         <Modal
@@ -82,13 +84,13 @@ function SignInModal(props) {
                 <Modal.Body>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label htmlFor="email" className="control-label">email</label>
-                            <input name="email" id="email" className="form-control"
+                            <label htmlFor="email" className="control-label">Email</label>
+                            <input name="email" id="email" className="form-control" placeholder='example@gamil.com'
                                 value={fields.email} onChange={handleInputChange}/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="password" className="control-label">Password</label>
-                            <input type="password" name="password" id="password" className="form-control"
+                            <label htmlFor="password" className="control-label">Password</label> 
+                            <input type="password" name="password" id="password" className="form-control" placeholder='Must contain a minimum of 8 characters (letters, numbers and sepcial characters)'
                                 value={fields.password} onChange={handleInputChange}/>
                         </div>
                         <div className="form-group">

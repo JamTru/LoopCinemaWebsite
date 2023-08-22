@@ -62,11 +62,10 @@ function Header(props) {
               
             </li >
             <li className="header-item">
-              <Link to="/modals/SignInModal">
-                <button type="button" className='signIn_button' onClick={ ()=> setSignInModalOn(true)}> 
-                  Sign In
-                </button>
-              </Link>
+              {/* <Link to="/modals/SignInModal"> */}{/* </Link> */}
+              <button type="button" className='signIn_button' onClick={ ()=> setSignInModalOn(true)}> 
+                Sign In
+              </button>
               {/* <Link className="header-link" to="/modals/SignInModal" /> */}
             </li>
           </>  
