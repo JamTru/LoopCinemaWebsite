@@ -89,10 +89,18 @@ function setUser(email, username) {
 }
 
 function getUser() {
+  if (localStorage.getItem(USERS_KEY) !== null){
+    return JSON.parse(localStorage.getItem(USER_KEY)).username;  
+  }
   return localStorage.getItem(USER_KEY);
 }
 
-
+function getEmail() {
+  if (localStorage.getItem(USERS_KEY) !== null){
+    return JSON.parse(localStorage.getItem(USER_KEY)).email;  
+  }
+  return localStorage.getItem(USER_KEY);
+}
 
 function removeUser() {
   localStorage.removeItem(USER_KEY);
@@ -102,6 +110,7 @@ export {
   initUsers,
   verifyUser,
   getUser,
+  getEmail,
   removeUser,
   signupVerify,
 }
