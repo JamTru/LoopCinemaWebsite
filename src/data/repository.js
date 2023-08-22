@@ -89,14 +89,20 @@ function setUser(email, username) {
 }
 
 function getUser() {
-  if (localStorage.getItem(USERS_KEY) !== null){
+  
+  
+  if (localStorage.getItem(USER_KEY) !== null){
+    console.log(JSON.parse(localStorage.getItem(USER_KEY)).username);
     return JSON.parse(localStorage.getItem(USER_KEY)).username;  
   }
   return localStorage.getItem(USER_KEY);
 }
 
 function getEmail() {
-  if (localStorage.getItem(USERS_KEY) !== null){
+  
+
+  if (localStorage.getItem(USER_KEY) !== null){
+    console.log(JSON.parse(localStorage.getItem(USER_KEY)).email);
     return JSON.parse(localStorage.getItem(USER_KEY)).email;  
   }
   return localStorage.getItem(USER_KEY);

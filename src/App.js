@@ -29,6 +29,20 @@ function App() {
     setEmail(null);
   }
 
+    // useEffect(() => {
+  //   // Update the document title using the browser API
+  //   var now = new Date();
+  //   var year = now.getFullYear();
+  //   var month = now.getMonth();
+  //   var date = now.getDate();
+  //   var day = now.getDay();
+    
+  //   console.log("Now : ", year);
+  //   console.log("Now : ", month + 1);
+  //   console.log("Now : ", date);
+  //   console.log("Now : ", day);
+  // },[]);
+  
   return (
     <div>
       <Router>
