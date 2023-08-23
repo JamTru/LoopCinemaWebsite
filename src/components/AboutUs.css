@@ -14,14 +14,14 @@
   border-radius: 0px 25px 25px 0px;
   background-color: #290025;
 }
-.textbox h2{
+.About-Us h2{
   text-decoration: underline;
   text-decoration-style: double;
   text-decoration-thickness: 0.5px;
   color: white;
   font-family: "Verdana";
 }
-.textbox p {
+.About-Us p {
   color:white;
 }
 .AboutUsContainer {

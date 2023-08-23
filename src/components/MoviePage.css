@@ -9,24 +9,30 @@
   margin-right: auto;
 }
 
+.block-display {
+  display:inline-block;
+}
 .movieInfo {
   background-color: #11001C;
   padding-top: 2rem;
-  display:inline-block ;
+  display:flex;
 }
 .movieInfo h2 {
   color:white;
-  float:right;
+  margin-right:0;
+  margin-left:auto;
 }
 .movieInfo p {
   color:white;
   display:inline-block;
 }
 .summary {
-  margin-right: 0;
-  margin-left: auto;
+  margin-right: auto;
+  margin-left: 5px;
   padding-left: 15px;
   padding-right: 15px;
+  border-left:6px solid #4F0147;
+  background-color:#3A015C;
 }
 .promophoto {
   height:auto;
@@ -38,8 +44,8 @@
   padding: 2px;
 }
 .ageRating {
-  margin-left: 2px;
-  margin-right: 2px;
+  margin-left: 5px;
+  margin-right: 5px;
   font-weight: bolder;
   padding: 4px 16px 4px 16px;
   border-radius: 10px;

@@ -2,22 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Dropdown from './dropdown.js';
 import { useState } from "react";
-import "./MenuItems.css";
+import './MenuItems.css';
 const MenuItems = ({items}) => {
-  const [dropdown, setDropdown] = useState(false);
+  const [display, setDisplay] = useState(false);
   return (
-    <div>
+    <div className="inline">
       <li className="menu-items">
         {
           items.submenu ? (
             <>
-              <button type="button" onClick={() =>  setDropdown((prev) => !prev)}>
+              <button type="button" onClick={() =>  setDisplay((prev) => !prev)}>
                 {items.title}{' '}
               </button>
-              <Dropdown submenus={items.submenu} dropdown={dropdown} />
+              <Dropdown submenus={items.submenu} isShown={display} />
             </>
           ) : (
-            <Link className="LinkTo" to={items.url}>{items.title}</Link>
+            <Link className="LinkTo" to={items.url} style={{ textDecoration: 'none' }}>{items.title}</Link>
           )
         }
       </li>

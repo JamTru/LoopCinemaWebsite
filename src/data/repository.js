@@ -1,7 +1,7 @@
 
 const USERS_KEY = "users";
 const USER_KEY = "user";
-
+const REVIEWS_KEY = "reviews";
 // Initialise local storage "users" with data, if the data is already set this function returns immediately.
 function initUsers() {
   // Stop if data is already initialised.
@@ -23,7 +23,6 @@ function initUsers() {
       date: "2023-08-22T18:49:45.304Z"
     }
   ];
-
   // Set data into local storage.
   localStorage.setItem(USERS_KEY, JSON.stringify(users));
 }
@@ -40,31 +39,31 @@ function signupVerify(email, username, password, date) {
   const users_storage = getUsers(); // get the users fromm localStorage
   let i = 1; // i is used to count to add new account if there is no same username in the array.
   const users = [];
-  
+
   console.log(users_storage)
   for(const user of users_storage) {
     users.push(user)
-    
+
     if(email !== user.email){
 
       if(users_storage.length === i) {
 
-      
+
         console.log(users_storage.length === i)
         
         users.push(({email,username,password,date}))     
         console.log("this is the users data = " + users)
-        
+
         localStorage.setItem(USERS_KEY, JSON.stringify(users));
         setUser(email, username, date)
         console.log(users)
         return true;
-      
+
       }
-    } 
+    }
     i++;
   }
-  
+
   // console.log(users);
   return false;
 }
@@ -74,7 +73,7 @@ function signupVerify(email, username, password, date) {
 function verifyUser(email, password) {
   const users = getUsers();
   for(const user of users) {
-    
+
     if(email === user.email && password === user.password)
     {
       
@@ -123,6 +122,35 @@ function getDate() {
 function removeUser() {
   localStorage.removeItem(USER_KEY);
 }
+
+function initReviews(){
+  if(localStorage.getItem(REVIEWS_KEY) !== null) {
+    return;
+  } else {
+    localStorage.setItem(REVIEWS_KEY, JSON.stringify(dummyReview));
+  }
+  const dummyReview = [
+    {
+      movie: "Shutter Island",
+      numRating: 90,
+      comments: "Cool movie staring Tom Cruise!"
+    },
+    {
+      movie: "Pacific Rim",
+      numRating: 99,
+      comments: "Who doesn't love mechas punching kaijus?"
+    }
+  ];
+}
+function getReviews() {
+  const data = localStorage.getItem(REVIEWS_KEY);
+  return JSON.parse(data);
+}
+
+function addReview(movie, numRating, comment){
+  localStorage.setItem(REVIEWS_KEY,JSON.stringify({movie, numRating, comment}))
+}
+
 
 export {
   initUsers,
