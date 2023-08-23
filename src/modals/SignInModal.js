@@ -52,8 +52,9 @@ function SignInModal(props) {
             props.setloginUser(fields.email, JSON.parse(localStorage.getItem("user")).username, JSON.parse(localStorage.getItem("user")).date);
         
             // Navigate to the home page.
-            // navigate("./pages/Profile}");
-            <Link to={"Profile.js"}> </Link>
+            navigate('./Profile.js');
+
+            // <Link to={"./Profile.js"}> </Link>
             props.onHide(false)
             // return;
         }

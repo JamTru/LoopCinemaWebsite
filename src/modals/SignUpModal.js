@@ -104,11 +104,11 @@ function SignUpModal(props) {
             
             if (emailValid && pwValid){
 
-                props.setloginUser(fields.email, fields.username, date);
+                props.setloginUser(fields.email, fields.username, JSON.stringify(date));
                 
                 // Navigate to the home page.
-                // navigate("/Profile");
-                <Link to={"Profile.js"}> </Link>
+                navigate("./Profile.js");
+                // <Link to={"Profile.js"}> </Link>
                 props.onHide(false)
                 return;
             }
