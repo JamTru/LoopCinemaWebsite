@@ -3,6 +3,7 @@ import menuItems from '../data/Navigation.json';
 import MenuItems from './MenuItems.js';
 import {Container} from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import "../App.css";
 const Navbar = () => {
   return (
     <div class="navbar">

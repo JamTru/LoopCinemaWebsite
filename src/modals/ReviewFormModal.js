@@ -9,8 +9,7 @@ const ReviewFormModal = (props) => {
   const [comments, setComments] = useState("");
   const [errorDetected, setErrorDetected] = useState(null);
   const handleSubmit = (event) => {
-    event.preventDefault()
-    console.log(comments.length);
+    event.preventDefault();
     if (comments.length <= 0 || comments.length > 250) {
       setErrorDetected("Comments need to be between 0 to 250 characters.")
       console.log("Error message");

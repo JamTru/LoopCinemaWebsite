@@ -1,7 +1,7 @@
 
 const USERS_KEY = "users";
 const USER_KEY = "user";
-
+const REVIEWS_KEY = "reviews";
 // Initialise local storage "users" with data, if the data is already set this function returns immediately.
 function initUsers() {
   // Stop if data is already initialised.
@@ -21,7 +21,6 @@ function initUsers() {
       password: "def456"
     }
   ];
-
   // Set data into local storage.
   localStorage.setItem(USERS_KEY, JSON.stringify(users));
 }
@@ -38,11 +37,11 @@ function signupVerify(email, username, password, setUsernameValid) {
   const users_storage = getUsers(); // get the users fromm localStorage
   let i = 1; // i is used to count to add new account if there is no same username in the array.
   const users = [];
-  
+
   console.log(users_storage)
   for(const user of users_storage) {
     users.push(user)
-    
+
     if(email !== user.email){
 
       if(users_storage.length === i) {
@@ -50,19 +49,19 @@ function signupVerify(email, username, password, setUsernameValid) {
         if(setUsernameValid === true) {
 
           console.log(users_storage.length === i)
-          
-          users.push(({email,username,password}))     
+
+          users.push(({email,username,password}))
           console.log("this is the users data = " + users)
-          
+
           localStorage.setItem(USERS_KEY, JSON.stringify(users));
           console.log(users)
           return true;
         }
       }
-    } 
+    }
     i++;
   }
-  
+
   // console.log(users);
   return false;
 }
@@ -72,10 +71,10 @@ function signupVerify(email, username, password, setUsernameValid) {
 function verifyUser(email, password) {
   const users = getUsers();
   for(const user of users) {
-    
+
     if(email === user.email && password === user.password)
     {
-      
+
       setUser(email, user.username);
       return true;
     }
@@ -96,6 +95,35 @@ function getUser() {
 function removeUser() {
   localStorage.removeItem(USER_KEY);
 }
+
+function initReviews(){
+  if(localStorage.getItem(REVIEWS_KEY) !== null) {
+    return;
+  } else {
+    localStorage.setItem(REVIEWS_KEY, JSON.stringify(dummyReview));
+  }
+  const dummyReview = [
+    {
+      movie: "Shutter Island",
+      numRating: 90,
+      comments: "Cool movie staring Tom Cruise!"
+    },
+    {
+      movie: "Pacific Rim",
+      numRating: 99,
+      comments: "Who doesn't love mechas punching kaijus?"
+    }
+  ];
+}
+function getReviews() {
+  const data = localStorage.getItem(REVIEWS_KEY);
+  return JSON.parse(data);
+}
+
+function addReview(movie, numRating, comment){
+  localStorage.setItem(REVIEWS_KEY,JSON.stringify({movie, numRating, comment}))
+}
+
 
 export {
   initUsers,

@@ -3,7 +3,7 @@ import "./AboutUs.css";
 const AboutUs = () => {
   return (
     <div className="AboutUsContainer">
-      <div id="About-Us">
+      <div className="About-Us">
         <h2>Serious about your Cinema Experience?</h2>
         <p>So are we. The Loop Cinema has been established ever since the 1960s, and we've been delivering the perfect movie cinema experiences for over 60 years. Our cinemas are fitted with the highest quality in sound and picture, to make every joke a gutbuster, every drama much more intense and to make every moment just that more immersive. <br /> <br />
 

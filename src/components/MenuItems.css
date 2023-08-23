@@ -1,7 +1,12 @@
-.hidden {
-  display:none;
+.inline {
+  display:inline-block;
+  margin-right:10px;
 }
+.inline Button {
+  text-decoration: none;
+  background:none;
+  border:none;
+}
+.menu-open {
 
-.dropdown {
-  display:block;
 }
