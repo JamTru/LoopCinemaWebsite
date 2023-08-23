@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { verifyUser } from "../data/repository";
 import { Modal,Container } from 'react-bootstrap'
 import { getUser, removeUser } from "../data/repository";
@@ -52,9 +52,10 @@ function SignInModal(props) {
             props.setloginUser(fields.email, JSON.parse(localStorage.getItem("user")).username, JSON.parse(localStorage.getItem("user")).date);
         
             // Navigate to the home page.
-            navigate("/Profile");
+            // navigate("./pages/Profile}");
+            <Link to={"Profile.js"}> </Link>
             props.onHide(false)
-            return;
+            // return;
         }
       // Reset password field to blank.
       const temp = { ...fields };

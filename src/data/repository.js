@@ -104,7 +104,7 @@ function getEmail() {
   
 
   if (localStorage.getItem(USER_KEY) !== null){
-    console.log(JSON.parse(localStorage.getItem(USER_KEY)).email);
+    console.log("email => "+JSON.parse(localStorage.getItem(USER_KEY)).email);
     return JSON.parse(localStorage.getItem(USER_KEY)).email;  
   }
   return localStorage.getItem(USER_KEY);

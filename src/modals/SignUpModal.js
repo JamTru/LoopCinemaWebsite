@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signupVerify} from "../data/repository";
 import { Modal, Container } from 'react-bootstrap';
 
@@ -107,7 +107,8 @@ function SignUpModal(props) {
                 props.setloginUser(fields.email, fields.username, date);
                 
                 // Navigate to the home page.
-                navigate("/Profile");
+                // navigate("/Profile");
+                <Link to={"Profile.js"}> </Link>
                 props.onHide(false)
                 return;
             }
