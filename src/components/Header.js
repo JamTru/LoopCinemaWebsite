@@ -26,15 +26,15 @@ function Header(props) {
   }
   return (
     <>
-       
-      
-      <SignUpModal 
+
+
+      <SignUpModal
         show={signUpModalOn}
         setloginUser={props.loginUser}
         setlogoutUser={props.logoutUser}
         onHide={ ()=> setSignUpModalOn(false)}
 
-         
+
       />
       <SignInModal
         show={signInModalOn}
@@ -42,14 +42,14 @@ function Header(props) {
         // setloginUser = {props.username}
         setlogioutUser = {props.logoutUser}
         onHide={ () => setSignInModalOn(false)}
-        
+
         // setUsername = {props.username}
       />
 
       {/* show prop allows user to see the modal */}
       {/* onHide is to hide the modal */}
 
-        
+
       <ul className="webHeader">
         <img src={logo} alt="logo" className="mainLogo"></img>
         <h1 id="brandName">Loop Cinemas</h1>
@@ -59,19 +59,19 @@ function Header(props) {
               <button type="button" className='signUp_button' onClick={ ()=> setSignUpModalOn(true)}>
                 Sign Up
               </button>
-              
+
             </li >
             <li className="header-item">
               {/* <Link to="/modals/SignInModal"> */}{/* </Link> */}
-              <button type="button" className='signIn_button' onClick={ ()=> setSignInModalOn(true)}> 
+              <button type="button" className='signIn_button' onClick={ ()=> setSignInModalOn(true)}>
                 Sign In
               </button>
               {/* <Link className="header-link" to="/modals/SignInModal" /> */}
             </li>
-          </>  
+          </>
           :
           // OR if the user exsits showing wlecome message
-          <> 
+          <>
             <li className="header-item">
               <span className="nav-link text-light">Welcome, {props.username}</span>
             </li>
@@ -79,13 +79,13 @@ function Header(props) {
               <Link className="nav-link" to="/login" onClick={props.logoutUser}>Logout</Link>
             </li> */}
             <li>
-              <Link to="/Profile">
+              <Link to="./Profile.js">
                 <button type="button" className="profile_button" >
-                  My profile
+                  My Profile
                 </button>
               </Link>
               <Link to="/">
-                <button type="button" className='signOut_button' onClick={ props.logoutUser}> 
+                <button type="button" className='signOut_button' onClick={ props.logoutUser}>
                   Sign Out
                 </button>
               </Link>

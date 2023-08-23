@@ -16,7 +16,7 @@ function Profile(props) {
                     <div className="profile_body">
                         <div>
                             <label>{props.username}</label>
-                            
+
                         </div>
                         <div>
                             <label>{props.email}</label>
@@ -27,10 +27,10 @@ function Profile(props) {
                         <label>{props.date}</label>
                     </div>
                 </div>
-                
+
             </div>
         </form>
-        
+
     );
 }
 
