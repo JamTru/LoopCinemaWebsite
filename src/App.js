@@ -55,9 +55,10 @@ function App() {
           <Route path="/PR_mov.js" element={<PR_mov />} />
           <Route path="/SI_mov.js"  element={<SI_mov />} />
           <Route path="/SM_mov.js" element={<SM_mov />} />
-          {/* <Route path="/Profile.js" element={<Profile />} email={email} username={username} logoutUser={logoutUser} loginUser={loginUser}/> */}
         </Routes>
-        <Profile email={email} username={username} date = {date} logoutUser={logoutUser} loginUser={loginUser}/>
+        <Link to = "/Profile">
+          <Profile email={email} username={username} date = {date} logoutUser={logoutUser} loginUser={loginUser}/>
+        </Link>
         <Footer />
       </Router>
     </div>
