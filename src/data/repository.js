@@ -14,13 +14,13 @@ function initUsers() {
       email: "mbolger@gmail.com",
       username: "mbolger",
       password: "abc123",
-      date: "2023-08-22T18:49:45.304Z"
+      date: "Thu, 24 Aug 2023"
     },
     {
       email: "shekhar@gmail.com",
       username: "shekhar",
       password: "def456",
-      date: "2023-08-22T18:49:45.304Z"
+      date: "Thu, 24 Aug 2023"
     }
   ];
   // Set data into local storage.

@@ -19,12 +19,13 @@ function Profile(props) {
 
                         </div>
                         <div>
-                            <label>{props.email}</label>
+                            <label>{props.email}</label>                            
                         </div>
                     </div>
-                    <hr></hr>
+
                     <div className="profile_footer">
-                        <label>{props.date}</label>
+                        <hr></hr>
+                        <label>{JSON.parse(props.date)}</label>
                     </div>
                 </div>
 

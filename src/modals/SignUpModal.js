@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { signupVerify} from "../data/repository";
 import { Modal, Container } from 'react-bootstrap';
 
@@ -10,6 +10,7 @@ function SignUpModal(props) {
     const [emailValid, setEmailValid] = useState(false);
     const [pwValid, setPwValid] = useState(false);
     const [usernameVaild, setUsernameValid] = useState(false);
+    const [currentTime, setCurrentTime] = useState('');
 
     const handleInputChangeEmail = (event) => {
 
@@ -78,13 +79,44 @@ function SignUpModal(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        var date = new Date();
+        // var date = new Date(Date.AEST(new Date()));
+        // console.log(new Intl.DateTimeFormat('en-US').format(date));
+        // const date = new Date();
+        // const options = { weekday: 'short', month: 'short', day: '2-digit', year: 'numeric' };
+
+        // // Function to format the date as "Thur Sep 26 2023"
+        
+        // // Get the current date in AEST (Australia Eastern Standard Time)
+        // console.log("Current Date : " + date);
+        
+        // // Format the date and update the state
+        // const formattedDate = date.toLocaleString('en-AU', { timeZone: 'Australia/Sydney' }).toLocaleString;
+        // console.log("Now @@ : " + formattedDate);
+        // setCurrentTime = formattedDate;
+        // // console.log("Current Date 2 : ", JSON.stringify(currentTime));
+        // // // setCurrentTime(formatAESTDate(new Date(currentDate)));
+        // // console.log("Current Time : " + JSON.parse(currentTime));
+        
+      
+        // Get the current date in AEST (Australia Eastern Standard Time)
+        const currentDate = new Date()
+        // .toLocaleString('en-AU', { timeZone: 'Australia/Sydney' });
+    
+        // Format the date and update the state
+        setCurrentTime(formatAESTDate(new Date(currentDate)));
+        console.log(" Bottom ")
+        console.log(currentDate);
+        console.log(currentTime);
+        //setCurrentTime((currentTime));
+        
+    
         console.log(usernameVaild)
+
         if (usernameVaild === false){
             setErrorMessage("Please, enter Username ")
             return;
         }
-        const signupVerified = signupVerify(fields.email, fields.username, fields.password, date);
+        const signupVerified = signupVerify(fields.email, fields.username, fields.password, (formatAESTDate(new Date(currentDate))));
         
         // to Check loginUser is in props
         if ("setloginUser" in props) {
@@ -104,7 +136,7 @@ function SignUpModal(props) {
             
             if (emailValid && pwValid){
 
-                props.setloginUser(fields.email, fields.username, JSON.stringify(date));
+                props.setloginUser(fields.email, fields.username, JSON.stringify(formatAESTDate(new Date(currentDate))));
                 
                 // Navigate to the home page.
                 navigate("./Profile.js");
@@ -115,12 +147,16 @@ function SignUpModal(props) {
               
         }
       // Reset password field to blank.
-      const temp = { ...fields };
-      temp.password = "";
-      setFields(temp);
+        const temp = { ...fields };
+        temp.password = "";
+        setFields(temp);
 
-      //Set error message.
-      setErrorMessage("Email already exists or Username is empty, please try again.");
+        //Set error message.
+        setErrorMessage("Email already exists or Username is empty, please try again.");
+    }
+    function formatAESTDate(date) {
+        const options = { weekday: 'short', month: 'short', day: '2-digit', year: 'numeric' };
+        return date.toLocaleDateString('en-AU', options);
     }
 
     return (
