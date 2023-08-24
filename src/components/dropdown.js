@@ -11,7 +11,7 @@ const Dropdown = ({submenus, isShown}) => {
             submenus.map((submenu, index) => (
               <li key={index} className="menu-items">
                 <Link to={submenu.url}>{submenu.title}</Link>
-              </li>
+              </li> // Maps the submenu part of the JSON array to more listed Links
             ))
           }
         </ul>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {useEffect, useRef} from 'react'
 import MovieDisplay from './MovieDisplay';
-import slides from "../data/MovieDisplayData.json";
+import slides from "../data/MovieDisplayData.json"; //Passing in JSON Array  to Movie Component
 import AboutUs from './AboutUs.js';
 import {useLocation} from "react-router-dom";
 const Content = () => {
