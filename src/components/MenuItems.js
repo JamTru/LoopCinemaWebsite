@@ -4,18 +4,18 @@ import Dropdown from './dropdown.js';
 import { useState } from "react";
 import './MenuItems.css';
 const MenuItems = ({items}) => {
-  const [display, setDisplay] = useState(false);
+  const [display, setDisplay] = useState(false);//Simple logic to handle when to display the submenu. Initialised as false, onClick changes it.
   return (
     <div className="inline">
       <li className="menu-items">
         {
           items.submenu ? (
-            <>
+            <div className="test-style">
               <button type="button" onClick={() =>  setDisplay((prev) => !prev)}>
                 {items.title}{' '}
               </button>
               <Dropdown submenus={items.submenu} isShown={display} />
-            </>
+            </div>
           ) : (
             <Link className="LinkTo" to={items.url} style={{ textDecoration: 'none' }}>{items.title}</Link>
           )

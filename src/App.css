@@ -133,7 +133,6 @@
 }
 
 .navbar {
-  overflow: hidden;
   background-color: #c76464;
   font-weight: bold;
   display: block;
@@ -168,7 +167,7 @@
   border: 1px solid #11001C;
   padding-bottom: 30px;
   width: 40%;
- 
+
 }
 
 .profile_title{

@@ -14,7 +14,6 @@ const UpcomingSchedule = (props) => {
       <p>Times</p>
       {Object.entries(props.schedule).map(([day,time]) =>{
           return <p>{time}</p>
-          //Need to fix, this won't render times properly
         })
       }
     </div>

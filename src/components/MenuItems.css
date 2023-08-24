@@ -9,8 +9,11 @@
 }
 .menu-open {
   position:absolute;
-  top:0;
-  bottom:0;
-  right:0;
-  z-index: 10;
+  background-color: white;
+  border: solid 2px black;
+  width:200px;
+}
+
+.test-style{
+  position:relative;
 }

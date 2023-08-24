@@ -3,7 +3,7 @@ import YoutubeEmbed from './YoutubeEmbed.js';
 import './MoviePage.css';
 import ReviewFormModal from '../modals/ReviewFormModal.js';
 const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef}) => {
-  const [reviewModalOn, setReviewModalOn] = useState(false);
+  const [reviewModalOn, setReviewModalOn] = useState(false);//State logic to handle display of modal
 
   return (
     <div>
