@@ -19,7 +19,6 @@ function App() {
   const [username, setUsername] = useState(getUser());
   const [email, setEmail] = useState(getEmail());
   const [date, setDate] = useState(getDate());
-  const isLogged = localStorage.getItem("user") !== null ? "loggedIn" : "loggedOut";
   const loginUser = (email, username, date) => {
     setEmail(email);
     setUsername(username);
@@ -38,21 +37,19 @@ function App() {
   //   var month = now.getMonth();
   //   var date = now.getDate();
   //   var day = now.getDay();
-    
-    
+
+
   //   console.log("Now : ", year);
   //   console.log("Now : ", month + 1);
   //   console.log("Now : ", date);
   //   console.log("Now : ", day);
-  //   console.log("Now : ", 
+  //   console.log("Now : ",
   // },[]);
-
-  console.log(isLogged);
   return (
     <div>
       <Router>
         <Header email={email} username={username} logoutUser={logoutUser} loginUser={loginUser}/>
-        <Navbar logstatus={isLogged} />
+        <Navbar />
         <Routes>
           <Route path="/" element={<Content />} />
           <Route path="/HP_mov.js" element={<HP_mov />} />

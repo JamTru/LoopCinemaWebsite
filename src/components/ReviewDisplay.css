@@ -1,0 +1,31 @@
+.boxed {
+  margin:1.5rem;
+  border: solid 2px white;
+  padding: 2rem;
+}
+.reviewCompartment h2{
+  color:white;
+}
+.reviewCompartment p {
+  color:white;
+}
+.reviewCompartment span{
+  margin-left: 5px;
+  margin-right: 10px;
+  font-weight: bolder;
+  width:50px;
+  height:50px;
+  padding:10px;
+}
+span:lang(B){
+  border: solid 2px #fd5c63;
+  background-color: #fd5c63;
+}
+span:lang(M){
+  border: solid 2px #FEBE10;
+  background-color: #FEBE10;
+}
+span:lang(G){
+  border: solid 2px #009000;
+  background-color: #009000;
+}

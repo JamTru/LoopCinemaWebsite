@@ -1,3 +1,18 @@
+.doNotShow{
+  display:none;
+}
+.show {
+  padding:10px;
+  margin: 0 auto;
+  display:block;
+  margin-bottom: 10px;
+  width:700px;
+  border-radius:10px;
+}
+.background {
+  background-color: #11001C;
+  padding-top: 2rem;
+}
 .resizeIFrame {
   background-color: #11001C;
   max-width: 100%;
