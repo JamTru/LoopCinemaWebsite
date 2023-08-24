@@ -25,7 +25,7 @@ function Profile(props) {
 
                     <div className="profile_footer">
                         <hr></hr>
-                        <label>{JSON.parse(props.date)}</label>
+                        <label>{props.date}</label>
                     </div>
                 </div>
 
