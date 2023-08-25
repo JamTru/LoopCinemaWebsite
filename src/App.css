@@ -7,6 +7,13 @@
 
 .modal-backdrop {
   background-color: transparent;
+  
+}
+
+.modal-content {
+  border-width: 10px; /* Adjust the value as needed */
+  border-color: #290025;
+  /* box-shadow: 12px 12px 7px 3px #555555; */
 }
 
 .signIn_button {
@@ -251,6 +258,7 @@
   margin-right: 30px;
   margin-right:0%;
 }
+
 
 /*
 Thinking of having a colour palette like this
