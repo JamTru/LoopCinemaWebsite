@@ -195,19 +195,21 @@
 }
 
 .edit_button {
-  margin-right: 5px;
+  margin-right: 15px;
   border: none;
   float: right;
   background-color: white;
   border-radius: 100px;
+  padding: 0px;
 }
 
 .remove_button {
-  margin-right: 5px;
+  margin-right: 10px;
   border: none;
   float: right;
   background-color: white;
   border-radius: 100px;
+  padding: 0px;
 }
 
 .profileEditIcon {
