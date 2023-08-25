@@ -1,5 +1,5 @@
 import React from "react";
-
+import profilePic from '../profilePic.jpg'
 
 
 function Profile(props) {
@@ -13,15 +13,17 @@ function Profile(props) {
                         <label htmlFor="Profile" className="control-profile-label">Profile</label>
                     {/* <img src={"/MoviePoster/PC_horizontal.jpg"} alt="profile_image" className="profileLogo"></img> */}
                     </div>
-                    <div className="profile_body">
-                        <div>
-                            <label>{props.username}</label>
-
-                        </div>
-                        <div>
-                            <label>{props.email}</label>                            
+                    <div>
+                        <div className="profile_body">
+                            <img src ={profilePic} className="profilePic" alt = "profilePic"></img>
+                            
+                            <label className="profile_body_username">{props.username}</label>
+                            <br></br>
+                            <label className="profile_body_email">{props.email}</label>
+                        
                         </div>
                     </div>
+                    
 
                     <div className="profile_footer">
                         <hr></hr>

@@ -73,7 +73,7 @@ function Header(props) {
           // OR if the user exsits showing wlecome message
           <>
             <li className="header-item">
-              <span className="nav-link text-light">Welcome, {props.username}</span>
+              <span className="nav-link">Welcome, {props.username}</span>
             </li>
             {/* <li className="nav-item">
               <Link className="nav-link" to="/login" onClick={props.logoutUser}>Logout</Link>

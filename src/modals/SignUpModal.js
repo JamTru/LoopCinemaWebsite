@@ -79,28 +79,9 @@ function SignUpModal(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // var date = new Date(Date.AEST(new Date()));
-        // console.log(new Intl.DateTimeFormat('en-US').format(date));
-        // const date = new Date();
-        // const options = { weekday: 'short', month: 'short', day: '2-digit', year: 'numeric' };
-
-        // // Function to format the date as "Thur Sep 26 2023"
         
-        // // Get the current date in AEST (Australia Eastern Standard Time)
-        // console.log("Current Date : " + date);
-        
-        // // Format the date and update the state
-        // const formattedDate = date.toLocaleString('en-AU', { timeZone: 'Australia/Sydney' }).toLocaleString;
-        // console.log("Now @@ : " + formattedDate);
-        // setCurrentTime = formattedDate;
-        // // console.log("Current Date 2 : ", JSON.stringify(currentTime));
-        // // // setCurrentTime(formatAESTDate(new Date(currentDate)));
-        // // console.log("Current Time : " + JSON.parse(currentTime));
-        
-      
         // Get the current date in AEST (Australia Eastern Standard Time)
         const currentDate = new Date()
-        // .toLocaleString('en-AU', { timeZone: 'Australia/Sydney' });
     
         // Format the date and update the state
         setCurrentTime(formatAESTDate(new Date(currentDate)));
@@ -136,7 +117,7 @@ function SignUpModal(props) {
             
             if (emailValid && pwValid){
 
-                props.setloginUser(fields.email, fields.username, JSON.stringify(formatAESTDate(new Date(currentDate))));
+                props.setloginUser(fields.email, fields.username, (formatAESTDate(new Date(currentDate))));
                 
                 // Navigate to the home page.
                 navigate("./Profile.js");
