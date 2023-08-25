@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { signupVerify} from "../data/repository";
 import { Modal, Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
+import {addReview} from '../data/repository.js';
 
 const ReviewFormModal = (props) => {
   const [numRating, setNumRating] = useState(0);
@@ -12,10 +13,15 @@ const ReviewFormModal = (props) => {
     event.preventDefault();
     if (comments.trim().length <= 0 || comments.trim().length > 250) {
       setErrorDetected("Comments need to be between 0 to 250 characters.")
-      console.log("Error message");
     }
     else {
-      console.log("Successful Submission");
+      console.log(props.movie);
+      var today = new Date();
+      var dd = String(today.getDay()).padStart(2,'0');
+      var mm = String(today.getMonth() + 1).padStart(2,'0');
+      var yyyy = today.getFullYear();
+      today = dd + "-" + mm + "-" + yyyy;
+      addReview(numRating, comments, today, props.movie);
       props.onHide();
     }
   }

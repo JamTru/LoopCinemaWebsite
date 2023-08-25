@@ -1,7 +1,11 @@
 .boxed {
-  margin:1.5rem;
+  margin:1rem 1.5rem 0rem;
   border: solid 2px white;
   padding: 2rem;
+}
+.reviewCompartment {
+  margin: 1rem 1rem 0rem;
+  background-color: #11001C;
 }
 .reviewCompartment h2{
   color:white;

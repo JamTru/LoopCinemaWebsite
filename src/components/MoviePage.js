@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 import YoutubeEmbed from './YoutubeEmbed.js';
 import './MoviePage.css';
 import ReviewFormModal from '../modals/ReviewFormModal.js';
+import ReviewDisplay from './ReviewDisplay.js';
 const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef}) => {
   const [reviewModalOn, setReviewModalOn] = useState(false);//State logic to handle display of modal
-
+  const isLogged = localStorage.getItem("user") !== null ? "show" : "doNotShow";
   return (
     <div>
       <div className="movieInfo">
@@ -17,8 +18,11 @@ const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef}) =
         </div>
       </div>
       <YoutubeEmbed embedID={trailer} />
-      <ReviewFormModal show={reviewModalOn} onHide={()=> setReviewModalOn(false)} />
-      <button type="button" onClick={() => setReviewModalOn(true)}>Leave a Review!</button>
+      <ReviewFormModal show={reviewModalOn} onHide={()=> setReviewModalOn(false)} movie={name} />
+      <div className="background">
+        <button type="button" onClick={() => setReviewModalOn(true)} className={isLogged}>Leave a Review!</button>
+        <ReviewDisplay />
+      </div>
     </div>
   );
 }

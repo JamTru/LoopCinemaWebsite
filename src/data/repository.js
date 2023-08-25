@@ -1,7 +1,6 @@
 
 const USERS_KEY = "users";
 const USER_KEY = "user";
-const REVIEWS_KEY = "reviews";
 // Initialise local storage "users" with data, if the data is already set this function returns immediately.
 function initUsers() {
   // Stop if data is already initialised.
@@ -50,8 +49,8 @@ function signupVerify(email, username, password, date) {
 
 
         console.log(users_storage.length === i)
-        
-        users.push(({email,username,password,date}))     
+
+        users.push(({email,username,password,date}))
         console.log("this is the users data = " + users)
 
         localStorage.setItem(USERS_KEY, JSON.stringify(users));
@@ -76,7 +75,7 @@ function verifyUser(email, password) {
 
     if(email === user.email && password === user.password)
     {
-      
+
       setUser(email, user.username, user.date);
       return true;
     }
@@ -91,30 +90,30 @@ function setUser(email, username, date) {
 }
 
 function getUser() {
-  
-  
+
+
   if (localStorage.getItem(USER_KEY) !== null){
     console.log(JSON.parse(localStorage.getItem(USER_KEY)).username);
-    return JSON.parse(localStorage.getItem(USER_KEY)).username;  
+    return JSON.parse(localStorage.getItem(USER_KEY)).username;
   }
   return localStorage.getItem(USER_KEY);
 }
 
 function getEmail() {
-  
+
 
   if (localStorage.getItem(USER_KEY) !== null){
     console.log("email => "+JSON.parse(localStorage.getItem(USER_KEY)).email);
-    return JSON.parse(localStorage.getItem(USER_KEY)).email;  
+    return JSON.parse(localStorage.getItem(USER_KEY)).email;
   }
   return localStorage.getItem(USER_KEY);
 }
 function getDate() {
-  
+
 
   if (localStorage.getItem(USER_KEY) !== null){
     console.log(JSON.parse(localStorage.getItem(USER_KEY)).date);
-    return JSON.parse(localStorage.getItem(USER_KEY)).date;  
+    return JSON.parse(localStorage.getItem(USER_KEY)).date;
   }
   return localStorage.getItem(USER_KEY);
 }
@@ -123,32 +122,30 @@ function removeUser() {
   localStorage.removeItem(USER_KEY);
 }
 
-function initReviews(){
-  if(localStorage.getItem(REVIEWS_KEY) !== null) {
-    return;
-  } else {
-    localStorage.setItem(REVIEWS_KEY, JSON.stringify(dummyReview));
-  }
-  const dummyReview = [
-    {
-      movie: "Shutter Island",
-      numRating: 90,
-      comments: "Cool movie staring Tom Cruise!"
-    },
-    {
-      movie: "Pacific Rim",
-      numRating: 99,
-      comments: "Who doesn't love mechas punching kaijus?"
+function addReview(rating, comment, dateOfCreation, movieName) {
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (localStorage.getItem(user.email) != null) {
+    const review = {
+      name: movieName,
+      numRate: rating,
+      commentString: comment,
+      date: dateOfCreation
     }
-  ];
-}
-function getReviews() {
-  const data = localStorage.getItem(REVIEWS_KEY);
-  return JSON.parse(data);
-}
-
-function addReview(movie, numRating, comment){
-  localStorage.setItem(REVIEWS_KEY,JSON.stringify({movie, numRating, comment}))
+    const reviewsList = JSON.parse(localStorage.getItem(user.email));
+    reviewsList.push(review);
+    localStorage.setItem(user.email, JSON.stringify(reviewsList));
+  } else {
+    const reviewsList = [];
+    const review = {
+      name: movieName,
+      numRate: rating,
+      commentString: comment,
+      date: dateOfCreation
+    }
+    reviewsList.push(review);
+    console.log(reviewsList);
+    localStorage.setItem(user.email, JSON.stringify(reviewsList));
+  } //something fucky wucky with the key, for some reason username won't register
 }
 
 
@@ -160,4 +157,5 @@ export {
   getDate,
   removeUser,
   signupVerify,
+  addReview
 }
