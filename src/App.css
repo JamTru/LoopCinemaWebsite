@@ -169,7 +169,7 @@
   text-align: left;
   border: 1px solid #11001C;
   padding-bottom: 30px;
-  width: 40%;
+  width: 400px;
 
 }
 
@@ -182,22 +182,36 @@
   color: #3A015C;
   padding-left: 10px;
   padding-top: 20px;
-  padding-bottom: 5px;
+  padding-bottom: auto;
+  margin-bottom: 10px;
+  
 }
 
 .profilePic {
   width: 70px;
   float: left;
   margin-left: 10px;
-  margin-right: 10px;
+  margin-right: auto;
   margin-top: auto;
   border-radius: 8px;
+}
+
+.profileEditIcon {
+  width: 20px;
+  float: right;
+  margin-right: 10px;
+}
+
+.profileRemoval {
+  width: 20px;
+  float: right;
+  margin-right: 10px;
 }
 
 .profile_body_username {
   text-align: left;
   margin-left: 13px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .profile_body_email {

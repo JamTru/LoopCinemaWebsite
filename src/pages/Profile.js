@@ -1,6 +1,7 @@
 import React from "react";
-import profilePic from '../profilePic.jpg'
-
+import profilePic from '../profilePic.png'
+import profileEditIcon from '../editIcon.png'
+import profileRemoval from '../remove.png'
 
 function Profile(props) {
     //console.log("profile's props => " + JSON.stringify(props))
@@ -15,16 +16,14 @@ function Profile(props) {
                     </div>
                     <div>
                         <div className="profile_body">
-                            <img src ={profilePic} className="profilePic" alt = "profilePic"></img>
-                            
+                            <img src={profilePic} className="profilePic" alt ="profilePic"></img>
                             <label className="profile_body_username">{props.username}</label>
+                            <img src={profileRemoval} className="profileRemoval" alt="profileRemoval"></img>
+                            <img src={profileEditIcon} className="profileEditIcon" alt="profileEditIcon"></img>
                             <br></br>
                             <label className="profile_body_email">{props.email}</label>
-                        
                         </div>
                     </div>
-                    
-
                     <div className="profile_footer">
                         <hr></hr>
                         <label>{props.date}</label>
