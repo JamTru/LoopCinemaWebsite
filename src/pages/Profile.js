@@ -18,9 +18,18 @@ function Profile(props) {
                         <div className="profile_body">
                             <img src={profilePic} className="profilePic" alt ="profilePic"></img>
                             <label className="profile_body_username">{props.username}</label>
-                            <img src={profileRemoval} className="profileRemoval" alt="profileRemoval"></img>
-                            <img src={profileEditIcon} className="profileEditIcon" alt="profileEditIcon"></img>
-                            <br></br>
+                            
+                            <button variant="contained" className="remove_button">
+                                <img src={profileRemoval} className="profileRemoval" alt="remove" />
+                            </button>
+
+                            <button variant="contained" className="edit_button">
+                                <img src={profileEditIcon} className="profileEditIcon" alt="edit" />
+                            </button>
+                            
+                            {/* <img src={profileRemoval} className="profileRemoval" alt="profileRemoval"></img>
+                            <img src={profileEditIcon} className="profileEditIcon" alt="profileEditIcon"></img> */}
+
                             <label className="profile_body_email">{props.email}</label>
                         </div>
                     </div>

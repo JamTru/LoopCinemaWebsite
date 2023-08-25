@@ -170,7 +170,6 @@
   border: 1px solid #11001C;
   padding-bottom: 30px;
   width: 400px;
-
 }
 
 .profile_title{
@@ -178,13 +177,12 @@
   font-weight: 900;
   font-style: bold;
   font-size: 24px;
-  background-color: #ede9e9;
-  color: #3A015C;
+  background-color: #290025;
+  color: white;
   padding-left: 10px;
-  padding-top: 20px;
+  padding-top: 10px;
   padding-bottom: auto;
   margin-bottom: 10px;
-  
 }
 
 .profilePic {
@@ -196,16 +194,32 @@
   border-radius: 8px;
 }
 
+.edit_button {
+  margin-right: 5px;
+  border: none;
+  float: right;
+  background-color: white;
+  border-radius: 100px;
+}
+
+.remove_button {
+  margin-right: 5px;
+  border: none;
+  float: right;
+  background-color: white;
+  border-radius: 100px;
+}
+
 .profileEditIcon {
   width: 20px;
   float: right;
-  margin-right: 10px;
+  /* margin-right: 10px; */
 }
 
 .profileRemoval {
   width: 20px;
   float: right;
-  margin-right: 10px;
+  /* margin-right: 10px; */
 }
 
 .profile_body_username {
