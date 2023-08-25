@@ -51,8 +51,10 @@ function Header(props) {
 
 
       <ul className="webHeader">
-        <img src={logo} alt="logo" className="mainLogo"></img>
-        <h1 id="brandName">Loop Cinemas</h1>
+        <Link to='./'>
+          <img src={logo} alt="logo" className="mainLogo"></img>
+          <h1 id="brandName">Loop Cinemas</h1>
+        </Link>
         {props.email === null ? //if Email doesn't exsit shwoing SignIn/Out
           <>
             <li className="header-item">
