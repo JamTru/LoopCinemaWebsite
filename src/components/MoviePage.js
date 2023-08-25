@@ -6,6 +6,10 @@ import ReviewDisplay from './ReviewDisplay.js';
 const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef}) => {
   const [reviewModalOn, setReviewModalOn] = useState(false);//State logic to handle display of modal
   const isLogged = localStorage.getItem("user") !== null ? "show" : "doNotShow";
+  const userArray = JSON.parse(localStorage.getItem("users"));
+  console.log(userArray);
+  const usersWithReviews = userArray.filter((user) => localStorage.getItem(user.email) !== null);
+
   return (
     <div>
       <div className="movieInfo">
@@ -21,7 +25,14 @@ const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef}) =
       <ReviewFormModal show={reviewModalOn} onHide={()=> setReviewModalOn(false)} movie={name} />
       <div className="background">
         <button type="button" onClick={() => setReviewModalOn(true)} className={isLogged}>Leave a Review!</button>
-        <ReviewDisplay />
+        <h2>Most Recent Reviews</h2>
+        {
+          usersWithReviews.map((user, index) => {
+            const arrayOfReviewDetails = JSON.parse(localStorage.getItem(user.email));
+            const reviewDetails = arrayOfReviewDetails[0];
+            return <ReviewDisplay movieName={reviewDetails.name} username={user.username} date={reviewDetails.date} numValue={reviewDetails.numRate} comment={reviewDetails.commentString} />
+          })
+        }
       </div>
     </div>
   );

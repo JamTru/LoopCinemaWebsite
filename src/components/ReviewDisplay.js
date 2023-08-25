@@ -1,22 +1,20 @@
 import React from 'react';
 import './ReviewDisplay.css';
-const ReviewDisplay = ({movieName}) => {
+const ReviewDisplay = ({movieName, username, date, numValue, comment}) => {
   let score = null;
-  const dummy = 90;
-  if (dummy < 40) {
+  if (numValue < 40) {
     score = "B";
-  } else if (dummy < 70) {
+  } else if (numValue < 70) {
     score = "M";
   } else {
     score = "G";
   }
   return (
     <div className="reviewCompartment">
-      <h2>Most Recent Reviews</h2>
       <div className="boxed">
-        <p><span lang={score}>{dummy}</span><i> Username</i></p>
-        <p>DD/MM/YYYY</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis odio quis tellus vestibulum interdum sed a nulla. Curabitur ultrices dapibus fringilla. Donec accumsan interdum lacus, vitae posuere nibh interdum ac. Curabitur hendrerit ante in et.</p>
+        <p><span lang={score}>{numValue}</span><i> {username}</i></p>
+        <p>{date}</p>
+        <p>{comment}</p>
       </div>
     </div>
   )

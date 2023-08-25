@@ -90,10 +90,7 @@ function setUser(email, username, date) {
 }
 
 function getUser() {
-
-
   if (localStorage.getItem(USER_KEY) !== null){
-    console.log(JSON.parse(localStorage.getItem(USER_KEY)).username);
     return JSON.parse(localStorage.getItem(USER_KEY)).username;
   }
   return localStorage.getItem(USER_KEY);
@@ -103,16 +100,12 @@ function getEmail() {
 
 
   if (localStorage.getItem(USER_KEY) !== null){
-    console.log("email => "+JSON.parse(localStorage.getItem(USER_KEY)).email);
     return JSON.parse(localStorage.getItem(USER_KEY)).email;
   }
   return localStorage.getItem(USER_KEY);
 }
 function getDate() {
-
-
   if (localStorage.getItem(USER_KEY) !== null){
-    console.log(JSON.parse(localStorage.getItem(USER_KEY)).date);
     return JSON.parse(localStorage.getItem(USER_KEY)).date;
   }
   return localStorage.getItem(USER_KEY);

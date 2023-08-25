@@ -13,6 +13,10 @@
   background-color: #11001C;
   padding-top: 2rem;
 }
+.background h2{
+  padding-left:2.5rem;
+  color:white;
+}
 .resizeIFrame {
   background-color: #11001C;
   max-width: 100%;
