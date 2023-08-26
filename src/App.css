@@ -10,6 +10,7 @@
   
 }
 
+
 .modal-content {
   border-width: 10px; /* Adjust the value as needed */
   border-color: #290025;
@@ -214,7 +215,7 @@
   margin-right: 15px;
   border: none;
   float: right;
-  background-color: white;
+  background-color: None;
   border-radius: 100px;
   padding: 0px;
 }
@@ -248,8 +249,9 @@
 
 .profile_body_email {
   text-align: left;
-  margin-left: 10px;
+  margin-left: 13px;
   margin-right: auto;
+  margin-top: 5px;
 }
 
 .profile_footer {
@@ -258,6 +260,12 @@
   margin-right: 30px;
   margin-right:0%;
 }
+
+.ediProfileForm {
+ margin: 300px;  
+}
+
+
 
 
 /*

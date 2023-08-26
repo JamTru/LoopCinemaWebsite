@@ -14,6 +14,7 @@ import PR_mov from './pages/PR_mov.js';
 import SI_mov from './pages/SI_mov.js';
 import SM_mov from './pages/SM_mov.js';
 import Profile from './pages/Profile.js';
+import EditProfile from './pages/EditProfile.js';
 
 function App() {
   const [username, setUsername] = useState(getUser());
@@ -43,6 +44,7 @@ function App() {
           <Route path="/SI_mov.js"  element={<SI_mov />} />
           <Route path="/SM_mov.js" element={<SM_mov />} />
           <Route path="/Profile.js" element={<Profile email={email} date={date} username={username} logoutUser={logoutUser} />} />
+          <Route path="/Profile.js/EditProfile.js" element={<EditProfile email={email} date={date} username={username} logoutUser={logoutUser}/>}/>
         </Routes>
         <Footer />
       </Router>
