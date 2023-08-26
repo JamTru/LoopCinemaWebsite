@@ -7,7 +7,6 @@ const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef}) =
   const [reviewModalOn, setReviewModalOn] = useState(false);//State logic to handle display of modal
   const isLogged = localStorage.getItem("user") !== null ? "show" : "doNotShow";
   const userArray = JSON.parse(localStorage.getItem("users"));
-  console.log(userArray);
   const usersWithReviews = userArray.filter((user) => localStorage.getItem(user.email) !== null);
 
   return (
@@ -29,8 +28,10 @@ const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef}) =
         {
           usersWithReviews.map((user, index) => {
             const arrayOfReviewDetails = JSON.parse(localStorage.getItem(user.email));
-            const reviewDetails = arrayOfReviewDetails[0];
-            return <ReviewDisplay movieName={reviewDetails.name} username={user.username} date={reviewDetails.date} numValue={reviewDetails.numRate} comment={reviewDetails.commentString} />
+            const reviewDetails = arrayOfReviewDetails.filter((review) => review.name === name)[0];
+            if (typeof reviewDetails !== "undefined"){
+              return <ReviewDisplay movieName={reviewDetails.name} username={user.username} date={reviewDetails.date} numValue={reviewDetails.numRate} comment={reviewDetails.commentString} />
+            }
           })
         }
       </div>
