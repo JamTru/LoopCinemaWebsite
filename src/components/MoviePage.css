@@ -12,6 +12,12 @@
 .background {
   background-color: #11001C;
   padding-top: 2rem;
+  overflow: hidden;
+}
+.background h2{
+  padding-left:2.5rem;
+  color:white;
+  background-color:inherit;
 }
 .resizeIFrame {
   background-color: #11001C;

@@ -30,8 +30,6 @@ function App() {
     removeUser();
     setEmail(null);
   }
-
-  console.log({date})
   return (
     <div>
       <Router>

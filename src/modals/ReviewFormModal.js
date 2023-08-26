@@ -15,9 +15,8 @@ const ReviewFormModal = (props) => {
       setErrorDetected("Comments need to be between 0 to 250 characters.")
     }
     else {
-      console.log(props.movie);
       var today = new Date();
-      var dd = String(today.getDay()).padStart(2,'0');
+      var dd = String(today.getDate()).padStart(2,'0');
       var mm = String(today.getMonth() + 1).padStart(2,'0');
       var yyyy = today.getFullYear();
       today = dd + "-" + mm + "-" + yyyy;

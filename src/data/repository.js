@@ -90,10 +90,7 @@ function setUser(email, username, date) {
 }
 
 function getUser() {
-
-
   if (localStorage.getItem(USER_KEY) !== null){
-    console.log(JSON.parse(localStorage.getItem(USER_KEY)).username);
     return JSON.parse(localStorage.getItem(USER_KEY)).username;
   }
   return localStorage.getItem(USER_KEY);
@@ -103,16 +100,12 @@ function getEmail() {
 
 
   if (localStorage.getItem(USER_KEY) !== null){
-    console.log("email => "+JSON.parse(localStorage.getItem(USER_KEY)).email);
     return JSON.parse(localStorage.getItem(USER_KEY)).email;
   }
   return localStorage.getItem(USER_KEY);
 }
 function getDate() {
-
-
   if (localStorage.getItem(USER_KEY) !== null){
-    console.log(JSON.parse(localStorage.getItem(USER_KEY)).date);
     return JSON.parse(localStorage.getItem(USER_KEY)).date;
   }
   return localStorage.getItem(USER_KEY);
@@ -123,8 +116,9 @@ function removeUser() {
 }
 
 function addReview(rating, comment, dateOfCreation, movieName) {
+  /*Function for handling the creation of a review object and pushing it to the local storage.*/
   const user = JSON.parse(localStorage.getItem("user"));
-  if (localStorage.getItem(user.email) != null) {
+  if (localStorage.getItem(user.email) != null) { //If statement handles whether or not the user has a preexisting array, if not creates one.
     const review = {
       name: movieName,
       numRate: rating,
@@ -143,9 +137,8 @@ function addReview(rating, comment, dateOfCreation, movieName) {
       date: dateOfCreation
     }
     reviewsList.push(review);
-    console.log(reviewsList);
     localStorage.setItem(user.email, JSON.stringify(reviewsList));
-  } //something fucky wucky with the key, for some reason username won't register
+  }
 }
 
 
