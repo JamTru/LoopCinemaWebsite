@@ -42,7 +42,7 @@ function App() {
           <Route path="/SI_mov.js"  element={<SI_mov />} />
           <Route path="/SM_mov.js" element={<SM_mov />} />
           <Route path="/Profile.js" element={<Profile email={email} date={date} username={username} logoutUser={logoutUser} />} />
-          <Route path="/Profile.js/EditProfile.js" element={<EditProfile email={email} date={date} username={username} logoutUser={logoutUser}/>}/>
+          <Route path="/Profile.js/EditProfile.js" element={<EditProfile email={email} date={date} username={username} logoutUser={logoutUser} loginUser={loginUser}/>}/>
         </Routes>
         <Footer />
       </Router>

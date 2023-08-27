@@ -189,6 +189,7 @@ function SignUpModal(props) {
                         <div className="form-group">
                             <input type="submit" className="btn btn-primary" value="Sign Up" />
                         </div>
+                        
                         {errorMessage !== null &&
                         <div className="form-group">
                             <span className="text-danger">{errorMessage}</span>
