@@ -99,6 +99,37 @@ function updateVerify(email_old, email, username, password, date) {
   // console.log(users);
 }
 
+function deleteVerify(email, username, password, date) {
+  const users_storage = getUsers(); // get the users fromm localStorage
+  let i = 1; // i is used to count to add new account if there is no same username in the array.
+  const users = [];
+  // const [password, setPassword] = useState('')
+
+  console.log(users_storage)
+  for(const user of users_storage) {
+    
+    if(email !== user.email){
+      
+      console.log("CHECK New email and username : " + user.email + " " + user.username + " " + user.password)
+      // users.push((user.email, user.username, user.password, user.date))
+      users.push(user)
+
+      // console.log("THIS IS PASSWORD : " + password)
+
+      localStorage.setItem(USERS_KEY, JSON.stringify(users));
+
+      removeUser();
+      console.log(JSON.stringify(users))
+        
+    } else{
+
+      console.log(i + " - Array LocalStorage");
+    } 
+  }
+  i++;
+  // console.log(users);
+}
+
 // NOTE: In this example the login is also persistent as it is stored in local storage.
 function verifyUser(email, password) {
   const users = getUsers();
@@ -190,5 +221,6 @@ export {
   removeUser,
   signupVerify,
   updateVerify,
+  deleteVerify,
   addReview
 }
