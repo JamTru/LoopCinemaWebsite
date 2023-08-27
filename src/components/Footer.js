@@ -13,7 +13,6 @@ function Footer(){
         <p>Email: loopcinemas@fakeemail.com</p>
         <p>Locations</p>
         <p>Terms and Conditions</p>
-
       </div>
     </div>
   );

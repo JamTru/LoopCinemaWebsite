@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Content from './components/Content';
-import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import SignInModal from "./modals/SignInModal";
 import { getDate, getEmail, getUser, removeUser } from "./data/repository";

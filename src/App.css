@@ -7,7 +7,7 @@
 
 .modal-backdrop {
   background-color: transparent;
-  
+
 }
 
 
@@ -161,6 +161,9 @@
 .navbar li {
   list-style-type: none;
 }
+.navbar li a {
+  color:white;
+}
 
 .form-group{
   margin-bottom: 5%;
@@ -262,7 +265,7 @@
 }
 
 .ediProfileForm {
- margin: 300px;  
+ margin: 300px;
 }
 
 

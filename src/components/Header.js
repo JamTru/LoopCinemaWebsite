@@ -72,14 +72,11 @@ function Header(props) {
             </li>
           </>
           :
-          // OR if the user exsits showing wlecome message
+          // OR if the user exists showing welcome message
           <>
             <li className="header-item">
               <span className="nav-link">Welcome, {props.username}</span>
             </li>
-            {/* <li className="nav-item">
-              <Link className="nav-link" to="/login" onClick={props.logoutUser}>Logout</Link>
-            </li> */}
             <li>
               <Link to="./Profile.js">
                 <button type="button" className="profile_button" >

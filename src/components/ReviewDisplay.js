@@ -2,7 +2,7 @@ import React from 'react';
 import './ReviewDisplay.css';
 const ReviewDisplay = ({movieName, username, date, numValue, comment}) => {
   let score = null;
-  if (numValue < 40) {
+  if (numValue < 40) { //Manipulating  CSS Lang to display different CSS for ratings
     score = "B";
   } else if (numValue < 70) {
     score = "M";

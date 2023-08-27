@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import "./MovieDisplay.css";
 import UpcomingSchedule from "./UpcomingSchedule.js";
 export const MovieDisplay = ({data}) => { //Accepts any JSON, so this component isn't automatically reliant on hardcode
@@ -14,7 +14,7 @@ export const MovieDisplay = ({data}) => { //Accepts any JSON, so this component 
   return (
     <div>
       {
-        data.slides.map((item, index) => {
+        data.slides.map((item, index) => { // Automatically changes Title to current title
           return <h2 key={index} className={slide === index ? "title" : "title title-hidden"}>Now presenting: {item.alt}</h2>
         })
       }
@@ -28,7 +28,7 @@ export const MovieDisplay = ({data}) => { //Accepts any JSON, so this component 
         <button className="arrow arrow-next" onClick={nextSlide}>&#10095;</button>
       </div>
       {
-        data.slides.map((item, index,) => {
+        data.slides.map((item, index,) => { // Also display the schedule of the movie here, only rendering the current movie
           return <UpcomingSchedule className={slide === index ? "schedule" : "schedule schedule-hidden"} name={item.alt} schedule={item.upcoming} />
         })
       }
@@ -36,15 +36,16 @@ export const MovieDisplay = ({data}) => { //Accepts any JSON, so this component 
   )
 }
 export default MovieDisplay;
-
+// Posters Taken From:
+// - Spider-Man: Into The Spider-Verse -
 /*https://www.movieposterdb.com/spider-man-into-the-spider-verse-i4633694/3b6e101f*/
 /*https://www.movieposterdb.com/spider-man-into-the-spider-verse-i4633694/c972173e*/
-
+// - Pacific Rim -
 /*https://www.movieposterdb.com/pacific-rim-i1663662/bcca7c00*/
 /*https://www.movieposterdb.com/pacific-rim-i1663662/faf37eb2*/
-
+// - Harry Potter and the Goblet of Fire -
 /*https://www.movieposterdb.com/harry-potter-and-the-goblet-of-fire-i330373/cf0b9637*/
 /*https://www.movieposterdb.com/harry-potter-and-the-goblet-of-fire-i330373/891b1dbe*/
-
+// - Shutter Island -
 /*https://www.movieposterdb.com/shutter-island-i1130884/6f5c351f*/
 /*https://www.movieposterdb.com/shutter-island-i1130884/a4f897bc*/

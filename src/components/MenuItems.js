@@ -9,7 +9,7 @@ const MenuItems = ({items}) => {
     <div className="inline">
       <li className="menu-items">
         {
-          items.submenu ? (
+          items.submenu ? ( // Checks JSON file to see whether submenu category exists, if true display as button
             <div className="test-style">
               <button type="button" onClick={() =>  setDisplay((prev) => !prev)}>
                 {items.title}{' '}
