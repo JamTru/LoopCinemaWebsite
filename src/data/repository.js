@@ -72,6 +72,7 @@ function updateVerify(email_old, email, username, password, date) {
   const users_storage = getUsers(); // get the users fromm localStorage
   let i = 1; // i is used to count to add new account if there is no same username in the array.
   const users = [];
+  const review = [];
   // const [password, setPassword] = useState('')
 
   console.log(users_storage)
@@ -88,7 +89,12 @@ function updateVerify(email_old, email, username, password, date) {
 
       setUser(email, username, password, date)
       console.log(JSON.stringify(users))
-        
+
+      if (email_old !== email && localStorage.getItem(email_old) !== false) {
+        localStorage.setItem(email, JSON.stringify(localStorage.getItem(email_old)));
+        localStorage.removeItem(email_old)  
+      }
+
     } else{
 
       users.push(user)
@@ -99,6 +105,9 @@ function updateVerify(email_old, email, username, password, date) {
   // console.log(users);
 }
 
+// if (email_old !== email) {
+//   // localStorage.setItem(email, JSON.stringify(localStorage.getItem(email_old)));
+//   // localStorage.removeItem(email_old)  
 function deleteVerify(email, username, password, date) {
   const users_storage = getUsers(); // get the users fromm localStorage
   let i = 1; // i is used to count to add new account if there is no same username in the array.
