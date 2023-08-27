@@ -11,13 +11,14 @@ function Profile(props) {
     // retunrs email, username
     const navigate = useNavigate();
     
+    
     return (
         <>
         <form >
             <div className="form-group">
                 <div className="profile_box">
                     <div className="profile_title">
-                        <label htmlFor="Profile" className="control-profile-label">Profile</label>
+                        <label htmlFor="Profile" className="control-profile-label">Profile{props.password}</label>
                     </div>
                     <div>
                         <div className="profile_body">

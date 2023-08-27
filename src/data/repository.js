@@ -1,3 +1,4 @@
+import { useState } from "react";
 
 const USERS_KEY = "users";
 const USER_KEY = "user";
@@ -67,22 +68,26 @@ function signupVerify(email, username, password, date) {
   return false;
 }
 
-function updateVerify(email_old, username_old, email_new, username_new, date) {
+function updateVerify(email_old, email, username, password, date) {
   const users_storage = getUsers(); // get the users fromm localStorage
   let i = 1; // i is used to count to add new account if there is no same username in the array.
   const users = [];
-  let password = "";
+  // const [password, setPassword] = useState('')
 
   console.log(users_storage)
   for(const user of users_storage) {
-    password = user.password;
+    
     if(email_old === user.email){
-      users.push(({email_new,username_new,password,date}))
-      console.log("this is the users data = " + users)
-      console.log("THIS IS PASSWORD : " + password)
+      
+      console.log("CHECK New email and username : " + email + " " + username + " " + password)
+      users.push(({email, username, password, date}))
+      
+      // console.log("THIS IS PASSWORD : " + password)
+
       localStorage.setItem(USERS_KEY, JSON.stringify(users));
-      setUser(email_new, username_new, date)
-      console.log(users)
+
+      setUser(email, username, password, date)
+      console.log(JSON.stringify(users))
         
     } else{
 
@@ -111,13 +116,20 @@ function verifyUser(email, password) {
 }
 
 
-function setUser(email, username, date) {
-  localStorage.setItem(USER_KEY, JSON.stringify({email, username, date}));
+function setUser(email, username, password, date) {
+  localStorage.setItem(USER_KEY, JSON.stringify({email, username, password, date}));
 }
 
 function getUser() {
   if (localStorage.getItem(USER_KEY) !== null){
     return JSON.parse(localStorage.getItem(USER_KEY)).username;
+  }
+  return localStorage.getItem(USER_KEY);
+}
+
+function getPassword() {
+  if (localStorage.getItem(USER_KEY) !== null){
+    return JSON.parse(localStorage.getItem(USER_KEY)).password;
   }
   return localStorage.getItem(USER_KEY);
 }
@@ -173,6 +185,7 @@ export {
   verifyUser,
   getUser,
   getEmail,
+  getPassword,
   getDate,
   removeUser,
   signupVerify,

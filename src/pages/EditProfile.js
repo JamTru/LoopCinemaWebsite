@@ -9,18 +9,19 @@ function EditProfile(props) {
   const [email, setEmail] = useState(props.email)
   const [username, setUsername] = useState(props.username)
   
-  
+  console.log(props)
   return (
     <>
     <form onSubmit={event => {
       event.preventDefault();
       console.log("Email:", email);
       console.log("Username:", username);
-      
+      console.log("Password: ", props.password)
       console.log(props.email, props.username);
-      updateVerify(props.email, props.username, email, username, props.date);
-      props.loginUser(email,username,props.date);
+      updateVerify(props.email, email, username, props.password, props.date);
+      props.loginUser(email, username, props.password, props.date);
       console.log(props)
+      navigate('/Profile.js')
     }}>
       <div className="form-group">
         <div className="profile_box">
