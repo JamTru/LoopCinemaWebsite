@@ -3,7 +3,7 @@ import profilePic from '../profilePic.png'
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
-function ReviewFormModal(props) {
+function EditProfile(props) {
   const navigate = useNavigate();
   const [email, setEmail] = useState(props.email)
   const [username, setUsername] = useState(props.username)
@@ -13,11 +13,19 @@ function ReviewFormModal(props) {
     <>
     <form onSubmit={event => {
       event.preventDefault();
-      const email = event.target.value;
-      const username = event.target.value;
-      console.log(">>>>>> " + props.email + " " + props.username + " " + props.date)
-      console.log((event.target.value.username))
+      console.log("Email:", email);
+      console.log("Username:", username);
+      //console.log(props)
+      // console.log(">>>>>> " + props.email + " " + props.username + " " + props.date)
+      // setEmail = event.target.email.value;
+      // setUsername = event.target.username.value;
+      // console.log((event.target.value.username))
+      // localStorage.removeItem('users', props.email);
+
+    
+
       props.loginUser(email,username,props.date);
+      console.log(props)
     }}>
       <div className="form-group">
         <div className="profile_box">
@@ -28,13 +36,21 @@ function ReviewFormModal(props) {
             <div className="profile_body">
               <img src={profilePic} className="profilePic" alt ="profilePic"></img>
 
-              <input type="text" className="profile_body_username" placeholder={props.username}
-               value={username} onChange={event => {setUsername(event.target.value.username);
-              }}/>
+              <input 
+                type="text" 
+                className="profile_body_username" 
+                placeholder={props.username}
+                value={username} 
+                onChange={event => setUsername(event.target.value)
+              }/>
               
-              <input type="email" className="profile_body_email" placeholder={props.email}
-                value={email} onChange={event => {setEmail(event.target.value.email);
-              }}/>
+              <input 
+                type="email"
+                className="profile_body_email" 
+                placeholder={props.email}
+                value={email} 
+                onChange={event => setEmail(event.target.value)
+              }/>
               
               <input className="editButton" type="submit" value="Edit"></input>
             </div>
@@ -49,4 +65,4 @@ function ReviewFormModal(props) {
     </>    
   )
 }
-export default ReviewFormModal;
+export default EditProfile;
