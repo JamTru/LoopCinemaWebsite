@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 function Profile(props) {
     const navigate = useNavigate();
-
+    // from local storage it deletes USER key data
     const handleDelete = (event) => {
         console.log(props)
         deleteVerify(props.email, props.username, props.password, props.date)

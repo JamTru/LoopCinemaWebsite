@@ -9,14 +9,6 @@ function SignInModal(props) {
     const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate();
 
-    // <SignInModal
-    //     show={signInModalOn}
-    //     setloginUser={props.username}
-    //     setlogoutUser={props.logoutUser}
-    //     onHide={ () => setSignInModalOn(false)}
-    //   />
-    // console.log(props)
-
     // Generic change handler.
     const handleInputChange = (event) => {
         const name = event.target.name;

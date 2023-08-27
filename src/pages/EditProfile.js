@@ -18,8 +18,10 @@ function EditProfile(props) {
       console.log("Username:", username);
       console.log("Password: ", props.password)
       console.log(props.email, props.username);
+
       updateVerify(props.email, email, username, props.password, props.date);
       props.loginUser(email, username, props.password, props.date);
+      
       console.log(props)
       navigate('/Profile.js')
     }}>

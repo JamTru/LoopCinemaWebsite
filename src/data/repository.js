@@ -45,7 +45,7 @@ function signupVerify(email, username, password, date) {
     users.push(user)
 
     if(email !== user.email){
-
+// till last array element if there is no same email address id then it allows user to create another account
       if(users_storage.length === i) {
 
 
@@ -68,11 +68,12 @@ function signupVerify(email, username, password, date) {
   return false;
 }
 
+// updateVerify does whenever user edits email or username it updates the status
 function updateVerify(email_old, email, username, password, date) {
   const users_storage = getUsers(); // get the users fromm localStorage
   let i = 1; // i is used to count to add new account if there is no same username in the array.
   const users = [];
-  const review = [];
+  
   // const [password, setPassword] = useState('')
 
   console.log(users_storage)
@@ -82,14 +83,12 @@ function updateVerify(email_old, email, username, password, date) {
       
       console.log("CHECK New email and username : " + email + " " + username + " " + password)
       users.push(({email, username, password, date}))
-      
-      // console.log("THIS IS PASSWORD : " + password)
 
       localStorage.setItem(USERS_KEY, JSON.stringify(users));
 
       setUser(email, username, password, date)
       console.log(JSON.stringify(users))
-
+// it only generates new review key when there is no review with the same key and deletes previous key
       if (email_old !== email && localStorage.getItem(email_old) !== false) {
         localStorage.setItem(email, (localStorage.getItem(email_old)));
         localStorage.removeItem(email_old)  
@@ -117,11 +116,7 @@ function deleteVerify(email, username, password, date) {
     if(email !== user.email){
       
       console.log("CHECK New email and username : " + user.email + " " + user.username + " " + user.password)
-      // users.push((user.email, user.username, user.password, user.date))
       users.push(user)
-
-      // console.log("THIS IS PASSWORD : " + password)
-
       localStorage.setItem(USERS_KEY, JSON.stringify(users));
 
       removeUser();
@@ -133,10 +128,9 @@ function deleteVerify(email, username, password, date) {
     } 
   }
   i++;
-  // console.log(users);
+  
 }
-
-// NOTE: In this example the login is also persistent as it is stored in local storage.
+// verifyUser does checking email and password
 function verifyUser(email, password) {
   const users = getUsers();
   for(const user of users) {

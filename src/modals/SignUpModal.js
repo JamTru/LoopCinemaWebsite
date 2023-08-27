@@ -39,6 +39,7 @@ function SignUpModal(props) {
 
         const name = event.target.name;
         const value = event.target.value;
+        // it only allows an id to be Email format and if the input is correct email formot it returns true.
         const regexPw =
             /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
 
@@ -88,8 +89,6 @@ function SignUpModal(props) {
         console.log(" Bottom ")
         console.log(currentDate);
         console.log(currentTime);
-        //setCurrentTime((currentTime));
-        
     
         console.log(usernameVaild)
 
@@ -112,8 +111,6 @@ function SignUpModal(props) {
 
         // If onCreat sign-up the user.
         if(signupVerified === true) {
-            //setUsers(fields.username, fields.password);
-            // localStorage.setItem(Number(localStorage.length)+1, JSON.stringify(fields))
             
             if (emailValid && pwValid){
 
