@@ -22,7 +22,6 @@ function SignInModal(props) {
         const name = event.target.name;
         const value = event.target.value;
         
-        
         // Copy fields.
         const temp = { email: fields.email, username: fields.username, password: fields.password };
         // OR use spread operator.
