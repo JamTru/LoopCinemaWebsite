@@ -6,6 +6,8 @@
   text-decoration: none;
   background:none;
   border:none;
+  font-weight: bold;
+  color:white;
 }
 .menu-open {
   position:absolute;
