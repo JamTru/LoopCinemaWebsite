@@ -18,7 +18,7 @@ function Profile(props) {
             <div className="form-group">
                 <div className="profile_box">
                     <div className="profile_title">
-                        <label htmlFor="Profile" className="control-profile-label">Profile{props.password}</label>
+                        <label htmlFor="Profile" className="control-profile-label">Profile</label>
                     </div>
                     <div>
                         <div className="profile_body">
