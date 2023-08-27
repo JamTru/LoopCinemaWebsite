@@ -12,6 +12,7 @@ function Profile(props) {
     const handleDelete = (event) => {
         console.log(props)
         deleteVerify(props.email, props.username, props.password, props.date)
+        props.logoutUser();
         navigate('/')
     }
     return (
