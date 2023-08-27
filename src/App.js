@@ -37,6 +37,7 @@ function App() {
     <div>
       <Router>
         <Header email={email} username={username} password={password} logoutUser={logoutUser} loginUser={loginUser}/>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Content />} />
           <Route path="/HP_mov.js" element={<HP_mov />} />
@@ -46,7 +47,6 @@ function App() {
           <Route path="/Profile.js" element={<Profile email={email} date={date} username={username} password={password} logoutUser={logoutUser} />} />
           <Route path="/Profile.js/EditProfile.js" element={<EditProfile email={email} date={date} username={username} password={password} logoutUser={logoutUser} loginUser={loginUser}/>}/>
         </Routes>
-        <Navbar />
         <Footer />
       </Router>
     </div>
