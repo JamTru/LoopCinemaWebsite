@@ -2,15 +2,19 @@ import React  from 'react';
 import profilePic from '../profilePic.png'
 import profileEditIcon from '../editIcon.png'
 import profileRemoval from '../remove.png'
-
+import { deleteVerify } from '../data/repository'
 import { useNavigate } from "react-router-dom";
 
 
 function Profile(props) {
-    //console.log("profile's props => " + JSON.stringify(props))
-    // retunrs email, username
     const navigate = useNavigate();
-    
+
+    const handleDelete = (event) => {
+        console.log(props)
+        deleteVerify(props.email, props.username, props.password, props.date)
+        props.logoutUser();
+        navigate('/')
+    }
     return (
         <>
         <form >
@@ -24,7 +28,7 @@ function Profile(props) {
                             <img src={profilePic} className="profilePic" alt ="profilePic"></img>
                             <label className="profile_body_username">{props.username}</label>
                             
-                            <button variant="contained" className="remove_button" >
+                            <button variant="contained" className="remove_button" onClick={handleDelete} >
                                 <img src={profileRemoval} className="profileRemoval" alt="remove" />
                             </button>
 

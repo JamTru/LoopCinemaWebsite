@@ -117,7 +117,7 @@ function SignUpModal(props) {
             
             if (emailValid && pwValid){
 
-                props.setloginUser(fields.email, fields.username, (formatAESTDate(new Date(currentDate))));
+                props.setloginUser(fields.email, fields.username, fields.password, (formatAESTDate(new Date(currentDate))));
                 
                 // Navigate to the home page.
                 navigate("./Profile.js");

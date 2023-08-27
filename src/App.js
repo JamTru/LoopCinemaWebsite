@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 import Content from './components/Content';
 import Footer from './components/Footer';
 import SignInModal from "./modals/SignInModal";
-import { getDate, getEmail, getUser, removeUser } from "./data/repository";
+import { getDate, getEmail, getPassword, getUser, removeUser } from "./data/repository";
 import HP_mov from './pages/HP_mov.js';
 import PR_mov from './pages/PR_mov.js';
 import SI_mov from './pages/SI_mov.js';
@@ -19,10 +19,14 @@ function App() {
   const [username, setUsername] = useState(getUser());
   const [email, setEmail] = useState(getEmail());
   const [date, setDate] = useState(getDate());
-  const loginUser = (email, username, date) => {
+  const [password, setPassword] = useState(getPassword());
+
+  const loginUser = (email, username, password, date) => {
     setEmail(email);
     setUsername(username);
+    setPassword(password);
     setDate(date);
+    console.log(">>>>>>>>>> " + password)
   }
 
   const logoutUser = () => {
@@ -32,7 +36,7 @@ function App() {
   return (
     <div>
       <Router>
-        <Header email={email} username={username} logoutUser={logoutUser} loginUser={loginUser}/>
+        <Header email={email} username={username} password={password} logoutUser={logoutUser} loginUser={loginUser}/>
         <Navbar />
         <Routes>
           <Route path="/" element={<Content />} />
@@ -40,8 +44,8 @@ function App() {
           <Route path="/PR_mov.js" element={<PR_mov />} />
           <Route path="/SI_mov.js"  element={<SI_mov />} />
           <Route path="/SM_mov.js" element={<SM_mov />} />
-          <Route path="/Profile.js" element={<Profile email={email} date={date} username={username} logoutUser={logoutUser} />} />
-          <Route path="/Profile.js/EditProfile.js" element={<EditProfile email={email} date={date} username={username} logoutUser={logoutUser} loginUser={loginUser}/>}/>
+          <Route path="/Profile.js" element={<Profile email={email} date={date} username={username} password={password} logoutUser={logoutUser} />} />
+          <Route path="/Profile.js/EditProfile.js" element={<EditProfile email={email} date={date} username={username} password={password} logoutUser={logoutUser} loginUser={loginUser}/>}/>
         </Routes>
         <Footer />
       </Router>
