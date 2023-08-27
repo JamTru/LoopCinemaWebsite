@@ -36,6 +36,11 @@ const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef}) =
   const allowReview = (isLogged && enoughTimeSinceLastReview) && !duplicateDetected ? "show" : "doNotShow"; //If user is both logged in and not submitted review in 24 hours, allow review button to display.
   const userArray = JSON.parse(localStorage.getItem("users"));
   const usersWithReviews = userArray.filter((user) => localStorage.getItem(user.email) !== null); //Filters for users that have existing reviews in local storage
+  function renderWarning(){
+    if ((!enoughTimeSinceLastReview) && isLogged){
+      return <p className="warningDescription">You can only submit a review once per day!</p>;
+    }
+  }
   return (
     <div>
       <div className="movieInfo">
@@ -51,6 +56,9 @@ const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef}) =
       <ReviewFormModal show={reviewModalOn} onHide={()=> setReviewModalOn(false)} movie={name} />
       <div className="background">
         <button type="button" onClick={() => setReviewModalOn(true)} className={allowReview}>Leave a Review!</button>
+        {
+          renderWarning()
+        }
         <h2>Most Recent Reviews</h2>
         {/*Each user gets mapped and has their reviews handled so that all their reviews are filtered for the given movie of a page.
           The if statement is to handle when none of the reviews match the movie page and as such only returns the component when it is not undefined*/

@@ -1,6 +1,14 @@
 .doNotShow{
   display:none;
 }
+.warningDescription{
+  text-align:center;
+  border:none;
+  padding:0.5rem;
+  font:italic;
+  color:white;
+  background:#C60C30;
+}
 .show {
   padding:10px;
   margin: 0 auto;
