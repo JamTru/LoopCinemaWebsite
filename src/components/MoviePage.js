@@ -36,7 +36,7 @@ const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef}) =
   const allowReview = (isLogged && enoughTimeSinceLastReview) && !duplicateDetected ? "show" : "doNotShow"; //If user is both logged in and not submitted review in 24 hours, allow review button to display.
   const userArray = JSON.parse(localStorage.getItem("users"));
   const usersWithReviews = userArray.filter((user) => localStorage.getItem(user.email) !== null); //Filters for users that have existing reviews in local storage
-  function renderWarning(){
+  function renderWarning(){//Function to conditionally render warning to logged users about the daily limit of reviews
     if ((!enoughTimeSinceLastReview) && isLogged){
       return <p className="warningDescription">You can only submit a review once per day!</p>;
     }
