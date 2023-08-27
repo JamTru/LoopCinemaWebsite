@@ -2,6 +2,7 @@ import React from 'react';
 import profilePic from '../profilePic.png'
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { updateVerify} from "../data/repository"
 
 function EditProfile(props) {
   const navigate = useNavigate();
@@ -15,15 +16,9 @@ function EditProfile(props) {
       event.preventDefault();
       console.log("Email:", email);
       console.log("Username:", username);
-      //console.log(props)
-      // console.log(">>>>>> " + props.email + " " + props.username + " " + props.date)
-      // setEmail = event.target.email.value;
-      // setUsername = event.target.username.value;
-      // console.log((event.target.value.username))
-      // localStorage.removeItem('users', props.email);
-
-    
-
+      
+      console.log(props.email, props.username);
+      updateVerify(props.email, props.username, email, username, props.date);
       props.loginUser(email,username,props.date);
       console.log(props)
     }}>
