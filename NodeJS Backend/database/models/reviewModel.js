@@ -1,16 +1,15 @@
 module.exports = (sequelize, DataTypes) =>
   sequelize.define("user", {
-    movieID: {
+    rating: {
       type: DataTypes.INTEGER,
-      primaryKey: true
-    },
-    title: {
-      type: DataTypes.STRING(200),
       allowNull: false
     },
-    summary: {
-      type: DataTypes.STRING(280),
+    dateOfCreation: {
+      type: DataTypes.DATE,
       allowNull: false
+    },
+    comment: {
+      type: DataTypes.STRING(1000)
     }
   }, {
     timestamps: false
