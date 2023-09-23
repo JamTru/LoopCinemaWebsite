@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) =>
       allowNull: false
     },
     dateOfCreation: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false
     }
   }, {
