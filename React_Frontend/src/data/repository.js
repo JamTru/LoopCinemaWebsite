@@ -1,7 +1,20 @@
 import { useState } from "react";
+import axios from "axios";
 
+// ---- CONSTANTS -----
+const API_HOST = "http://localhost:4000";
 const USERS_KEY = "users";
 const USER_KEY = "user";
+
+// ---- TEST -------
+
+async function testAPICall() {
+  const response = await axios.get(API_HOST + "/api/movies");
+  const logData = response.data;
+  return logData;
+}
+
+// ----DEPRECIATED---------------------
 // Initialise local storage "users" with data, if the data is already set this function returns immediately.
 function initUsers() {
   // Stop if data is already initialised.
@@ -73,14 +86,14 @@ function updateVerify(email_old, email, username, password, date) {
   const users_storage = getUsers(); // get the users fromm localStorage
   let i = 1; // i is used to count to add new account if there is no same username in the array.
   const users = [];
-  
+
   // const [password, setPassword] = useState('')
 
   console.log(users_storage)
   for(const user of users_storage) {
-    
+
     if(email_old === user.email){
-      
+
       console.log("CHECK New email and username : " + email + " " + username + " " + password)
       users.push(({email, username, password, date}))
 
@@ -91,17 +104,17 @@ function updateVerify(email_old, email, username, password, date) {
 // it only generates new review key when there is no review with the same key and deletes previous key
       if (email_old !== email && localStorage.getItem(email_old) !== false) {
         localStorage.setItem(email, (localStorage.getItem(email_old)));
-        localStorage.removeItem(email_old)  
+        localStorage.removeItem(email_old)
       }
 
     } else{
 
       users.push(user)
       console.log(i + " - Array LocalStorage");
-    } 
+    }
   }
   i++;
-  
+
 }
 
 function deleteVerify(email, username, password, date) {
@@ -112,23 +125,23 @@ function deleteVerify(email, username, password, date) {
 
   console.log(users_storage)
   for(const user of users_storage) {
-    
+
     if(email !== user.email){
-      
+
       console.log("CHECK New email and username : " + user.email + " " + user.username + " " + user.password)
       users.push(user)
       localStorage.setItem(USERS_KEY, JSON.stringify(users));
 
       removeUser();
       console.log(JSON.stringify(users))
-        
+
     } else{
 
       console.log(i + " - Array LocalStorage");
-    } 
+    }
   }
   i++;
-  
+
 }
 // verifyUser does checking email and password
 function verifyUser(email, password) {
@@ -222,5 +235,6 @@ export {
   signupVerify,
   updateVerify,
   deleteVerify,
-  addReview
+  addReview,
+  testAPICall
 }

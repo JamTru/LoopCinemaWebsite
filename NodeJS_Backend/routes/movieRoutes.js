@@ -6,7 +6,7 @@ module.exports = (express, app) => {
   router.get("/", controller.findAllMovies);
 
   // Select a single user with id.
-  router.get("/select/:id", controller.findSingleMovie);
+  router.get("/select/:movieID", controller.findMovie);
 
   // Add Movie to Database
   // router.get("/addMovie", controller.addMovie);

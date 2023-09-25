@@ -4,11 +4,17 @@ import MovieDisplay from './MovieDisplay';
 import slides from "../data/MovieDisplayData.json"; //Passing in JSON Array  to Movie Component
 import AboutUs from './AboutUs.js';
 import {useLocation} from "react-router-dom";
+import {testAPICall} from "../data/repository.js";
 const Content = () => {
+  async function APITest(){
+    const test = await testAPICall();
+    console.log(test);
+  }
   return (
     <div className="main">
       <MovieDisplay data={slides} />
       <AboutUs />
+      <button type="button" onClick={() => APITest()}>Test Button</button>
     </div>
   );
 };

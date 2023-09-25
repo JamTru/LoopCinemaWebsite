@@ -1,14 +1,14 @@
-const {Sequelize, DataTypes} = require("sequelize");
-const config = require("./dbConfig.js");
+const { Sequelize, DataTypes } = require("sequelize");
+const config = require("./config.js");
 
 const db = {
   Op: Sequelize.Op
-}
+};
 
-db.sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD), {
+db.sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
   host: config.HOST,
   dialect: config.DIALECT
-}
+});
 
 db.users = require("./models/userModel.js")(db.sequelize, DataTypes);
 db.movies = require("./models/movieModel.js")(db.sequelize, DataTypes);
@@ -25,7 +25,7 @@ db.sync = async () => {
   await db.sequelize.sync();
   await seedAgeRatingData();
   await seedMovieData();
-}
+};
 
 async function seedUserData() {
   //TBD
@@ -43,7 +43,7 @@ async function seedMovieData() {
 
   today = yyyy + '-' + mm + '-' + dd;
 
-  await.db.movies.create({
+  await db.movies.create({
     title: "Dummy Movie",
     summary: "Dummy Summary Cool Beans",
     genre:"Dummy Genre",
@@ -59,11 +59,11 @@ async function seedAgeRatingData(){
   if (checkIfExists > 0) {
     return;
   }
-  await.db.ageRating.create({ageRating:"G"});
-  await.db.ageRating.create({ageRating:"PG"});
-  await.db.ageRating.create({ageRating:"M"});
-  await.db.ageRating.create({ageRating:"MA15+"});
-  await.db.ageRating.create({ageRating:"R"});
+  await db.ageRating.create({ageRating:"G"});
+  await db.ageRating.create({ageRating:"PG"});
+  await db.ageRating.create({ageRating:"M"});
+  await db.ageRating.create({ageRating:"MA15+"});
+  await db.ageRating.create({ageRating:"R"});
 }
 
-module.export = db;
+module.exports = db;

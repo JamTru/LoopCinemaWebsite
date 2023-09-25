@@ -1,4 +1,4 @@
-const db = require("..database");
+const db = require("../database");
 
 
 //Read
@@ -8,7 +8,7 @@ exports.findAllReviews = async (req, res) => {
 }
 
 exports.findGivenMovieReview = async (req, res) => {
-  const movieReviews = await db.movies.findAll({
+  const movieReviews = await db.review.findAll({
     where: {
       movieID: req.params.movieID
     }
@@ -17,7 +17,7 @@ exports.findGivenMovieReview = async (req, res) => {
 }
 
 exports.findUsersReview = async (req, res) => {
-  const movieReviews = await db.movies.findAll({
+  const movieReviews = await db.reviews.findAll({
     where: {
       movieID: req.params.movieID,
       username: req.params.username
@@ -27,7 +27,7 @@ exports.findUsersReview = async (req, res) => {
 }
 
 exports.findAllUserReviews = async (req, res) => {
-  const usersreviews = await db.movies.findAll({
+  const usersreviews = await db.reviews.findAll({
     where: {
       username: req.params.username
     }
