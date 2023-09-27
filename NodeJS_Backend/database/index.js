@@ -13,10 +13,10 @@ db.sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
 db.users = require("./models/userModel.js")(db.sequelize, DataTypes);
 db.movies = require("./models/movieModel.js")(db.sequelize, DataTypes);
 db.ageRating = require("./models/ageRatingModel.js")(db.sequelize, DataTypes);
-db.reviews = require("./models/reviewModel.js")(db.sequelize, DataTypes);
+// db.reviews = require("./models/reviewModel.js")(db.sequelize, DataTypes);
 //Reviews Table Relation
-db.users.belongsToMany(db.movies, {through: db.reviews});
-db.movies.belongsToMany(db.users, {through: db.reviews});
+// db.users.belongsToMany(db.movies, {through: db.reviews});
+// db.movies.belongsToMany(db.users, {through: db.reviews});
 //
 db.ageRating.hasMany(db.movies);
 db.movies.belongsTo(db.ageRating);
@@ -32,8 +32,8 @@ async function seedUserData() {
 }
 
 async function seedMovieData() {
-  const movieCount = db.movies.count();
-  if(count > 0){
+  const movieCount = await db.movies.count();
+  if(movieCount > 0){
     return;
   }
   var today = new Date();
@@ -55,7 +55,7 @@ async function seedReviewData() {
   //TBD
 }
 async function seedAgeRatingData(){
-  const checkIfExists = db.ageRating.count();
+  const checkIfExists = await db.ageRating.count();
   if (checkIfExists > 0) {
     return;
   }
