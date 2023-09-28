@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import { signupVerify} from "../data/repository";
 import { Modal, Container } from 'react-bootstrap';
+import axios from 'axios';
 
 function SignUpModal(props) {
     const [fields, setFields] = useState({ email: "", username: "", password: "" });
@@ -78,7 +79,7 @@ function SignUpModal(props) {
         setFields(temp);
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         
         // Get the current date in AEST (Australia Eastern Standard Time)
@@ -115,9 +116,32 @@ function SignUpModal(props) {
             if (emailValid && pwValid){
 
                 props.setloginUser(fields.email, fields.username, fields.password, (formatAESTDate(new Date(currentDate))));
+                // axious.post('http://localhost:8001/signup', values)
+                // .then(res => console.log(res))
+
+                try {
+                    // Update the user if id exists, otherwise create a new user.
+                    const result = fields.email ?
+                      await axios.put(`http://localhost:4000/api/users/${fields.username}`, fields) :
+                      await axios.post("http://localhost:4000/api/users", fields)
+                      .then(res => {
+                        // Navigate to the home page.
+                        navigate("./Profile.js");
+                      });
+              
+                    // Check result, purposely not checked here for simplicity.
+                    // Result is logged to console for demostration purposes.
+                    console.log(result);
+              
+                    // Before navigating start updating the parent.
+                    props.refreshUsers();
+            
+                  } catch(e) {
+                    setErrorMessage({ errorMessage: e.message });
+                  }
+
+
                 
-                // Navigate to the home page.
-                navigate("./Profile.js");
                 // <Link to={"Profile.js"}> </Link>
                 props.onHide(false)
                 return;
