@@ -10,9 +10,11 @@ db.sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
   dialect: config.DIALECT
 });
 
-db.users = require("./models/userModel.js")(db.sequelize, DataTypes);
 db.movies = require("./models/movieModel.js")(db.sequelize, DataTypes);
 db.ageRating = require("./models/ageRatingModel.js")(db.sequelize, DataTypes);
+db.users = require("./models/userModel.js")(db.sequelize, DataTypes);
+
+
 // db.reviews = require("./models/reviewModel.js")(db.sequelize, DataTypes);
 //Reviews Table Relation
 // db.users.belongsToMany(db.movies, {through: db.reviews});

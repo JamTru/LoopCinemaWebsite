@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) =>
-  sequelize.define("user", {
+  sequelize.define("ageRating", {
     ageRating: {
       type: DataTypes.STRING(10),
       primaryKey: true
