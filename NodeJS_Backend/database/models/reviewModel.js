@@ -1,16 +1,19 @@
 module.exports = (sequelize, DataTypes) =>
-  sequelize.define("user", {
+  sequelize.define("reviews", {
+    reviewID: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     rating: {
       type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    dateOfCreation: {
-      type: DataTypes.DATE,
       allowNull: false
     },
     comment: {
       type: DataTypes.STRING(1000)
     }
   }, {
-    timestamps: false
+    timestamps: true,
+    createdAt: 'createdTimeSTamp',
+    updatedAt: false
   });

@@ -5,17 +5,15 @@ module.exports = (sequelize, DataTypes) =>
       primaryKey: true
     },
     passwordHash: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(256),
       allowNull: false
     },
     email: {
       type: DataTypes.STRING(50),
       allowNull: false
-    },
-    dateOfCreation: {
-      type: DataTypes.DATEONLY,
-      allowNull: false
     }
   }, {
-    timestamps: false
+    timestamps: true,
+    createdAt: 'createdTimeStamp',
+    updatedAt: false
   });
