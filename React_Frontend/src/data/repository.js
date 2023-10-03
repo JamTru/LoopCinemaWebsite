@@ -18,7 +18,7 @@ async function selectAllReviews(){
 }
 
 async function retrieveAllByMovie(movieID) {
-  const response = await axios.get(API_HOST + "/api/reviews/selectByMovie", {params: movieID });
+  const response = await axios.get(API_HOST + `/api/reviews/selectByMovie/${movieID}`);
   const allReviewsByMovie = response.data;
   return allReviewsByMovie;
 }
@@ -272,5 +272,6 @@ export {
   addReview,
   testAPICall,
   retrieveDataByMovieID,
-  createNewReview
+  createNewReview,
+  retrieveAllByMovie
 }

@@ -3,9 +3,24 @@ import YoutubeEmbed from './YoutubeEmbed.js';
 import './MoviePage.css';
 import ReviewFormModal from '../modals/ReviewFormModal.js';
 import ReviewDisplay from './ReviewDisplay.js';
-const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef}) => {
+import {retrieveAllByMovie} from '../data/repository.js';
+
+const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef, movieID}) => {
   const [reviewModalOn, setReviewModalOn] = useState(false);//State logic to handle display of modal
   const isLogged = localStorage.getItem("user") !== null ? true : false;
+  const [listOfReviews, setListOfReviews] = useState([])
+
+  //------------- API CODE ------------
+  useEffect(() => {
+    async function fetchReviews() {
+      const reviewsOfGivenMovie = await retrieveAllByMovie({movieID});
+      setListOfReviews(reviewsOfGivenMovie);
+    }
+    fetchReviews();
+  }, []);
+
+
+
   /*This code block is designed to reduce the influx of fake reviews by restricting the time taken between each review post, so that a user must wait at least a day before posting another review. */
   var enoughTimeSinceLastReview = false;
   var duplicateDetected = false;
@@ -32,10 +47,11 @@ const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef}) =
       enoughTimeSinceLastReview = true;
     }
   }
-  //Comment for future people, I tried to put this code block into a useEffect, but wasn't sure how to actually get it to work inside a useEffect
+
+
   const allowReview = (isLogged && enoughTimeSinceLastReview) && !duplicateDetected ? "show" : "doNotShow"; //If user is both logged in and not submitted review in 24 hours, allow review button to display.
-  const userArray = JSON.parse(localStorage.getItem("users"));
-  const usersWithReviews = userArray.filter((user) => localStorage.getItem(user.email) !== null); //Filters for users that have existing reviews in local storage
+  // const userArray = JSON.parse(localStorage.getItem("users"));
+  // const usersWithReviews = userArray.filter((user) => localStorage.getItem(user.email) !== null); //Filters for users that have existing reviews in local storage
   function renderWarning(){//Function to conditionally render warning to logged users about the daily limit of reviews
     if ((!enoughTimeSinceLastReview) && isLogged){
       return <p className="warningDescription">You can only submit a review once per day!</p>;
@@ -53,7 +69,7 @@ const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef}) =
         </div>
       </div>
       <YoutubeEmbed embedID={trailer} />
-      <ReviewFormModal show={reviewModalOn} onHide={()=> setReviewModalOn(false)} movie={name} />
+      <ReviewFormModal show={reviewModalOn} onHide={()=> setReviewModalOn(false)} movie={name} reviewsState={listOfReviews} reviewsStateFunction={setListOfReviews} />
       <div className="background">
         <button type="button" onClick={() => setReviewModalOn(true)} className={allowReview}>Leave a Review!</button>
         {
@@ -62,11 +78,14 @@ const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef}) =
         <h2>Most Recent Reviews</h2>
         {/*Each user gets mapped and has their reviews handled so that all their reviews are filtered for the given movie of a page.
           The if statement is to handle when none of the reviews match the movie page and as such only returns the component when it is not undefined*/
-          usersWithReviews.map((user, index) => {
-            const arrayOfReviewDetails = JSON.parse(localStorage.getItem(user.email));
-            const reviewDetails = arrayOfReviewDetails.filter((review) => review.name === name)[0];
-            if (typeof reviewDetails !== "undefined"){
-              return <ReviewDisplay movieName={reviewDetails.name} username={user.username} date={reviewDetails.date} numValue={reviewDetails.numRate} comment={reviewDetails.commentString} />
+          // usersWithReviews.map((user, index) => {
+          //   const arrayOfReviewDetails = JSON.parse(localStorage.getItem(user.email));
+          //   const reviewDetails = arrayOfReviewDetails.filter((review) => review.name === name)[0];
+          //   if (typeof reviewDetails !== "undefined"){
+          //     return <ReviewDisplay movieName={reviewDetails.name} username={user.username} date={reviewDetails.date} numValue={reviewDetails.numRate} comment={reviewDetails.commentString} />
+            listOfReviews.map((reviewDetails) => {
+            return <ReviewDisplay movieName={reviewDetails.name} username={reviewDetails.username} date={reviewDetails.date} numValue={reviewDetails.numRate} comment={reviewDetails.commentString} />
+          })
             }
           })
         }

@@ -8,7 +8,7 @@ exports.findAllReviews = async (req, res) => {
 }
 
 exports.findGivenMovieReview = async (req, res) => {
-  const movieReviews = await db.review.findAll({
+  const movieReviews = await db.reviews.findAll({
     where: {
       movieMovieID: req.params.movieID
     }

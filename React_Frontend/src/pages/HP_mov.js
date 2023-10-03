@@ -8,15 +8,13 @@ function HP_mov() {
   useEffect(() => {
     async function loadMovieData() {
       const movieData = await retrieveDataByMovieID("2");
-      // const movieData = await testAPICall();
       setMovieInfo(movieData);
     }
     loadMovieData();
   }, []);
-  console.log(movieInfo);
   return (
     <div>
-      <MoviePage name="Harry Potter and the Goblet of Fire" summary={stringSummary} rating="M" genre="Fantasy / Adventure" release="18/11/2005" trailer="7lJ6Suyp1ok" imageRef="/MoviePoster/HP_Vertical.jpg" />
+      <MoviePage name={movieInfo.title} summary={movieInfo.summary} rating={movieInfo.ageRatingAgeRating} genre={movieInfo.genre} release={movieInfo.releaseDate} trailer="7lJ6Suyp1ok" imageRef="/MoviePoster/HP_Vertical.jpg" movieID={movieInfo.movieID} />
     </div>
   );
 }

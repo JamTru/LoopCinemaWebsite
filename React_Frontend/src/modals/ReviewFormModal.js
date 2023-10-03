@@ -9,7 +9,7 @@ const ReviewFormModal = (props) => {
   const [numRating, setNumRating] = useState(0);
   const [comments, setComments] = useState("");
   const [errorDetected, setErrorDetected] = useState(null);
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (comments.trim().length <= 0 || comments.trim().length > 1000) {
       setErrorDetected("Comments need to be between 0 to 1000 characters.")
@@ -27,6 +27,8 @@ const ReviewFormModal = (props) => {
         username: props.username,
         movieID: props.movieID
       }
+      await createNewReview(newReview);
+      props.setListOfReviews([...props.listOfReviews, newReview]);
       props.onHide();
     }
   }
