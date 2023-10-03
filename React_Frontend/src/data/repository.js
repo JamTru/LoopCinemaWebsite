@@ -6,7 +6,41 @@ const API_HOST = "http://localhost:4000";
 const USERS_KEY = "users";
 const USER_KEY = "user";
 
-// ---- TEST -------
+
+// ------ USER API CALLS ----
+
+
+// ----- REVIEW API CALLS ----
+async function selectAllReviews(){
+    const response = await axios.get(API_HOST + "/api/reviews");
+    const allReviewsList = response.data;
+    return allReviewsList;
+}
+
+async function retrieveAllByMovie(movieID) {
+  const response = await axios.get(API_HOST + "/api/reviews/selectByMovie", {params: movieID });
+  const allReviewsByMovie = response.data;
+  return allReviewsByMovie;
+}
+async function retrieveAllByUser(username){
+  const response = await axios.get(API_HOST + "/api/reviews/selectByUser", {params: username});
+  const allReviewsByUser = response.data;
+  return allReviewsByUser
+}
+
+async function createNewReview(review){
+  const response = await axios.post(API_HOST + "/api/reviews", review);
+  return response.data;
+}
+
+// --- MOVIE API CALLS -----
+
+async function retrieveDataByMovieID(movieID) {
+  const response = await axios.get(API_HOST + `/api/movies/select/${movieID}`);
+  return response.data;
+}
+
+// ---- TEST ------------
 
 async function testAPICall() {
   const response = await axios.get(API_HOST + "/api/movies");
@@ -236,5 +270,7 @@ export {
   updateVerify,
   deleteVerify,
   addReview,
-  testAPICall
+  testAPICall,
+  retrieveDataByMovieID,
+  createNewReview
 }

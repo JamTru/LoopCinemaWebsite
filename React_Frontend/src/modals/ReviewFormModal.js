@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { signupVerify} from "../data/repository";
 import { Modal, Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-import {addReview} from '../data/repository.js';
+import {addReview, createNewReview} from '../data/repository.js';
 
 const ReviewFormModal = (props) => {
   const [numRating, setNumRating] = useState(0);
@@ -11,16 +11,22 @@ const ReviewFormModal = (props) => {
   const [errorDetected, setErrorDetected] = useState(null);
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (comments.trim().length <= 0 || comments.trim().length > 250) {
-      setErrorDetected("Comments need to be between 0 to 250 characters.")
+    if (comments.trim().length <= 0 || comments.trim().length > 1000) {
+      setErrorDetected("Comments need to be between 0 to 1000 characters.")
     }
     else {
-      var today = new Date();
-      var dd = String(today.getDate()).padStart(2,'0');
-      var mm = String(today.getMonth() + 1).padStart(2,'0');
-      var yyyy = today.getFullYear();
-      today = dd + "-" + mm + "-" + yyyy;
-      addReview(numRating, comments, today, props.movie);
+      // var today = new Date();
+      // var dd = String(today.getDate()).padStart(2,'0');
+      // var mm = String(today.getMonth() + 1).padStart(2,'0');
+      // var yyyy = today.getFullYear();
+      // today = dd + "-" + mm + "-" + yyyy;
+      // addReview(numRating, comments, today, props.movie);
+      const newReview = {
+        rating: numRating,
+        comment: comments,
+        username: props.username,
+        movieID: props.movieID
+      }
       props.onHide();
     }
   }

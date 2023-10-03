@@ -10,7 +10,7 @@ exports.findAllReviews = async (req, res) => {
 exports.findGivenMovieReview = async (req, res) => {
   const movieReviews = await db.review.findAll({
     where: {
-      movieID: req.params.movieID
+      movieMovieID: req.params.movieID
     }
   });
   res.json(movieReviews);
@@ -19,17 +19,28 @@ exports.findGivenMovieReview = async (req, res) => {
 exports.findUsersReview = async (req, res) => {
   const movieReviews = await db.reviews.findAll({
     where: {
-      movieID: req.params.movieID,
-      username: req.params.username
+      movieMovieID: req.params.movieID,
+      userUsername: req.params.username
     }
   });
   res.json(movieReviews);
 }
 
 exports.findAllUserReviews = async (req, res) => {
-  const usersreviews = await db.reviews.findAll({
+  const usersReviews = await db.reviews.findAll({
     where: {
-      username: req.params.username
+      userUsername: req.params.username
     }
   })
+  res.json(usersReviews);
+}
+
+exports.createNewReview = async (req, res) => {
+  const newReview = await db.reviews.create({
+    rating: db.body.rating,
+    comment: db.body.comment,
+    userUsername: db.body.username,
+    movieMovieID: db.body.movieID
+  });
+  res.json(newReview);
 }

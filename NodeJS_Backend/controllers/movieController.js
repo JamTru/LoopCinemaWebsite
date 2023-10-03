@@ -1,6 +1,5 @@
 const db = require("../database");
 
-
 //Read
 exports.findAllMovies = async (req, res) => {
   const movies = await db.movies.findAll();
@@ -8,6 +7,6 @@ exports.findAllMovies = async (req, res) => {
 }
 
 exports.findMovie = async (req, res) => {
-  const movie = await db.movies.findByPk(req.params.id);
+  const movie = await db.movies.findByPk(req.params.movieID);
   res.json(movie);
 }

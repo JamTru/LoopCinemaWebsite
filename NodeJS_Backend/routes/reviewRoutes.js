@@ -5,12 +5,13 @@ module.exports = (express, app) => {
   //
   router.get("/", controller.findAllReviews);
   //
-  router.get("/select/:movieID", controller.findGivenMovieReview);
+  router.get("/selectByMovie/:movieID", controller.findGivenMovieReview);
   //
-  router.get("/select/:movieID/:username", controller.findUsersReview);
+  router.get("/selectByUser/:username", controller.findUsersReview);
   //
-  router.get("/select/:username", controller.findAllUserReviews);
-
+  router.get("/getSpecificReview/:movieID/:username", controller.findGivenMovieReview);
+  //
+  router.post("/", controller.createNewReview);
   // Add routes to server.
   app.use("/api/reviews", router);
 };
