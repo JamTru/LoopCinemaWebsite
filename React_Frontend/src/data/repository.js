@@ -10,6 +10,23 @@ const USER_KEY = "user";
 // ------ USER API CALLS ----
 
 
+async function createNewUser(user){
+  const response = await axios.post(API_HOST + "/api/users/create", user)
+  
+  return response.data;
+}
+
+async function loginUser(user){
+  const response = await axios.post(API_HOST + `/api/users/login`, user);
+  return response.data;
+}
+
+async function retrieveAllUser() {
+  const response = await axios.get(API_HOST + "/api/users");
+  const userdata = response.data;
+  return userdata;
+}
+
 // ----- REVIEW API CALLS ----
 async function selectAllReviews(){
     const response = await axios.get(API_HOST + "/api/reviews");
@@ -48,6 +65,14 @@ async function testAPICall() {
   return logData;
 }
 
+
+
+
+
+
+
+
+
 // ----DEPRECIATED---------------------
 // Initialise local storage "users" with data, if the data is already set this function returns immediately.
 function initUsers() {
@@ -71,7 +96,7 @@ function initUsers() {
     }
   ];
   // Set data into local storage.
-  localStorage.setItem(USERS_KEY, JSON.stringify(users));
+  // localStorage.setItem(USERS_KEY, JSON.stringify(users));
 }
 
 function getUsers() {
@@ -259,6 +284,7 @@ function addReview(rating, comment, dateOfCreation, movieName) {
 
 
 export {
+  createNewUser,
   initUsers,
   verifyUser,
   getUser,
