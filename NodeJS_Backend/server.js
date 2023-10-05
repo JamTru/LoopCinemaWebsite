@@ -13,20 +13,7 @@ app.get("/", (req,res) => {
   res.json({message:"Test Message Please Confirm"});
 });
 
-app.post('/users', (req, res) => {
-  const sql = "INSERT INTO users ('email', 'username', 'password') VALUES (?)"
-  const values = [
-    req.body.email,
-    req.body.username,
-    req.body.password
-  ]
-  db.query(sql, [values], (err, data) => {
-    if(err) {
-      return res.json("Error");
-    }
-    return res.json(data);
-  })
-})
+
 
 require("./routes/userRoutes.js")(express, app);
 require("./routes/movieRoutes.js")(express, app);

@@ -20,7 +20,6 @@ const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef, mo
   }, []);
 
 
-
   /*This code block is designed to reduce the influx of fake reviews by restricting the time taken between each review post, so that a user must wait at least a day before posting another review. */
   var enoughTimeSinceLastReview = false;
   var duplicateDetected = false;

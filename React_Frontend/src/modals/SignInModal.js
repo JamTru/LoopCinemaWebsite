@@ -41,7 +41,7 @@ function SignInModal(props) {
         if(verified === true) {
 
             props.setloginUser(fields.email, JSON.parse(localStorage.getItem("user")).username, JSON.parse(localStorage.getItem("user")).date);
-        
+            
             // Navigate to the home page.
             navigate('./Profile.js');
 

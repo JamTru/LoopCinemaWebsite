@@ -1,17 +1,27 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useNavigate } from "react-router-dom";
 import { signupVerify} from "../data/repository";
 import { Modal, Container } from 'react-bootstrap';
+import {addUser, createNewUser} from '../data/repository.js';
 import axios from 'axios';
 
 function SignUpModal(props) {
-    const [fields, setFields] = useState({ email: "", username: "", password: "" });
+    const [fields, setFields] = useState({ email: "", username: "", password: ""});
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState(null);
     const [emailValid, setEmailValid] = useState(false);
     const [pwValid, setPwValid] = useState(false);
     const [usernameVaild, setUsernameValid] = useState(false);
     const [currentTime, setCurrentTime] = useState('');
+    
+    // useEffect(() => {
+    //     async function fetchUsers() {
+    //       const createUser = await createNewUser(fields);
+          
+    //     }
+    //     fetchUsers();
+    //   }, []);
+
 
     const handleInputChangeEmail = (event) => {
 
@@ -28,7 +38,7 @@ function SignUpModal(props) {
         }
 
         // Copy fields.
-        const temp = { email: fields.email, username: fields.username, password: fields.password };
+        const temp = { email: fields.email, username: fields.username, password: fields.password};
         // OR use spread operator.
         // const temp = { ...fields };
 
@@ -36,6 +46,7 @@ function SignUpModal(props) {
         temp[name] = value;
         setFields(temp);
     }
+    
     const handleInputChangePw = (event) => {
 
         const name = event.target.name;
@@ -59,6 +70,7 @@ function SignUpModal(props) {
         temp[name] = value;
         setFields(temp);
     }
+
     const handleInputChange = (event) => {
 
         const name = event.target.name;
@@ -76,6 +88,7 @@ function SignUpModal(props) {
 
         // Update field and state.
         temp[name] = value;
+
         setFields(temp);
     }
 
@@ -87,11 +100,15 @@ function SignUpModal(props) {
 
         // Format the date and update the state
         setCurrentTime(formatAESTDate(new Date(currentDate)));
+<<<<<<< HEAD
         console.log(" Bottom ")
         console.log(currentDate);
         console.log(currentTime);
 
         console.log(usernameVaild)
+=======
+        
+>>>>>>> b4a8acbaf6c1fa60e8badee20ec913b7d9999bdc
 
         if (usernameVaild === false){
             setErrorMessage("Please, enter Username ")
@@ -99,6 +116,12 @@ function SignUpModal(props) {
         }
         const signupVerified = signupVerify(fields.email, fields.username, fields.password, (formatAESTDate(new Date(currentDate))));
 
+<<<<<<< HEAD
+=======
+        // setFields(signupVerified)
+        
+        
+>>>>>>> b4a8acbaf6c1fa60e8badee20ec913b7d9999bdc
         // to Check loginUser is in props
         if ("setloginUser" in props) {
             // we have loginUser
@@ -120,6 +143,7 @@ function SignUpModal(props) {
                 // .then(res => console.log(res))
 
                 try {
+<<<<<<< HEAD
                     // Update the user if id exists, otherwise create a new user.
                     const result = fields.email ?
                       await axios.put(`http://localhost:4000/api/users/${fields.username}`, fields) :
@@ -133,11 +157,31 @@ function SignUpModal(props) {
                     // Result is logged to console for demostration purposes.
                     console.log(result);
 
+=======
+
+                    
+                    console.log("Set the date into the field")
+                    console.log(">>>>> Field : ",fields)
+
+                    const newUser = {
+                        username: fields.username,
+                        password: fields.password,
+                        email: fields.email
+                    }
+                    console.log("NewUser Data : ",newUser)
+
+                    setFields(newUser)
+                    await createNewUser(fields);
+                    // Check result, purposely not checked here for simplicity.
+                    // Result is logged to console for demostration purposes.
+                    console.log(fields);
+              
+>>>>>>> b4a8acbaf6c1fa60e8badee20ec913b7d9999bdc
                     // Before navigating start updating the parent.
                     props.refreshUsers();
 
                   } catch(e) {
-                    setErrorMessage({ errorMessage: e.message });
+                    setErrorMessage(e.message);
                   }
 
 
