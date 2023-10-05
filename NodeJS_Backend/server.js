@@ -5,6 +5,7 @@ const db = require("./database");
 db.sync();
 
 const app = express();
+
 app.use(express.json());
 
 app.use(cors());

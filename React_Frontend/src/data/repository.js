@@ -203,24 +203,21 @@ function deleteVerify(email, username, password, date) {
 
 }
 // verifyUser does checking email and password
-function verifyUser(email, password) {
-  const users = getUsers();
-  for(const user of users) {
+async function verifyUser(username, password) {
+  const response = await axios.get(API_HOST + "/api/users/login", { params: { username, password } });
+  const user = response.data;
+  
+  // The login is also persistent as it is stored in local storage.
+  if(user !== null)
+    setUser(user);
 
-    if(email === user.email && password === user.password)
-    {
-
-      setUser(email, user.username, user.date);
-      return true;
-    }
-  }
-
-  return false;
+  return user;
 }
 
+// --- Helper functions to interact with local storage ---
 
-function setUser(email, username, password, date) {
-  localStorage.setItem(USER_KEY, JSON.stringify({email, username, password, date}));
+function setUser(user) {
+  localStorage.setItem(USER_KEY, JSON.stringify(user));
 }
 
 function getUser() {

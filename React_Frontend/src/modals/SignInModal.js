@@ -26,7 +26,7 @@ function SignInModal(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
         
-        const verified = verifyUser(fields.email, fields.password);
+        const verified = verifyUser(fields.username, fields.password);
 
         // to Check loginUser is in props
         if ("setloginUser" in props) {
@@ -77,9 +77,9 @@ function SignInModal(props) {
                 <Modal.Body>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label htmlFor="email" className="control-label">Email</label>
-                            <input name="email" id="email" className="form-control" placeholder='example@gamil.com'
-                                value={fields.email} onChange={handleInputChange}/>
+                            <label htmlFor="email" className="control-label">Username</label>
+                            <input name="email" id="email" className="form-control" placeholder='username'
+                                value={fields.username} onChange={handleInputChange}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="password" className="control-label">Password</label> 
