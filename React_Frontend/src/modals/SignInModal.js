@@ -23,24 +23,26 @@ function SignInModal(props) {
         temp[name] = value;
         setFields(temp);
     }
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        console.log(fields.username + " " + fields.password)
+        const verifiedUser = await verifyUser(fields.username, fields.password);
+        console.log("CHECK THE USERNAME")
         
-        const verified = verifyUser(fields.username, fields.password);
-
         // to Check loginUser is in props
         if ("setloginUser" in props) {
             // we have loginUser
-            console.log("We have that prop in SignInMOdal " +  localStorage.getItem("user"))
+            
+            console.log("We have that prop in SignInMOdal " +  verifiedUser)
         } else {
             console.log("loginUser wasn't in props!")
             console.log(props)
         }
 
         // If verified login the user.
-        if(verified === true) {
+        if(verifiedUser !== null) {
 
-            props.setloginUser(fields.email, JSON.parse(localStorage.getItem("user")).username, JSON.parse(localStorage.getItem("user")).date);
+            props.setloginUser(verifiedUser);
             
             // Navigate to the home page.
             navigate('./Profile.js');
@@ -77,10 +79,11 @@ function SignInModal(props) {
                 <Modal.Body>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label htmlFor="email" className="control-label">Username</label>
-                            <input name="email" id="email" className="form-control" placeholder='username'
+                            <label htmlFor="username" className="control-label">Username</label>
+                            <input name="username" id="username" className="form-control" placeholder='username'
                                 value={fields.username} onChange={handleInputChange}/>
                         </div>
+                        
                         <div className="form-group">
                             <label htmlFor="password" className="control-label">Password</label> 
                             <input type="password" name="password" id="password" className="form-control" placeholder='Must contain a minimum of 8 characters (letters, numbers and sepcial characters)'

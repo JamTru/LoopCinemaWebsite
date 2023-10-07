@@ -16,16 +16,27 @@ async function createNewUser(user){
   return response.data;
 }
 
-async function loginUser(user){
-  const response = await axios.post(API_HOST + `/api/users/login`, user);
-  return response.data;
-}
-
 async function retrieveAllUser() {
   const response = await axios.get(API_HOST + "/api/users");
   const userdata = response.data;
   return userdata;
 }
+
+// verifyUser does checking email and password
+async function verifyUser(username, passwordHash) {
+  console.log("IN")
+  console.log(username + " " + " > " + passwordHash)
+  console.log("OUT")
+  const response = await axios.get(API_HOST + "/api/users/login", { params: { username, passwordHash } });
+  const user = response.data;
+  console.log("test log:" + JSON.stringify(response.data))
+  // The login is also persistent as it is stored in local storage.
+  if(user !== null)
+    setUser(user);
+
+  return user;
+}
+
 
 // ----- REVIEW API CALLS ----
 async function selectAllReviews(){
@@ -202,17 +213,7 @@ function deleteVerify(email, username, password, date) {
   i++;
 
 }
-// verifyUser does checking email and password
-async function verifyUser(username, password) {
-  const response = await axios.get(API_HOST + "/api/users/login", { params: { username, password } });
-  const user = response.data;
-  
-  // The login is also persistent as it is stored in local storage.
-  if(user !== null)
-    setUser(user);
 
-  return user;
-}
 
 // --- Helper functions to interact with local storage ---
 

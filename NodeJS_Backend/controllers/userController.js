@@ -20,8 +20,8 @@ exports.createUser = async (req, res) => {
 // Select one user for the database if username and password are a match.
 exports.loginUser = async (req, res) => {
   const user = db.users.findByPk(req.query.username);
-
-  if(user == null || await argon2.verify(user.passwordHash, req.query.password) == false){
+  console.log(JSON.stringify(user))
+  if(user == null || await argon2.verify(user.passwordHash, req.query.passwordHash) == false){
     // Login fail
     res.json(null)
   } else {
