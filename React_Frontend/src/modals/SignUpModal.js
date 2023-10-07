@@ -13,11 +13,11 @@ function SignUpModal(props) {
     const [pwValid, setPwValid] = useState(false);
     const [usernameVaild, setUsernameValid] = useState(false);
     const [currentTime, setCurrentTime] = useState('');
-    
+
     // useEffect(() => {
     //     async function fetchUsers() {
     //       const createUser = await createNewUser(fields);
-          
+
     //     }
     //     fetchUsers();
     //   }, []);
@@ -46,7 +46,7 @@ function SignUpModal(props) {
         temp[name] = value;
         setFields(temp);
     }
-    
+
     const handleInputChangePw = (event) => {
 
         const name = event.target.name;
@@ -100,15 +100,11 @@ function SignUpModal(props) {
 
         // Format the date and update the state
         setCurrentTime(formatAESTDate(new Date(currentDate)));
-<<<<<<< HEAD
         console.log(" Bottom ")
         console.log(currentDate);
         console.log(currentTime);
 
         console.log(usernameVaild)
-=======
-        
->>>>>>> b4a8acbaf6c1fa60e8badee20ec913b7d9999bdc
 
         if (usernameVaild === false){
             setErrorMessage("Please, enter Username ")
@@ -116,12 +112,6 @@ function SignUpModal(props) {
         }
         const signupVerified = signupVerify(fields.email, fields.username, fields.password, (formatAESTDate(new Date(currentDate))));
 
-<<<<<<< HEAD
-=======
-        // setFields(signupVerified)
-        
-        
->>>>>>> b4a8acbaf6c1fa60e8badee20ec913b7d9999bdc
         // to Check loginUser is in props
         if ("setloginUser" in props) {
             // we have loginUser
@@ -143,23 +133,8 @@ function SignUpModal(props) {
                 // .then(res => console.log(res))
 
                 try {
-<<<<<<< HEAD
-                    // Update the user if id exists, otherwise create a new user.
-                    const result = fields.email ?
-                      await axios.put(`http://localhost:4000/api/users/${fields.username}`, fields) :
-                      await axios.post("http://localhost:4000/api/users", fields)
-                      .then(res => {
-                        // Navigate to the home page.
-                        navigate("./Profile.js");
-                      });
 
-                    // Check result, purposely not checked here for simplicity.
-                    // Result is logged to console for demostration purposes.
-                    console.log(result);
 
-=======
-
-                    
                     console.log("Set the date into the field")
                     console.log(">>>>> Field : ",fields)
 
@@ -175,8 +150,7 @@ function SignUpModal(props) {
                     // Check result, purposely not checked here for simplicity.
                     // Result is logged to console for demostration purposes.
                     console.log(fields);
-              
->>>>>>> b4a8acbaf6c1fa60e8badee20ec913b7d9999bdc
+
                     // Before navigating start updating the parent.
                     props.refreshUsers();
 

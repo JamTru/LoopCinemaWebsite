@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) =>
   sequelize.define("userReservations", {
-    userReservationID: {
+    movieReservationID: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
@@ -9,16 +9,17 @@ module.exports = (sequelize, DataTypes) =>
       type: DataTypes.STRING(200),
       allowNull: false
     },
-    reserveDate: {
+    dateOfViewing: {
       type: DataTypes.DATEONLY,
       allowNull:false
     },
-    seatsReserved:{
+    noOfSeatsRemaining:{
       type: DataTypes.INTEGER,
       allowNull: false
     }
   }, {
     timestamps: true,
     createdAt: 'createdTimeStamp',
-    updatedAt: false
+    updatedAt: 'lastReservationTimeStamp',
+
   });
