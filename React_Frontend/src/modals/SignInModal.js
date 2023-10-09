@@ -26,23 +26,24 @@ function SignInModal(props) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log(fields.username + " " + fields.password)
-        const verifiedUser = await verifyUser(fields.username, fields.password);
+
+        const user = await verifyUser(fields.username, fields.password);
         console.log("CHECK THE USERNAME")
         
         // to Check loginUser is in props
         if ("setloginUser" in props) {
             // we have loginUser
             
-            console.log("We have that prop in SignInMOdal " +  verifiedUser)
+            console.log("We have that prop in SignInMOdal " +  user)
         } else {
             console.log("loginUser wasn't in props!")
             console.log(props)
         }
 
         // If verified login the user.
-        if(verifiedUser !== null) {
+        if(user !== null) {
 
-            props.setloginUser(verifiedUser);
+            props.setloginUser(user);
             
             // Navigate to the home page.
             navigate('./Profile.js');

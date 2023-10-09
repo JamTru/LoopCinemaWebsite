@@ -22,11 +22,11 @@ async function retrieveAllUser() {
 }
 
 // verifyUser does checking email and password
-async function verifyUser(username, passwordHash) {
+async function verifyUser(username, password) {
   console.log("IN")
-  console.log(username + " " + " > " + passwordHash)
+  console.log(username + " " + " > " + password)
   console.log("OUT")
-  const response = await axios.get(API_HOST + "/api/users/login", { params: { username, passwordHash } });
+  const response = await axios.get(API_HOST + "/api/users/login", { params: { username, password } });
   const user = response.data;
   console.log("test log:" + JSON.stringify(response.data))
   // The login is also persistent as it is stored in local storage.
@@ -98,7 +98,7 @@ async function updateExistingReservation(movieID, movieName, date, seatsRequeste
     date: date,
     noOfSeats: seatsRequested
   }
-  const response = await axios.get(API_HOST + `/api/movieReserves/${movieID}/${dateInput}`);
+  const response = await axios.get(API_HOST + `/api/movieReserves/${movieID}/${date}`);
   await axios.put(API_HOST + `/api/movieReserves/update/${response.data.movieReservationID}/${seatsRequested}`);
   await axios.post(API_HOST + `/api/userReserves`, newUserReservation);
 }
