@@ -15,6 +15,8 @@ db.movies = require("./models/movieModel.js")(db.sequelize, DataTypes);
 db.ageRating = require("./models/ageRatingModel.js")(db.sequelize, DataTypes);
 db.users = require("./models/userModel.js")(db.sequelize, DataTypes);
 db.reviews = require("./models/reviewModel.js")(db.sequelize, DataTypes);
+db.movieReserves = require("./models/movieReservationModel.js")(db.sequelize, DataTypes);
+db.userReserves = require("./models/userReservationModel.js")(db.sequelize, DataTypes);
 
 //Reviews Table has a One to Many Relation with Both Users and Reviews
 //Movies / Users can have many reviews, but a review can only have one user/movie associated.
@@ -28,6 +30,18 @@ db.users.hasMany(db.reviews);
 //A movie can only have one age rating, but any age rating can have any number of movies
 db.ageRating.hasMany(db.movies);
 db.movies.belongsTo(db.ageRating);
+
+//MovieReservation and Movie Relation
+//A movie can have many reservations, but a reservation can only have one movie associated
+db.movieReserves.belongsTo(db.movies);
+db.movies.hasMany(db.movieReserves);
+
+//UserReservations and User Relation / Movie Relation
+//A User / Movie can have many reservations associated, but a user reservation can only have one of Both
+db.userReserves.belongsTo(db.movies);
+db.userReserves.belongsTo(db.users);
+db.users.hasMany(db.userReserves);
+db.movies.hasMany(db.userReserves);
 
 db.sync = async () => {
   await db.sequelize.sync();

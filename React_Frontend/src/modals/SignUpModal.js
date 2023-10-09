@@ -13,11 +13,11 @@ function SignUpModal(props) {
     const [pwValid, setPwValid] = useState(false);
     const [usernameVaild, setUsernameValid] = useState(false);
     const [currentTime, setCurrentTime] = useState('');
-    
+
     // useEffect(() => {
     //     async function fetchUsers() {
     //       const createUser = await createNewUser(fields);
-          
+
     //     }
     //     fetchUsers();
     //   }, []);
@@ -27,10 +27,10 @@ function SignUpModal(props) {
 
         const name = event.target.name;
         const value = event.target.value;
-        
-        const regexEmail = 
+
+        const regexEmail =
             /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-       
+
         if (regexEmail.test(value)) {
             setEmailValid(true);
         } else {
@@ -46,7 +46,7 @@ function SignUpModal(props) {
         temp[name] = value;
         setFields(temp);
     }
-    
+
     const handleInputChangePw = (event) => {
 
         const name = event.target.name;
@@ -75,7 +75,7 @@ function SignUpModal(props) {
 
         const name = event.target.name;
         const value = event.target.value;
-        
+
         if (value.length > 0) {
             setUsernameValid(true);
         } else {
@@ -94,13 +94,17 @@ function SignUpModal(props) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        
+
         // Get the current date in AEST (Australia Eastern Standard Time)
         const currentDate = new Date()
-    
+
         // Format the date and update the state
         setCurrentTime(formatAESTDate(new Date(currentDate)));
-        
+        console.log(" Bottom ")
+        console.log(currentDate);
+        console.log(currentTime);
+
+        console.log(usernameVaild)
 
         if (usernameVaild === false){
             setErrorMessage("Please, enter Username ")
@@ -108,9 +112,6 @@ function SignUpModal(props) {
         }
         const signupVerified = signupVerify(fields.email, fields.username, fields.password, (formatAESTDate(new Date(currentDate))));
 
-        // setFields(signupVerified)
-        
-        
         // to Check loginUser is in props
         if ("setloginUser" in props) {
             // we have loginUser
@@ -124,7 +125,7 @@ function SignUpModal(props) {
 
         // If onCreat sign-up the user.
         if(signupVerified === true) {
-            
+
             if (emailValid && pwValid){
 
                 props.setloginUser(fields.email, fields.username, fields.password, (formatAESTDate(new Date(currentDate))));
@@ -133,7 +134,7 @@ function SignUpModal(props) {
 
                 try {
 
-                    
+
                     console.log("Set the date into the field")
                     console.log(">>>>> Field : ",fields)
 
@@ -149,21 +150,21 @@ function SignUpModal(props) {
                     // Check result, purposely not checked here for simplicity.
                     // Result is logged to console for demostration purposes.
                     console.log(fields);
-              
+
                     // Before navigating start updating the parent.
                     props.refreshUsers();
-            
+
                   } catch(e) {
                     setErrorMessage(e.message);
                   }
 
 
-                
+
                 // <Link to={"Profile.js"}> </Link>
                 props.onHide(false)
                 return;
             }
-              
+
         }
       // Reset password field to blank.
         const temp = { ...fields };
@@ -199,31 +200,31 @@ function SignUpModal(props) {
                     <div className="form-group">
                             <label htmlFor="email" className="control-label">Email</label>
                             <input type="email" name="email" id="email" className="form-control" placeholder='example@gmail.com'
-                                value={fields.email}  onChange={handleInputChangeEmail}/>
+                                value={fields.email}  onChange={handleInputChangeEmail} required />
                         </div>
                         <div className = "errorMessageWrap">
                             {/* when email is invalid and there is input, show the message */}
                             {!emailValid && fields.email.length > 0 && (
-                                <div> Please enter correct Email format. </div>            
-                            )} 
+                                <div> Please enter correct Email format. </div>
+                            )}
                         </div>
                         <div className="form-group">
                             <label htmlFor="username" className="control-label">Username</label>
                             <input name="username" id="username" className="form-control"
                                 value={fields.username}  onChange={handleInputChange}/>
                         </div>
-                        
+
                         <div className="form-group">
                             <label htmlFor="password" className="control-label">Password</label>
                             <input type="password" name="password" id="password" className="form-control" placeholder='Must contain a minimum of 8 characters (letters, numbers and sepcial characters)'
                                 value={fields.password}  onChange={handleInputChangePw}/>
                         </div>
-                        
-                        <div className = "errorMessageWrap"> 
+
+                        <div className = "errorMessageWrap">
                             {!pwValid && fields.password.length > 0 && (
                              <div> Please enter a minimum of 8 letters <br></br>(including numbers and special characters) </div>
                             )}
-                        </div>    
+                        </div>
                         <div className="form-group">
                             <input type="submit" className="btn btn-primary" value="Sign Up" />
                         </div>
