@@ -21,7 +21,7 @@ exports.createNewMovieReservation = async (req, res) => {
   // Creates a new movie Reservation
   const movieReservation = await db.movieReserves.create({
     movieMovieID: req.params.movieID,
-    movie: req.params.movieName,
+    movieName: req.params.movieName,
     dateOfViewing: req.params.date,
     noOfSeatsRemaining: 10
   });

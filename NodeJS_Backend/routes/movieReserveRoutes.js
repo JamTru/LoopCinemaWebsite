@@ -12,7 +12,7 @@ module.exports = (express, app) => {
   router.post("/", controller.createNewMovieReservation);
 
   // Updates the Reservation whenever a new reservation is made.
-  router.put("/update/:reserveID", controller.subtractSeats);
+  router.put("/update/:reserveID/:seatsRequested", controller.subtractSeats);
 
   // Add routes to server.
   app.use("/api/moviesReserves", router);

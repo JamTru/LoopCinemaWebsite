@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) =>
       autoIncrement: true,
       primaryKey: true
     },
-    movie: {
+    movieName: {
       type: DataTypes.STRING(200),
       allowNull: false
     },

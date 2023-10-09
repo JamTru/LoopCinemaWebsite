@@ -9,10 +9,9 @@ const USER_KEY = "user";
 
 // ------ USER API CALLS ----
 
-
 async function createNewUser(user){
   const response = await axios.post(API_HOST + "/api/users/create", user)
-  
+
   return response.data;
 }
 
@@ -51,11 +50,53 @@ async function createNewReview(review){
 }
 
 // --- MOVIE API CALLS -----
-
 async function retrieveDataByMovieID(movieID) {
   const response = await axios.get(API_HOST + `/api/movies/select/${movieID}`);
   return response.data;
 }
+
+
+// --- RESERVATION API CALLS ------
+async function checkReservationExists(movieID, dateInput) {
+  const response = await axios.get(API_HOST + `/api/movieReserves/${movieID}/${dateInput}`);
+  return response.data;
+}
+async function createNewReservations(movieID, movieName, date, seatsRequested, username){
+  const newMovReservation = {
+    movieID: movieID,
+    movieName: movieName,
+    date: date
+  }
+  const newUserReservation = {
+    username: username,
+    movieID: movieID,
+    movieName: movieName,
+    date: date,
+    noOfSeats: seatsRequested
+  }
+  const response = await axios.post(API_HOST + `/api/movieReserves`, newMovReservation);
+  await axios.put(API_HOST + `/api/movieReserves/update/${response.data.movieReservationID}/${seatsRequested}`);
+  await axios.post(API_HOST + `/api/userReserves`, newUserReservation);
+}
+
+async function updateExistingReservation(movieID, movieName, date, seatsRequested, username){
+  const newUserReservation = {
+    username: username,
+    movieID: movieID,
+    movieName: movieName,
+    date: date,
+    noOfSeats: seatsRequested
+  }
+  const response = await axios.get(API_HOST + `/api/movieReserves/${movieID}/${dateInput}`);
+  await axios.put(API_HOST + `/api/movieReserves/update/${response.data.movieReservationID}/${seatsRequested}`);
+  await axios.post(API_HOST + `/api/userReserves`, newUserReservation);
+}
+
+async function displayAllReservations(username) {
+  const response = await axios.get(API_HOST + `/api/userReserves/${username}`);
+  return response.data;
+}
+
 
 // ---- TEST ------------
 
@@ -299,5 +340,9 @@ export {
   testAPICall,
   retrieveDataByMovieID,
   createNewReview,
-  retrieveAllByMovie
+  retrieveAllByMovie,
+  createNewReservations,
+  updateExistingReservation,
+  displayAllReservations,
+  checkReservationExists
 }

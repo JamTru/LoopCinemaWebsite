@@ -1,11 +1,11 @@
 module.exports = (sequelize, DataTypes) =>
-  sequelize.define("userReservations", {
+  sequelize.define("movieReservations", {
     movieReservationID: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
-    movie: {
+    movieName: {
       type: DataTypes.STRING(200),
       allowNull: false
     },

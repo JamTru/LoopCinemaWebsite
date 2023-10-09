@@ -6,9 +6,15 @@ exports.findAll = async (req, res) => {
   res.json(userReservations);
 }
 exports.findAllByUserID = async (req, res) => {
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+  today = yyyy + '-' + mm + '-' + dd;
   const userReservations = await db.userReserves.findAll({
     where: {
-      userUsername: req.params.username
+      userUsername: req.params.username,
+      reserveDate: {[Op.gte]: today }
     }
   });
 }
@@ -18,7 +24,7 @@ exports.createNewUserReservation = async (req, res) => {
   const userReservation = await db.userReserves.create({
     userUsername:  req.params.username,
     movieMovieID: req.params.movieID,
-    movie: req.params.movieName,
+    movieName: req.params.movieName,
     reserveDate: req.params.date,
     seatsReserved: req.params.noOfSeats
   });
