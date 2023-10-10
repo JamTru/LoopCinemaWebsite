@@ -36,6 +36,12 @@ async function verifyUser(username, password) {
   return user;
 }
 
+async function findUser(username) {
+  const response = await axios.get(API_HOST + `/api/users/${username}`);
+  console.log("response data : " + JSON.stringify(response.data))
+  return response.data;
+}
+
 
 // ----- REVIEW API CALLS ----
 async function selectAllReviews(){
@@ -342,5 +348,6 @@ export {
   createNewReservations,
   updateExistingReservation,
   displayAllReservations,
-  checkReservationExists
+  checkReservationExists,
+  findUser
 }

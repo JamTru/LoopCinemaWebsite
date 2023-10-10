@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import { signupVerify} from "../data/repository";
 import { Modal, Container } from 'react-bootstrap';
-import {addUser, createNewUser} from '../data/repository.js';
+import {addUser, createNewUser, findUser} from '../data/repository.js';
 import axios from 'axios';
 
 function SignUpModal(props) {
@@ -110,21 +110,26 @@ function SignUpModal(props) {
             setErrorMessage("Please, enter Username ")
             return;
         }
-        const signupVerified = signupVerify(fields.email, fields.username, fields.password, (formatAESTDate(new Date(currentDate))));
 
+        // const signupVerified = signupVerify(fields.email, fields.username, fields.password, (formatAESTDate(new Date(currentDate))));
+        console.log("Username (fields.username) : " + fields.username)
+        
+        const signupVerified = await findUser(fields.username);
         // to Check loginUser is in props
         if ("setloginUser" in props) {
             // we have loginUser
             console.log("We have that prop in SignInMOdal ")
             console.log(props)
+            
+            console.log("SignupVerified variable : " + JSON.stringify(signupVerified))
         } else {
             console.log("loginUser wasn't in props!")
             console.log(props)
             //console.log(onCreated)
         }
-
+        // it not null means "You can create the account."
         // If onCreat sign-up the user.
-        if(signupVerified === true) {
+        if(signupVerified === null) {
 
             if (emailValid && pwValid){
 

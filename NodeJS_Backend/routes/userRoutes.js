@@ -9,7 +9,7 @@ module.exports = (express, app) => {
   router.get("/:username", controller.findSingleUser);
 
   // Select one user from the database if username and password are a match
-  router.get("/login", controller.loginUser);
+  router.post("/login", controller.loginUser);
 
   // Create a new user.
   router.post("/create", controller.createUser);
