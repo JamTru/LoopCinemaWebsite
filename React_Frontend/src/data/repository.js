@@ -15,16 +15,35 @@ async function createNewUser(user){
   return response.data;
 }
 
-async function loginUser(user){
-  const response = await axios.post(API_HOST + `/api/users/login`, user);
-  return response.data;
-}
-
 async function retrieveAllUser() {
   const response = await axios.get(API_HOST + "/api/users");
   const userdata = response.data;
   return userdata;
 }
+
+// verifyUser does checking email and password
+async function verifyUser(username, password) {
+  console.log("IN")
+  console.log(username + " " + " > " + password)
+  console.log("OUT")
+  const response = await axios.get(API_HOST + `/api/users/login/${username}`, { params: { username, password } });
+  const user = response.data;
+  console.log("test log:" + JSON.stringify(user))
+  console.log("7")
+  // The login is also persistent as it is stored in local storage.
+  if(user !== null)
+    setUser(user);
+
+  return user;
+}
+
+async function findUser(user) {
+  const response = await axios.get(API_HOST + `/api/users/${user.username}`);
+  console.log("response data : " + JSON.stringify(response.data))
+  setUser(user)
+  return response.data;
+}
+
 
 // ----- REVIEW API CALLS ----
 async function selectAllReviews(){
@@ -87,7 +106,7 @@ async function updateExistingReservation(movieID, movieName, date, seatsRequeste
     date: date,
     noOfSeats: seatsRequested
   }
-  const response = await axios.get(API_HOST + `/api/movieReserves/${movieID}/${dateInput}`);
+  const response = await axios.get(API_HOST + `/api/movieReserves/${movieID}/${date}`);
   await axios.put(API_HOST + `/api/movieReserves/update/${response.data.movieReservationID}/${seatsRequested}`);
   await axios.post(API_HOST + `/api/userReserves`, newUserReservation);
 }
@@ -243,25 +262,12 @@ function deleteVerify(email, username, password, date) {
   i++;
 
 }
-// verifyUser does checking email and password
-function verifyUser(email, password) {
-  const users = getUsers();
-  for(const user of users) {
-
-    if(email === user.email && password === user.password)
-    {
-
-      setUser(email, user.username, user.date);
-      return true;
-    }
-  }
-
-  return false;
-}
 
 
-function setUser(email, username, password, date) {
-  localStorage.setItem(USER_KEY, JSON.stringify({email, username, password, date}));
+// --- Helper functions to interact with local storage ---
+
+function setUser(user) {
+  localStorage.setItem(USER_KEY, JSON.stringify(user.username));
 }
 
 function getUser() {
@@ -272,10 +278,7 @@ function getUser() {
 }
 
 function getPassword() {
-  if (localStorage.getItem(USER_KEY) !== null){
-    return JSON.parse(localStorage.getItem(USER_KEY)).password;
-  }
-  return localStorage.getItem(USER_KEY);
+  return JSON.parse(localStorage.getItem(USER_KEY));
 }
 
 function getEmail() {
@@ -344,5 +347,6 @@ export {
   createNewReservations,
   updateExistingReservation,
   displayAllReservations,
-  checkReservationExists
+  checkReservationExists,
+  findUser
 }

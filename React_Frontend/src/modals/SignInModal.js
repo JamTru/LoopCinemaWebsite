@@ -5,7 +5,7 @@ import { Modal,Container } from 'react-bootstrap'
 import { getUser, removeUser } from "../data/repository";
 
 function SignInModal(props) {
-    const [fields, setFields] = useState({ email: "", username: "", password: "" });
+    const [fields, setFields] = useState({username: "", password: "", email: "", createdTimeStamp: "" });
     const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate();
 
@@ -23,24 +23,17 @@ function SignInModal(props) {
         temp[name] = value;
         setFields(temp);
     }
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        console.log(fields.username + " " + fields.password)
+
+        const user = await verifyUser(fields.username, fields.password);
+        console.log("CHECK THE USERNAME : " + JSON.stringify(user))
         
-        const verified = verifyUser(fields.email, fields.password);
-
-        // to Check loginUser is in props
-        if ("setloginUser" in props) {
-            // we have loginUser
-            console.log("We have that prop in SignInMOdal " +  localStorage.getItem("user"))
-        } else {
-            console.log("loginUser wasn't in props!")
-            console.log(props)
-        }
-
         // If verified login the user.
-        if(verified === true) {
+        if(user !== null) {
 
-            props.setloginUser(fields.email, JSON.parse(localStorage.getItem("user")).username, JSON.parse(localStorage.getItem("user")).date);
+            props.setloginUser(user.username, user.passwordHash, user.email, user.createdTimeStamp);
             
             // Navigate to the home page.
             navigate('./Profile.js');
@@ -49,6 +42,7 @@ function SignInModal(props) {
             props.onHide(false)
             // return;
         }
+        
       // Reset password field to blank.
       const temp = { ...fields };
       temp.password = "";
@@ -62,7 +56,7 @@ function SignInModal(props) {
             animation={false}
             show={props.show}
             onHide={props.onHide}
-            signInUser={props.setloginUser}
+            // signInUser={props.setloginUser}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
@@ -77,10 +71,11 @@ function SignInModal(props) {
                 <Modal.Body>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label htmlFor="email" className="control-label">Email</label>
-                            <input name="email" id="email" className="form-control" placeholder='example@gamil.com'
-                                value={fields.email} onChange={handleInputChange}/>
+                            <label htmlFor="username" className="control-label">Username</label>
+                            <input name="username" id="username" className="form-control" placeholder='username'
+                                value={fields.username} onChange={handleInputChange}/>
                         </div>
+                        
                         <div className="form-group">
                             <label htmlFor="password" className="control-label">Password</label> 
                             <input type="password" name="password" id="password" className="form-control" placeholder='Must contain a minimum of 8 characters (letters, numbers and sepcial characters)'

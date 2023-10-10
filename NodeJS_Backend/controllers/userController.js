@@ -17,6 +17,19 @@ exports.createUser = async (req, res) => {
   res.json(user);
 }
 
+// Select one user for the database if username and password are a match.
+exports.loginUser = async (req, res) => {
+  const user = await db.users.findByPk(req.query.username);
+
+  if(user == null || await argon2.verify(user.passwordHash, req.query.password) == false){
+    // Login fail
+    res.json(null)
+  } else {
+    res.json(user)
+  }
+  
+}
+
 //Read All Users
 exports.findAllUsers = async (req,res) => {
   const users = await db.users.findAll();
@@ -27,24 +40,6 @@ exports.findAllUsers = async (req,res) => {
 exports.findSingleUser = async (req, res) => {
   const user = await db.users.findByPk(req.params.username);
   res.json(user);
-}
-
-exports.loginUser = async (req, res) => {
-  const { email, password } = req.body;
-  
-  const user = await db.users.findOne({ where: { email: email } });
-  
-  if (!user) {
-    return res.status(404).send('User not found');
-  }
-
-  const isPasswordValid = await argon2.verify(user.passwordHash, password);
-
-  if (!isPasswordValid) {
-    return res.status(401).send('Invalid password');
-  }
-
-  res.json({ success: true, message: "Logged in successfully" });
 }
 
 //Update related Functions
