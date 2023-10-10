@@ -2,7 +2,7 @@ import React, { useState} from 'react';
 
 const LandingPage = () => {
   return (
-    <h1>Test</h1>
+    <h1>Welcome to the Admin Dashboard</h1>
   )
 }
 

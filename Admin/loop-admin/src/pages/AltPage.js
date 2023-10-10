@@ -1,9 +1,10 @@
 import React, { useState} from 'react';
 
-const AltPage = () => {
+const MovieCreatorPage = () => {
   return (
-    <h1>Alt Page Found</h1>
+    <h1>Create, Edit and Update Movies Here</h1>
+    
   )
 }
 
-export default AltPage;
+export default MovieCreatorPage;
