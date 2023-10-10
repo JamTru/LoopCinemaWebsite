@@ -26,9 +26,10 @@ async function verifyUser(username, password) {
   console.log("IN")
   console.log(username + " " + " > " + password)
   console.log("OUT")
-  const response = await axios.get(API_HOST + "/api/users/login", { params: { username, password } });
+  const response = await axios.get(API_HOST + `/api/users/login/${username}`, { params: { username, password } });
   const user = response.data;
-  console.log("test log:" + JSON.stringify(response.data))
+  console.log("test log:" + JSON.stringify(user))
+  console.log("7")
   // The login is also persistent as it is stored in local storage.
   if(user !== null)
     setUser(user);
@@ -36,9 +37,10 @@ async function verifyUser(username, password) {
   return user;
 }
 
-async function findUser(username) {
-  const response = await axios.get(API_HOST + `/api/users/${username}`);
+async function findUser(user) {
+  const response = await axios.get(API_HOST + `/api/users/${user.username}`);
   console.log("response data : " + JSON.stringify(response.data))
+  setUser(user)
   return response.data;
 }
 
@@ -265,7 +267,7 @@ function deleteVerify(email, username, password, date) {
 // --- Helper functions to interact with local storage ---
 
 function setUser(user) {
-  localStorage.setItem(USER_KEY, JSON.stringify(user));
+  localStorage.setItem(USER_KEY, JSON.stringify(user.username));
 }
 
 function getUser() {
@@ -276,10 +278,7 @@ function getUser() {
 }
 
 function getPassword() {
-  if (localStorage.getItem(USER_KEY) !== null){
-    return JSON.parse(localStorage.getItem(USER_KEY)).password;
-  }
-  return localStorage.getItem(USER_KEY);
+  return JSON.parse(localStorage.getItem(USER_KEY));
 }
 
 function getEmail() {

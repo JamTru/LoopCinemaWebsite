@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { json, useNavigate } from "react-router-dom";
 import { signupVerify} from "../data/repository";
 import { Modal, Container } from 'react-bootstrap';
-import {addUser, createNewUser, findUser} from '../data/repository.js';
+import { createNewUser, findUser} from '../data/repository.js';
 import axios from 'axios';
 
 function SignUpModal(props) {
@@ -133,7 +133,7 @@ function SignUpModal(props) {
 
             if (emailValid && pwValid){
 
-                props.setloginUser(fields.email, fields.username, fields.password, (formatAESTDate(new Date(currentDate))));
+                
                 // axious.post('http://localhost:8001/signup', values)
                 // .then(res => console.log(res))
 
@@ -152,6 +152,11 @@ function SignUpModal(props) {
 
                     setFields(newUser)
                     await createNewUser(fields);
+                    // Brings Single user data which has just signed up
+                    const user = await findUser(newUser)
+                    console.log(user)
+                    props.setloginUser(user.username, user.passwordHash, user.email, user.createdTimeStamp);
+                    // setUser(user)
                     // Check result, purposely not checked here for simplicity.
                     // Result is logged to console for demostration purposes.
                     console.log(fields);

@@ -20,9 +20,9 @@ function App() {
   const [email, setEmail] = useState(getEmail());
   const [date, setDate] = useState(getDate());
   const [password, setPassword] = useState(getPassword());
-
+  const [user, setUser] = useState(getUser());
   // Initializing login user infomation
-  const loginUser = (email, username, password, date) => {
+  const loginUser = (username, password, email, date) => {
     setEmail(email);
     setUsername(username);
     setPassword(password);
