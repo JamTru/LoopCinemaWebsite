@@ -37,10 +37,10 @@ exports.findAllUserReviews = async (req, res) => {
 
 exports.createNewReview = async (req, res) => {
   const newReview = await db.reviews.create({
-    rating: db.body.rating,
-    comment: db.body.comment,
-    userUsername: db.body.username,
-    movieMovieID: db.body.movieID
+    rating: req.body.numRating,
+    comment: req.body.comment,
+    userUsername: req.body.username,
+    movieMovieID: req.body.movieID
   });
   res.json(newReview);
 }

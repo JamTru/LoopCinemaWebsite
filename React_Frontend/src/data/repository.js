@@ -53,7 +53,8 @@ async function selectAllReviews(){
 }
 
 async function retrieveAllByMovie(movieID) {
-  const response = await axios.get(API_HOST + `/api/reviews/selectByMovie/${movieID}`);
+  console.log("repository call" + movieID)
+  const response = await axios.get(API_HOST + "/api/reviews/selectByMovie/" + movieID);
   const allReviewsByMovie = response.data;
   return allReviewsByMovie;
 }
@@ -64,7 +65,10 @@ async function retrieveAllByUser(username){
 }
 
 async function createNewReview(review){
-  const response = await axios.post(API_HOST + "/api/reviews", review);
+  console.log("repo");
+  console.log(review);
+  const response = await axios.post(API_HOST + "/api/reviews/create", review);
+  console.log(response);
   return response.data;
 }
 

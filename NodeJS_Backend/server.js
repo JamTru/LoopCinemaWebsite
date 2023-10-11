@@ -4,8 +4,8 @@ const cors = require("cors");
 const db = require("./database");
 
 // Added For GraphQL Support
-const { graphqlHTTP } = require("express-graphql");
-const graphql = require("./src/graphql");
+// const { graphqlHTTP } = require("express-graphql");
+// const graphql = require("./src/graphql");
 
 db.sync();
 
