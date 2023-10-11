@@ -21,11 +21,12 @@ const ReviewFormModal = (props) => {
       // today = dd + "-" + mm + "-" + yyyy;
       // addReview(numRating, comments, today, props.movie);
       const newReview = {
-        rating: numRating,
+        numRating: parseInt(numRating),
         comment: comments,
-        username: props.username,
+        username: props.username.replace(/['"]+/g, ''),
         movieID: props.movieID
       }
+      console.log(newReview);
       await createNewReview(newReview);
       props.setListOfReviews([...props.listOfReviews, newReview]);
       props.onHide();

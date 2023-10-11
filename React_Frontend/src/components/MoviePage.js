@@ -8,16 +8,17 @@ import {retrieveAllByMovie} from '../data/repository.js';
 const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef, movieID}) => {
   const [reviewModalOn, setReviewModalOn] = useState(false);//State logic to handle display of modal
   const isLogged = localStorage.getItem("user") !== null ? true : false;
-  const [listOfReviews, setListOfReviews] = useState([])
+  const [listOfReviews, setListOfReviews] = useState([]);
 
   //------------- API CODE ------------
   useEffect(() => {
     async function fetchReviews() {
-      const reviewsOfGivenMovie = await retrieveAllByMovie({movieID});
+      const reviewsOfGivenMovie = await retrieveAllByMovie(movieID);
+
       setListOfReviews(reviewsOfGivenMovie);
     }
     fetchReviews();
-  }, []);
+  },  [movieID]);
 
 
   /*This code block is designed to reduce the influx of fake reviews by restricting the time taken between each review post, so that a user must wait at least a day before posting another review. */
@@ -68,7 +69,7 @@ const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef, mo
         </div>
       </div>
       <YoutubeEmbed embedID={trailer} />
-      <ReviewFormModal show={reviewModalOn} onHide={()=> setReviewModalOn(false)} movie={name} reviewsState={listOfReviews} reviewsStateFunction={setListOfReviews} />
+      <ReviewFormModal show={reviewModalOn} onHide={()=> setReviewModalOn(false)} movie={name} reviewsState={listOfReviews} reviewsStateFunction={setListOfReviews} movieID={movieID} username={localStorage.getItem("user")} />
       <div className="background">
         <button type="button" onClick={() => setReviewModalOn(true)} className={allowReview}>Leave a Review!</button>
         {
@@ -83,7 +84,7 @@ const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef, mo
           //   if (typeof reviewDetails !== "undefined"){
           //     return <ReviewDisplay movieName={reviewDetails.name} username={user.username} date={reviewDetails.date} numValue={reviewDetails.numRate} comment={reviewDetails.commentString} />
             listOfReviews.map((reviewDetails) => {
-            return <ReviewDisplay movieName={reviewDetails.name} username={reviewDetails.username} date={reviewDetails.date} numValue={reviewDetails.numRate} comment={reviewDetails.commentString} />
+            return <ReviewDisplay movieName={name} username={reviewDetails.userUsername} date={reviewDetails.createdTimeSTamp} numValue={reviewDetails.rating} comment={reviewDetails.comment} />
           })
             }
           })
