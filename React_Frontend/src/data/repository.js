@@ -274,7 +274,7 @@ function getUser() {
   if (localStorage.getItem(USER_KEY) !== null){
     return JSON.parse(localStorage.getItem(USER_KEY)).username;
   }
-  return localStorage.getItem(USER_KEY);
+  return localStorage.getItem(null);
 }
 
 function getPassword() {
