@@ -8,7 +8,7 @@ function EditProfile(props) {
   const navigate = useNavigate();
   const [email, setEmail] = useState(props.email)
   const [username, setUsername] = useState(props.username)
-  const [update, setUpdate] = useState()
+  
   
   console.log(props)
   
@@ -22,11 +22,19 @@ function EditProfile(props) {
       console.log(props.email, props.username);
 
       // updateVerify(props.email, email, username, props.password, props.date);
-      setUpdate = updateVerify(props.username, username, email);
+
+
+      console.log("(1)UPDATE USERNAME : " + props.username + " => " + username)
+
+      const setUpdate = updateVerify(props.username, username, email);
       // updateVerify()
-      props.loginUser(email, username, props.password, props.date);
+      // props.loginUser(email, username, props.password, props.date);
+      console.log("(2)setUpdate Value : " + JSON.stringify(setUpdate))
+
       props.loginUser(setUpdate.email, setUpdate.username, setUpdate.passwordHash, setUpdate.createdTimeStamp)
-      console.log(props)
+
+      console.log("(3)Upaded user info : " + JSON.stringify(setUpdate))
+      
       navigate('/Profile.js')
     }}>
       <div className="form-group">

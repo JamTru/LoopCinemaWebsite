@@ -27,7 +27,7 @@ function App() {
     setUsername(username);
     setPassword(password);
     setDate(date);
-    console.log(">>>>>>>>>> " + password)
+    console.log(">>>>>>>>>> " + username)
   }
 
   // it removes login status and also gets rid of from USER key from localStorage

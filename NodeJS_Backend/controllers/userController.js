@@ -44,25 +44,21 @@ exports.findSingleUser = async (req, res) => {
 
 //Update related Functions
 exports.updateUser = async (req, res) => {
-  const user = await db.users.findByPk(req.query.userame);
+  const user = await db.users.findByPk(req.params.old_username);
+  // req.body.username (New username) != req.params.username (old_username)
+  // user.username = (req.query.username);
+  // user.email = (req.query.email);
 
-  user.username = (req.params.username);
-  user.email = (req.params.email);
-
-  await user.save()
-
-  // const updateResult = await db.users.update({ 
-  //   username: req.params.username,
-  //   email: req.params.email
-  //  },
-  //  {
-  //    where: {
-  //      userame: req.body.username,
-  //      email: req.body.email
-  //    }
-  //  });
-  
-   res.json(user);
+  // await user.save()
+  if (user) {
+    user.username = (req.query.username);
+    user.email = (req.query.email);
+    await user.save();
+    res.json(user);
+  } else {
+    res.json("USER doesn't exist")
+  }
+   
 }
 
 

@@ -45,9 +45,9 @@ async function findUser(user) {
 }
 
 async function updateVerify(old_username, username, email) {
-  const response = await axios.get(API_HOST + `/api/users/profile/${username}`, { params: {old_username, username, email}})
+  const response = await axios.get(API_HOST + `/api/users/profile/${old_username}`, { params: { username, email}})
   const user = response.data;
-  console.log("Test Update " + JSON.stringify(user))
+  console.log("Test Update : " + JSON.stringify(user))
   return user;
 }
 
