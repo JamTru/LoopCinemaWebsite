@@ -44,6 +44,60 @@ async function findUser(user) {
   return response.data;
 }
 
+async function updateVerify(old_username, username, email) {
+  const response = await axios.get(API_HOST + `/api/users/profile/${username}`, { params: {old_username, username, email}})
+  const user = response.data;
+  console.log("Test Update " + JSON.stringify(user))
+  return user;
+}
+
+
+
+// function updateVerify(email_old, email, username, password, date) {
+//   const users_storage = getUsers(); // get the users fromm localStorage
+
+//   // get the user from db
+
+//   // check if there is any other username is the same
+
+//   // check the value
+
+//   //  
+
+//   let i = 1; // i is used to count to add new account if there is no same username in the array.
+//   const users = [];
+
+//   // const [password, setPassword] = useState('')
+
+//   console.log(users_storage)
+//   for(const user of users_storage) {
+
+//     if(email_old === user.email){
+
+//       console.log("CHECK New email and username : " + email + " " + username + " " + password)
+//       users.push(({email, username, password, date}))
+
+//       localStorage.setItem(USERS_KEY, JSON.stringify(users));
+
+//       setUser(email, username, password, date)
+//       console.log(JSON.stringify(users))
+// // it only generates new review key when there is no review with the same key and deletes previous key
+//       if (email_old !== email && localStorage.getItem(email_old) !== false) {
+//         localStorage.setItem(email, (localStorage.getItem(email_old)));
+//         localStorage.removeItem(email_old)
+//       }
+
+//     } else{
+
+//       users.push(user)
+//       console.log(i + " - Array LocalStorage");
+//     }
+//   }
+//   i++;
+
+// }
+
+
 
 // ----- REVIEW API CALLS ----
 async function selectAllReviews(){
@@ -53,8 +107,7 @@ async function selectAllReviews(){
 }
 
 async function retrieveAllByMovie(movieID) {
-  console.log("repository call" + movieID)
-  const response = await axios.get(API_HOST + "/api/reviews/selectByMovie/" + movieID);
+  const response = await axios.get(API_HOST + `/api/reviews/selectByMovie/${movieID}`);
   const allReviewsByMovie = response.data;
   return allReviewsByMovie;
 }
@@ -65,10 +118,7 @@ async function retrieveAllByUser(username){
 }
 
 async function createNewReview(review){
-  console.log("repo");
-  console.log(review);
-  const response = await axios.post(API_HOST + "/api/reviews/create", review);
-  console.log(response);
+  const response = await axios.post(API_HOST + "/api/reviews", review);
   return response.data;
 }
 
@@ -205,40 +255,49 @@ function signupVerify(email, username, password, date) {
 }
 
 // updateVerify does whenever user edits email or username it updates the status
-function updateVerify(email_old, email, username, password, date) {
-  const users_storage = getUsers(); // get the users fromm localStorage
-  let i = 1; // i is used to count to add new account if there is no same username in the array.
-  const users = [];
+// function updateVerify(email_old, email, username, password, date) {
+//   const users_storage = getUsers(); // get the users fromm localStorage
 
-  // const [password, setPassword] = useState('')
+//   // get the user from db
 
-  console.log(users_storage)
-  for(const user of users_storage) {
+//   // check if there is any other username is the same
 
-    if(email_old === user.email){
+//   // check the value
 
-      console.log("CHECK New email and username : " + email + " " + username + " " + password)
-      users.push(({email, username, password, date}))
+//   //  
 
-      localStorage.setItem(USERS_KEY, JSON.stringify(users));
+//   let i = 1; // i is used to count to add new account if there is no same username in the array.
+//   const users = [];
 
-      setUser(email, username, password, date)
-      console.log(JSON.stringify(users))
-// it only generates new review key when there is no review with the same key and deletes previous key
-      if (email_old !== email && localStorage.getItem(email_old) !== false) {
-        localStorage.setItem(email, (localStorage.getItem(email_old)));
-        localStorage.removeItem(email_old)
-      }
+//   // const [password, setPassword] = useState('')
 
-    } else{
+//   console.log(users_storage)
+//   for(const user of users_storage) {
 
-      users.push(user)
-      console.log(i + " - Array LocalStorage");
-    }
-  }
-  i++;
+//     if(email_old === user.email){
 
-}
+//       console.log("CHECK New email and username : " + email + " " + username + " " + password)
+//       users.push(({email, username, password, date}))
+
+//       localStorage.setItem(USERS_KEY, JSON.stringify(users));
+
+//       setUser(email, username, password, date)
+//       console.log(JSON.stringify(users))
+// // it only generates new review key when there is no review with the same key and deletes previous key
+//       if (email_old !== email && localStorage.getItem(email_old) !== false) {
+//         localStorage.setItem(email, (localStorage.getItem(email_old)));
+//         localStorage.removeItem(email_old)
+//       }
+
+//     } else{
+
+//       users.push(user)
+//       console.log(i + " - Array LocalStorage");
+//     }
+//   }
+//   i++;
+
+// }
 
 function deleteVerify(email, username, password, date) {
   const users_storage = getUsers(); // get the users fromm localStorage

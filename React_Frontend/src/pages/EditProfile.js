@@ -8,8 +8,10 @@ function EditProfile(props) {
   const navigate = useNavigate();
   const [email, setEmail] = useState(props.email)
   const [username, setUsername] = useState(props.username)
+  const [update, setUpdate] = useState()
   
   console.log(props)
+  
   return (
     <>
     <form onSubmit={event => {
@@ -19,9 +21,11 @@ function EditProfile(props) {
       console.log("Password: ", props.password)
       console.log(props.email, props.username);
 
-      updateVerify(props.email, email, username, props.password, props.date);
+      // updateVerify(props.email, email, username, props.password, props.date);
+      setUpdate = updateVerify(props.username, username, email);
+      // updateVerify()
       props.loginUser(email, username, props.password, props.date);
-      
+      props.loginUser(setUpdate.email, setUpdate.username, setUpdate.passwordHash, setUpdate.createdTimeStamp)
       console.log(props)
       navigate('/Profile.js')
     }}>
