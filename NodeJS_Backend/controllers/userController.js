@@ -7,7 +7,7 @@ exports.createUser = async (req, res) => {
   console.log("REQUEST DATA")
   console.log(req.body)
   const hashedPassword = await argon2.hash(req.body.password, {type: argon2.argon2id});
-  
+
   const user = await db.users.create({
     username: req.body.username,
     displayUsername: req.body.username,
@@ -28,7 +28,7 @@ exports.loginUser = async (req, res) => {
   } else {
     res.json(user)
   }
-  
+
 }
 
 //Read All Users
@@ -48,17 +48,17 @@ exports.updateUser = async (req, res) => {
   const user = await db.users.findByPk(req.params.username);
   console.log(req.body)
   if (user) {
-    await user.update({ 
+    await user.update({
       displayUsername: req.body.displayUsername
     });
     await user.save();
 
-    res.json(user);  
-    
+    res.json(user);
+
   } else {
     res.json("Empty user")
   }
-   
+
 }
 
 

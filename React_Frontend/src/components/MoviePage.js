@@ -3,10 +3,12 @@ import YoutubeEmbed from './YoutubeEmbed.js';
 import './MoviePage.css';
 import ReviewFormModal from '../modals/ReviewFormModal.js';
 import ReviewDisplay from './ReviewDisplay.js';
+import ReservationModal from '../modals/ReservationModal.js';
 import {retrieveAllByMovie} from '../data/repository.js';
 
 const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef, movieID}) => {
   const [reviewModalOn, setReviewModalOn] = useState(false);//State logic to handle display of modal
+  const [reservationModalOn, setReservationModalOn] = useState(false);
   const isLogged = localStorage.getItem("user") !== null ? true : false;
   const [listOfReviews, setListOfReviews] = useState([]);
 
@@ -20,7 +22,11 @@ const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef, mo
     fetchReviews();
   },  [movieID]);
 
-
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2,'0');
+  var mm = String(today.getMonth() + 1).padStart(2,'0');
+  var yyyy = today.getFullYear();
+  today = yyyy + "-" + mm + "-" + dd;
   /*This code block is designed to reduce the influx of fake reviews by restricting the time taken between each review post, so that a user must wait at least a day before posting another review. */
   var enoughTimeSinceLastReview = false;
   var duplicateDetected = false;
@@ -48,7 +54,7 @@ const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef, mo
     }
   }
 
-
+  const allowReservation = isLogged ? "show" : "doNotShow";
   const allowReview = (isLogged && enoughTimeSinceLastReview) && !duplicateDetected ? "show" : "doNotShow"; //If user is both logged in and not submitted review in 24 hours, allow review button to display.
   // const userArray = JSON.parse(localStorage.getItem("users"));
   // const usersWithReviews = userArray.filter((user) => localStorage.getItem(user.email) !== null); //Filters for users that have existing reviews in local storage
@@ -70,25 +76,23 @@ const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef, mo
       </div>
       <YoutubeEmbed embedID={trailer} />
       <ReviewFormModal show={reviewModalOn} onHide={()=> setReviewModalOn(false)} movie={name} reviewsState={listOfReviews} reviewsStateFunction={setListOfReviews} movieID={movieID} username={localStorage.getItem("user")} />
+      <ReservationModal show={reservationModalOn} onHide={()=> setReservationModalOn(false)} currentDate={today} movieID={movieID} movieName={name} username={localStorage.getItem("user")} />
+      <div className="background">
+        <h2 className={allowReservation}>Book a spot at our cinema today!</h2>
+        <button type="button" onClick={() => setReservationModalOn(true)} className={allowReservation}> Book today!</button>
+      </div>
       <div className="background">
         <button type="button" onClick={() => setReviewModalOn(true)} className={allowReview}>Leave a Review!</button>
         {
           renderWarning()
         }
         <h2>Most Recent Reviews</h2>
-        {/*Each user gets mapped and has their reviews handled so that all their reviews are filtered for the given movie of a page.
-          The if statement is to handle when none of the reviews match the movie page and as such only returns the component when it is not undefined*/
-          // usersWithReviews.map((user, index) => {
-          //   const arrayOfReviewDetails = JSON.parse(localStorage.getItem(user.email));
-          //   const reviewDetails = arrayOfReviewDetails.filter((review) => review.name === name)[0];
-          //   if (typeof reviewDetails !== "undefined"){
-          //     return <ReviewDisplay movieName={reviewDetails.name} username={user.username} date={reviewDetails.date} numValue={reviewDetails.numRate} comment={reviewDetails.commentString} />
-            listOfReviews.map((reviewDetails) => {
-            return <ReviewDisplay movieName={name} username={reviewDetails.userUsername} date={reviewDetails.createdTimeSTamp} numValue={reviewDetails.rating} comment={reviewDetails.comment} />
-          })
-            }
-          })
+        {
+          listOfReviews.map((reviewDetails) => {
+          return <ReviewDisplay movieName={name} username={reviewDetails.userUsername} date={reviewDetails.createdTimeSTamp} numValue={reviewDetails.rating} comment={reviewDetails.comment} />})
         }
+      })
+      }
       </div>
     </div>
   );

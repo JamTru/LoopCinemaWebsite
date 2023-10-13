@@ -5,6 +5,9 @@ module.exports = (express, app) => {
   // Select all users.
   router.get("/", controller.findAll);
 
+  // Test Method
+  router.get("/select/:movieID", (req, res) => {res.send("movieID is " + req.params.movieID)});
+
   // Select a single user with id.
   router.get("/select/:movieID/:dateOfViewing", controller.findByDateAndMovie);
 
@@ -15,5 +18,5 @@ module.exports = (express, app) => {
   router.put("/update/:reserveID/:seatsRequested", controller.subtractSeats);
 
   // Add routes to server.
-  app.use("/api/moviesReserves", router);
+  app.use("/api/movieReserves", router);
 };

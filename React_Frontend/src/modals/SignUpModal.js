@@ -113,14 +113,14 @@ function SignUpModal(props) {
 
         // const signupVerified = signupVerify(fields.email, fields.username, fields.password, (formatAESTDate(new Date(currentDate))));
         console.log("Username (fields.username) : " + fields.username)
-        
+
         const signupVerified = await findUser(fields.username);
         // to Check loginUser is in props
         if ("setloginUser" in props) {
             // we have loginUser
             console.log("We have that prop in SignInMOdal ")
             console.log(props)
-            
+
             console.log("SignupVerified variable : " + JSON.stringify(signupVerified))
         } else {
             console.log("loginUser wasn't in props!")
@@ -140,6 +140,7 @@ function SignUpModal(props) {
                         displayUsername: fields.username,
                         password: fields.password,
                         email: fields.email
+
                     }
                     console.log("NewUser Data : ", newUser)
 
@@ -147,7 +148,7 @@ function SignUpModal(props) {
                     // Create Database First
                     await createNewUser(newUser);
                     // Brings Single user data which has just signed up
-                    // Check if it is created and call 
+                    // Check if it is created and call
                     const user = await findUser(newUser)
 
                     console.log(user)

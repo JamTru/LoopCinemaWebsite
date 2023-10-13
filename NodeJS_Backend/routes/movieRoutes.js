@@ -8,6 +8,8 @@ module.exports = (express, app) => {
   // Select a single user with id.
   router.get("/select/:movieID", controller.findMovie);
 
+  router.get("/helloWorld", (req, res) => {res.send("Hello World")});
+
   // Add Movie to Database
   // router.get("/addMovie", controller.addMovie);
 

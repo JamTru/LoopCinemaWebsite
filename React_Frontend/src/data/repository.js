@@ -78,7 +78,7 @@ async function retrieveAllByUser(username){
 }
 
 async function createNewReview(review){
-  const response = await axios.post(API_HOST + "/api/reviews", review);
+  const response = await axios.post(API_HOST + "/api/reviews/create", review);
   return response.data;
 }
 
@@ -90,8 +90,8 @@ async function retrieveDataByMovieID(movieID) {
 
 
 // --- RESERVATION API CALLS ------
-async function checkReservationExists(movieID, dateInput) {
-  const response = await axios.get(API_HOST + `/api/movieReserves/${movieID}/${dateInput}`);
+async function checkReservationExists(movieID, dateOfViewing) {
+  const response = await axios.get(API_HOST + `/api/movieReserves/select/${movieID}/${dateOfViewing}`);
   return response.data;
 }
 async function createNewReservations(movieID, movieName, date, seatsRequested, username){
@@ -108,11 +108,12 @@ async function createNewReservations(movieID, movieName, date, seatsRequested, u
     noOfSeats: seatsRequested
   }
   const response = await axios.post(API_HOST + `/api/movieReserves`, newMovReservation);
-  await axios.put(API_HOST + `/api/movieReserves/update/${response.data.movieReservationID}/${seatsRequested}`);
-  await axios.post(API_HOST + `/api/userReserves`, newUserReservation);
+  return response.data;
+  // await axios.put(API_HOST + `/api/movieReserves/update/${response.data.movieReservationID}/${seatsRequested}`);
+  // await axios.post(API_HOST + `/api/userReserves`, newUserReservation);
 }
 
-async function updateExistingReservation(movieID, movieName, date, seatsRequested, username){
+async function updateExistingReservation(movieID, movieName, date, seatsRequested, username, reserveID){
   const newUserReservation = {
     username: username,
     movieID: movieID,
@@ -120,9 +121,13 @@ async function updateExistingReservation(movieID, movieName, date, seatsRequeste
     date: date,
     noOfSeats: seatsRequested
   }
-  const response = await axios.get(API_HOST + `/api/movieReserves/${movieID}/${date}`);
-  await axios.put(API_HOST + `/api/movieReserves/update/${response.data.movieReservationID}/${seatsRequested}`);
-  await axios.post(API_HOST + `/api/userReserves`, newUserReservation);
+  const response = await axios.get(API_HOST + `/api/movieReserves/select/${movieID}/${date}`);
+  console.log("woooooo");
+  await axios.put(API_HOST + `/api/movieReserves/update/${reserveID}/${seatsRequested}`);
+  console.log("post");
+  const userReserveData = await axios.post(API_HOST + `/api/userReserves`, newUserReservation);
+  console.log(userReserveData);
+  return userReserveData.data;
 }
 
 async function displayAllReservations(username) {
@@ -176,7 +181,9 @@ function initUsers() {
 function getUsers() {
   // Extract user data from local storage.
   const data = localStorage.getItem(USERS_KEY);
-
+  if (data === undefined) {
+    return JSON.parse(null);
+  }
   // Convert data to objects.
   return JSON.parse(data);
 }
@@ -224,7 +231,7 @@ function signupVerify(email, username, password, date) {
 
 //   // check the value
 
-//   //  
+//   //
 
 //   let i = 1; // i is used to count to add new account if there is no same username in the array.
 //   const users = [];
@@ -305,8 +312,6 @@ function getPassword() {
 }
 
 function getEmail() {
-
-
   if (localStorage.getItem(USER_KEY) !== null){
     return JSON.parse(localStorage.getItem(USER_KEY)).email;
   }

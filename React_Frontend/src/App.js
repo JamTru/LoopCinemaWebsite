@@ -15,13 +15,13 @@ import SM_mov from './pages/SM_mov.js';
 import Profile from './pages/Profile.js';
 import EditProfile from './pages/EditProfile.js';
 
-function App() { 
-  const [username, setUsername] = useState(); // Gets user info from localStorage but when is null won't get any info
-  const [displayUsername, setDisplayUsername] = useState();
-  const [email, setEmail] = useState();
-  const [date, setDate] = useState();
-  const [password, setPassword] = useState();
-  const [user, setUser] = useState();
+function App() {
+  const [username, setUsername] = useState(getUser()); // Gets user info from localStorage but when is null won't get any info
+  const [displayUsername, setDisplayUsername] = useState(getUser());
+  const [email, setEmail] = useState(getEmail());
+  const [date, setDate] = useState(getDate());
+  const [password, setPassword] = useState(getPassword());
+  const [user, setUser] = useState(getUser());
   // Initializing login user infomation
   const loginUser = (username, displayUsername, password, email, date) => {
     setUsername(username);
@@ -44,7 +44,7 @@ function App() {
       <Router>
         <Header email={email} username={username} displayUsername={displayUsername} password={password} logoutUser={logoutUser} loginUser={loginUser}/>
         <Navbar />
-        <Routes> 
+        <Routes>
           <Route path="/" element={<Content />} />
           <Route path="/HP_mov.js" element={<HP_mov />} />
           <Route path="/PR_mov.js" element={<PR_mov />} />
