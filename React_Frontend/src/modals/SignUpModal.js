@@ -6,7 +6,7 @@ import { createNewUser, findUser} from '../data/repository.js';
 import axios from 'axios';
 
 function SignUpModal(props) {
-    const [fields, setFields] = useState({ email: "", username: "", password: ""});
+    const [fields, setFields] = useState({ email: "", username: "", displayUsername: "", password: ""});
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState(null);
     const [emailValid, setEmailValid] = useState(false);
@@ -38,7 +38,7 @@ function SignUpModal(props) {
         }
 
         // Copy fields.
-        const temp = { email: fields.email, username: fields.username, password: fields.password};
+        const temp = { email: fields.email, username: fields.username, displayUsername:fields.username, password: fields.password};
         // OR use spread operator.
         // const temp = { ...fields };
 
@@ -62,7 +62,7 @@ function SignUpModal(props) {
         }
 
         // Copy fields.
-        const temp = { email: fields.email, username: fields.username, password: fields.password };
+        const temp = { email: fields.email, username: fields.username, displayUsername: fields.username , password: fields.password };
         // OR use spread operator.
         // const temp = { ...fields };
 
@@ -82,7 +82,7 @@ function SignUpModal(props) {
             setUsernameValid(false);
         }
         // Copy fields.
-        const temp = { email: fields.email, username: fields.username, password: fields.password };
+        const temp = { email: fields.email, username: fields.username, displayUsername: fields.username, password: fields.password };
         // OR use spread operator.
         // const temp = { ...fields };
 
@@ -133,33 +133,29 @@ function SignUpModal(props) {
 
             if (emailValid && pwValid){
 
-                
-                // axious.post('http://localhost:8001/signup', values)
-                // .then(res => console.log(res))
-
                 try {
-
-
-                    console.log("Set the date into the field")
-                    console.log(">>>>> Field : ",fields)
 
                     const newUser = {
                         username: fields.username,
+                        displayUsername: fields.username,
                         password: fields.password,
                         email: fields.email
                     }
-                    console.log("NewUser Data : ",newUser)
+                    console.log("NewUser Data : ", newUser)
 
                     setFields(newUser)
-                    await createNewUser(fields);
+                    // Create Database First
+                    await createNewUser(newUser);
                     // Brings Single user data which has just signed up
+                    // Check if it is created and call 
                     const user = await findUser(newUser)
+
                     console.log(user)
-                    props.setloginUser(user.username, user.passwordHash, user.email, user.createdTimeStamp);
+                    props.setloginUser(user.username, user.displayUsername, user.passwordHash, user.email, user.createdTimeStamp);
                     // setUser(user)
                     // Check result, purposely not checked here for simplicity.
                     // Result is logged to console for demostration purposes.
-                    console.log(fields);
+                    console.log(newUser);
 
                     // Before navigating start updating the parent.
                     props.refreshUsers();

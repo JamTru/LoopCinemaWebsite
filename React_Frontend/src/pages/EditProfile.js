@@ -2,12 +2,14 @@ import React from 'react';
 import profilePic from '../profilePic.png'
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { updateVerify} from "../data/repository"
+import { updateVerify, findUser} from "../data/repository"
+import { updateUser } from '../../../NodeJS_Backend/controllers/userController';
 
 function EditProfile(props) {
   const navigate = useNavigate();
   const [email, setEmail] = useState(props.email)
-  const [username, setUsername] = useState(props.username)
+  const [displayUsername, setDisplayUsername] = useState(props.displayUsername)
+  
   
   
   console.log(props)
@@ -17,20 +19,24 @@ function EditProfile(props) {
     <form onSubmit={event => {
       event.preventDefault();
       console.log("Email:", email);
-      console.log("Username:", username);
+      console.log("Username:", props.username);
+      console.log("Display Username: ", props.displayUsername)
       console.log("Password: ", props.password)
       console.log(props.email, props.username);
 
-      // updateVerify(props.email, email, username, props.password, props.date);
+    
+      // HERE props.displayUsername is the previous username
+      // and the displayUsername is the changed username will display later
+      const setUpdate = updateVerify(props.username, displayUsername, email);
+      const updatedUser = findUser(props);
 
-      const setUpdate = updateVerify(props.username, username, email);
-
-      console.log("(1)UPDATE USERNAME : " + props.username + " => " + username)
-
+      console.log("(1)UPDATE USERNAME : " + props.displayUsername + " => " + updateUser.displayUsername)
+      // find user info which was updated just above
       
-      console.log("(2)setUpdate Value : " + JSON.stringify(setUpdate))
+      console.log("(2)setUpdate Value : " + JSON.stringify(updatedUser))
 
-      props.loginUser(setUpdate.username, setUpdate.passwordHash, setUpdate.passwordHash, setUpdate.createdTimeStamp)
+      props.loginUser(props.username, updatedUser.displayUsername, updatedUser.passwordHash, updatedUser.passwordHash, updatedUser.createdTimeStamp)
+
       // username, password, email, date
       console.log("(3)Upaded user info : " + JSON.stringify(setUpdate))
 
@@ -48,9 +54,9 @@ function EditProfile(props) {
               <input 
                 type="text" 
                 className="profile_body_username" 
-                placeholder={props.username}
-                value={username} 
-                onChange={event => setUsername(event.target.value)
+                placeholder={props.displayUsername}
+                value={displayUsername} 
+                onChange={event => setDisplayUsername(event.target.value)
               }/>
               
               <input 

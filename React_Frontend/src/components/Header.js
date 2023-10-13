@@ -75,7 +75,7 @@ function Header(props) {
           // OR if the user exists showing welcome message
           <>
             <li className="header-item">
-              <span className="nav-link">Welcome, {props.username}</span>
+              <span className="nav-link"> Yay ! Welcome, {props.displayUsername}</span>
             </li>
             <li>
               <Link to="./Profile.js">

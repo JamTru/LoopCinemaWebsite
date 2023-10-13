@@ -59,11 +59,13 @@ async function seedUserData() {
   const hash2 = await argon2.hash("def456", { type: argon2.argon2id })
   await db.users.create({
     username: "mbolger",
+    displayUsername: "mbolger",
     passwordHash: hash,
     email: "mbolger@gmail.com",
   });
   await db.users.create({
     username: "shekhar",
+    displayUsername: "sheKhar",
     passwordHash: hash,
     email: "shekhar@gmail.com",
   });

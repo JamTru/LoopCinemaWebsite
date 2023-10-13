@@ -4,6 +4,10 @@ module.exports = (sequelize, DataTypes) =>
       type: DataTypes.STRING(32),
       primaryKey: true
     },
+    displayUsername: {
+      type: DataTypes.STRING(32),
+      allowNull: false
+    },
     passwordHash: {
       type: DataTypes.STRING(256),
       allowNull: false

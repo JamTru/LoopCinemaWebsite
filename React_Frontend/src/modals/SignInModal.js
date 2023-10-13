@@ -32,8 +32,8 @@ function SignInModal(props) {
         
         // If verified login the user.
         if(user !== null) {
-
-            props.setloginUser(user.username, user.passwordHash, user.email, user.createdTimeStamp);
+            // 2nd user.username is 'displayUsername'
+            props.setloginUser(user.username, user.username, user.passwordHash, user.email, user.createdTimeStamp);
             
             // Navigate to the home page.
             navigate('./Profile.js');

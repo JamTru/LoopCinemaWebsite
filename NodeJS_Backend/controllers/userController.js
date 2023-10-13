@@ -10,6 +10,7 @@ exports.createUser = async (req, res) => {
   
   const user = await db.users.create({
     username: req.body.username,
+    displayUsername: req.body.username,
     passwordHash: hashedPassword,
     email: req.body.email,
     dateOfCreation: req.body.dateOfCreation
@@ -44,33 +45,14 @@ exports.findSingleUser = async (req, res) => {
 
 //Update related Functions
 exports.updateUser = async (req, res) => {
-  const user = await db.users.findByPk(req.params.old_username);
+  const user = await db.users.findByPk(req.params.username);
   console.log(req.body)
-  // req.body.username (New username) != req.params.username (old_username)
-  // user.username = (req.query.username);
-  // user.email = (req.query.email);
-
-  // await user.save()
-
-  // await user.update({
-  //   username : req.query.username
-  // });
-
-  // Change everyone without a last name to "Doe"
-  // await user.update( {
-  //   where: {
-  //     username: req.query.username,
-  //   },
-  // });
-
-  // db.user.set({
-  //   username: req.query.username,
-  //   email: req.query.email
-  // });
-
   if (user) {
-    await user.update({ email: req.body.email });
+    await user.update({ 
+      displayUsername: req.body.displayUsername
+    });
     await user.save();
+
     res.json(user);  
     
   } else {

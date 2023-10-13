@@ -27,7 +27,7 @@ function Profile(props) {
                     <div>
                         <div className="profile_body">
                             <img src={profilePic} className="profilePic" alt ="profilePic"></img>
-                            <label className="profile_body_username">{props.username}</label>
+                            <label className="profile_body_username">{props.displayUsername}</label>
                             
                             <button variant="contained" className="remove_button" onClick={handleDelete} >
                                 <img src={profileRemoval} className="profileRemoval" alt="remove" />
