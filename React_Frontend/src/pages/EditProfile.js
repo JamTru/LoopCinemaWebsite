@@ -3,7 +3,7 @@ import profilePic from '../profilePic.png'
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { updateVerify, findUser} from "../data/repository"
-import { updateUser } from '../../../NodeJS_Backend/controllers/userController';
+// import { updateUser } from '../../../NodeJS_Backend/controllers/userController';
 
 function EditProfile(props) {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ function EditProfile(props) {
   // const setUpdate = updateVerify(props.username, username, email);
   return (
     <>
-    <form onSubmit={event => {
+    <form onSubmit= { async event => {
       event.preventDefault();
       console.log("Email:", email);
       console.log("Username:", props.username);
@@ -27,10 +27,10 @@ function EditProfile(props) {
     
       // HERE props.displayUsername is the previous username
       // and the displayUsername is the changed username will display later
-      const setUpdate = updateVerify(props.username, displayUsername, email);
-      const updatedUser = findUser(props);
+      const setUpdate = await updateVerify(props.username, displayUsername, email);
+      const updatedUser = await findUser(props);
 
-      console.log("(1)UPDATE USERNAME : " + props.displayUsername + " => " + updateUser.displayUsername)
+      console.log("(1)UPDATE USERNAME : " + props.displayUsername + " => " + updatedUser.displayUsername)
       // find user info which was updated just above
       
       console.log("(2)setUpdate Value : " + JSON.stringify(updatedUser))
