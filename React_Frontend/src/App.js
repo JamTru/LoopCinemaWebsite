@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 import Content from './components/Content';
 import Footer from './components/Footer';
 import SignInModal from "./modals/SignInModal";
-import { getDate, getEmail, getPassword, getUser, removeUser } from "./data/repository";
+import { getDate, getEmail, getPassword, getUser, removeUser, findUser } from "./data/repository";
 import HP_mov from './pages/HP_mov.js';
 import PR_mov from './pages/PR_mov.js';
 import SI_mov from './pages/SI_mov.js';
@@ -16,8 +16,8 @@ import Profile from './pages/Profile.js';
 import EditProfile from './pages/EditProfile.js';
 
 function App() { 
-  const [username, setUsername] = useState(getUser()); // Gets user info from localStorage but when is null won't get any info
-  const [displayUsername, setDisplayUsername] = useState(getUser());
+  const [username, setUsername] = useState(findUser().username); // Gets user info from localStorage but when is null won't get any info
+  const [displayUsername, setDisplayUsername] = useState(findUser().displayUsername);
   const [email, setEmail] = useState(getEmail());
   const [date, setDate] = useState(getDate());
   const [password, setPassword] = useState(getPassword());

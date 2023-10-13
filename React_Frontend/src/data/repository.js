@@ -38,10 +38,14 @@ async function verifyUser(username, password) {
 }
 
 async function findUser(user) {
-  const response = await axios.get(API_HOST + `/api/users/${user.username}`);
-  console.log("response data : " + JSON.stringify(response.data))
-  setUser(user)
-  return response.data;
+  if (user){
+    const response = await axios.get(API_HOST + `/api/users/${user.username}`);
+    console.log("response data : " + JSON.stringify(response.data))
+    setUser(user)
+    return response.data;
+  } else {
+    return null;
+  }
 }
 
 async function updateVerify(username, displayUsername, email) {
