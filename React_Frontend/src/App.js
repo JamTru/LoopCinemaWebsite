@@ -16,12 +16,12 @@ import Profile from './pages/Profile.js';
 import EditProfile from './pages/EditProfile.js';
 
 function App() { 
-  const [username, setUsername] = useState(findUser(loginUser).username); // Gets user info from localStorage but when is null won't get any info
-  const [displayUsername, setDisplayUsername] = useState(findUser(loginUser).displayUsername);
-  const [email, setEmail] = useState(findUser(loginUser).email);
-  const [date, setDate] = useState(findUser(loginUser).createdTimeStamp);
-  const [password, setPassword] = useState(findUser(loginUser).passwordHash);
-  const [user, setUser] = useState(findUser(loginUser));
+  const [username, setUsername] = useState(); // Gets user info from localStorage but when is null won't get any info
+  const [displayUsername, setDisplayUsername] = useState();
+  const [email, setEmail] = useState();
+  const [date, setDate] = useState();
+  const [password, setPassword] = useState();
+  const [user, setUser] = useState();
   // Initializing login user infomation
   const loginUser = (username, displayUsername, password, email, date) => {
     setUsername(username);
