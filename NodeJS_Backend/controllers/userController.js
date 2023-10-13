@@ -45,18 +45,36 @@ exports.findSingleUser = async (req, res) => {
 //Update related Functions
 exports.updateUser = async (req, res) => {
   const user = await db.users.findByPk(req.params.old_username);
+  console.log(req.body)
   // req.body.username (New username) != req.params.username (old_username)
   // user.username = (req.query.username);
   // user.email = (req.query.email);
 
   // await user.save()
+
+  // await user.update({
+  //   username : req.query.username
+  // });
+
+  // Change everyone without a last name to "Doe"
+  // await user.update( {
+  //   where: {
+  //     username: req.query.username,
+  //   },
+  // });
+
+  // db.user.set({
+  //   username: req.query.username,
+  //   email: req.query.email
+  // });
+
   if (user) {
-    user.username = (req.query.username);
-    user.email = (req.query.email);
+    await user.update({ email: req.body.email });
     await user.save();
-    res.json(user);
+    res.json(user);  
+    
   } else {
-    res.json("USER doesn't exist")
+    res.json("Empty user")
   }
    
 }
@@ -65,7 +83,7 @@ exports.updateUser = async (req, res) => {
 //Delete related Functions
 
 exports.deleteUser = async (req, res) => {
-  const purgeResult = await db.user.destroy({
+  const purgeResult = await db.users.destroy({
     where: {
       username: req.body.username
     }

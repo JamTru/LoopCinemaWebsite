@@ -14,7 +14,7 @@ module.exports = (express, app) => {
   // Create a new user.
   router.post("/create", controller.createUser);
 
-  router.get("/profile/:old_username", controller.updateUser);
+  router.post("/profile/:old_username", controller.updateUser);
   // Select one user from the database if username and password are a match.
   // router.post("/", controller.loginUser);
   

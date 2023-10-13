@@ -11,7 +11,7 @@ function EditProfile(props) {
   
   
   console.log(props)
-  
+  // const setUpdate = updateVerify(props.username, username, email);
   return (
     <>
     <form onSubmit={event => {
@@ -23,18 +23,17 @@ function EditProfile(props) {
 
       // updateVerify(props.email, email, username, props.password, props.date);
 
+      const setUpdate = updateVerify(props.username, username, email);
 
       console.log("(1)UPDATE USERNAME : " + props.username + " => " + username)
 
-      const setUpdate = updateVerify(props.username, username, email);
-      // updateVerify()
-      // props.loginUser(email, username, props.password, props.date);
+      
       console.log("(2)setUpdate Value : " + JSON.stringify(setUpdate))
 
-      props.loginUser(setUpdate.email, setUpdate.username, setUpdate.passwordHash, setUpdate.createdTimeStamp)
-
+      props.loginUser(setUpdate.username, setUpdate.passwordHash, setUpdate.passwordHash, setUpdate.createdTimeStamp)
+      // username, password, email, date
       console.log("(3)Upaded user info : " + JSON.stringify(setUpdate))
-      
+
       navigate('/Profile.js')
     }}>
       <div className="form-group">
