@@ -115,18 +115,7 @@ function SignUpModal(props) {
         console.log("Username (fields.username) : " + fields.username)
 
         const signupVerified = await signupVerify(fields);
-        // to Check loginUser is in props
-        if ("setloginUser" in props) {
-            // we have loginUser
-            console.log("We have that prop in SignInMOdal ")
-            console.log(props)
-
-            console.log("SignupVerified variable : " + (signupVerified))
-        } else {
-            console.log("loginUser wasn't in props!")
-            console.log(props)
-            //console.log(onCreated)
-        }
+       
         // it not null means "You can create the account."
         // If onCreat sign-up the user.
         if(signupVerified === null) {
@@ -177,6 +166,7 @@ function SignUpModal(props) {
       // Reset password field to blank.
         const temp = { ...fields };
         temp.password = "";
+        temp.displayUsername = "";
         setFields(temp);
 
         //Set error message.
@@ -205,20 +195,10 @@ function SignUpModal(props) {
 
                 <Modal.Body>
                     <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                            <label htmlFor="email" className="control-label">Email</label>
-                            <input type="email" name="email" id="email" className="form-control" placeholder='example@gmail.com'
-                                value={fields.email}  onChange={handleInputChangeEmail} required />
-                        </div>
-                        <div className = "errorMessageWrap">
-                            {/* when email is invalid and there is input, show the message */}
-                            {!emailValid && fields.email.length > 0 && (
-                                <div> Please enter correct Email format. </div>
-                            )}
-                        </div>
+
                         <div className="form-group">
-                            <label htmlFor="username" className="control-label">Username</label>
-                            <input name="username" id="username" className="form-control"
+                            <label htmlFor="username" className="control-label">Username (ID)</label>
+                            <input name="username" id="username" className="form-control" placeholder="Username"
                                 value={fields.username}  onChange={handleInputChange}/>
                         </div>
 
@@ -231,6 +211,17 @@ function SignUpModal(props) {
                         <div className = "errorMessageWrap">
                             {!pwValid && fields.password.length > 0 && (
                              <div> Please enter a minimum of 8 letters <br></br>(including numbers and special characters) </div>
+                            )}
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="email" className="control-label">Email</label>
+                            <input type="email" name="email" id="email" className="form-control" placeholder='example@gmail.com'
+                                value={fields.email}  onChange={handleInputChangeEmail} required />
+                        </div>
+                        <div className = "errorMessageWrap">
+                            {/* when email is invalid and there is input, show the message */}
+                            {!emailValid && fields.email.length > 0 && (
+                                <div> Please enter correct Email format. </div>
                             )}
                         </div>
                         <div className="form-group">

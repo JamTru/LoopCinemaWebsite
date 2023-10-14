@@ -6,7 +6,7 @@ import { getUser, removeUser } from "../data/repository";
 
 function SignInModal(props) {
     const [fields, setFields] = useState({username: "", displayUsername: "", password: "", email: "", createdTimeStamp: "" });
-    const [errorMessage, setErrorMessage] = useState(null);
+    const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
 
     // Generic change handler.
@@ -37,14 +37,15 @@ function SignInModal(props) {
             
             // Navigate to the home page.
             navigate('./Profile.js');
-
-            // <Link to={"./Profile.js"}> </Link>
+            
             props.onHide(false)
+
             // return;
         }
         
       // Reset password field to blank.
       const temp = { ...fields };
+      temp.displayUsername = "";
       temp.password = "";
       setFields(temp);
   

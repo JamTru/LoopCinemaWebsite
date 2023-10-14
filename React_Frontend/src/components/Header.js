@@ -26,14 +26,11 @@ function Header(props) {
   }
   return (
     <>
-
-
       <SignUpModal
         show={signUpModalOn}
         setloginUser={props.loginUser}
         setlogoutUser={props.logoutUser}
         onHide={ ()=> setSignUpModalOn(false)}
-
 
       />
       <SignInModal
@@ -42,7 +39,6 @@ function Header(props) {
         // setloginUser = {props.username}
         setlogioutUser = {props.logoutUser}
         onHide={ () => setSignInModalOn(false)}
-
         // setUsername = {props.username}
       />
 
