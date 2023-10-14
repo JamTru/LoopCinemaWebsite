@@ -11,6 +11,10 @@ db.sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
   dialect: config.DIALECT
 });
 
+
+/**
+ * Initialises all the database models
+ */
 db.movies = require("./models/movieModel.js")(db.sequelize, DataTypes);
 db.ageRating = require("./models/ageRatingModel.js")(db.sequelize, DataTypes);
 db.users = require("./models/userModel.js")(db.sequelize, DataTypes);
@@ -50,6 +54,12 @@ db.sync = async () => {
   await seedMovieData();
 };
 
+
+/**
+ * seedUserData - Creates all the user data for initial database, if it detects it is unpopulated.
+ *
+ * @return {null}  nothing should be returned
+ */
 async function seedUserData() {
   const userCount = await db.users.count();
   if (userCount > 0){
@@ -71,6 +81,12 @@ async function seedUserData() {
   });
 }
 
+
+/**
+ * seedMovieData - initialises empty database with given movie data
+ *
+ * @return {null}  nothing should be returned
+ */
 async function seedMovieData() {
   const movieCount = await db.movies.count();
   if(movieCount > 0){
@@ -119,9 +135,12 @@ async function seedMovieData() {
     ageRatingAgeRating: "PG"
   });
 }
-async function seedReviewData() {
-  //TBD
-}
+
+/**
+ * seedAgeRatingData - initialises empty database with age ratings data
+ *
+ * @return {null}  - should be returning nothing
+ */
 async function seedAgeRatingData(){
   const checkIfExists = await db.ageRating.count();
   if (checkIfExists > 0) {

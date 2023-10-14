@@ -5,6 +5,7 @@ import {retrieveDataByMovieID, testAPICall} from '../data/repository.js';
 
 function SI_mov() {
   const [movieInfo, setMovieInfo] = useState([]);
+  //On initial render, load the data necessary for the movie
   useEffect(() => {
     async function loadMovieData() {
       const movieData = await retrieveDataByMovieID("4");

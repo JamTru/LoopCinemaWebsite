@@ -11,7 +11,6 @@ const USER_KEY = "user";
 
 async function createNewUser(user){
   const response = await axios.post(API_HOST + "/api/users/create", user)
-
   return response.data;
 }
 
@@ -60,29 +59,63 @@ async function updateVerify(username, displayUsername, email) {
 
 
 // ----- REVIEW API CALLS ----
+
+/**
+ * selectAllReviews - Returns all Reviews. This method is currently unused
+ *
+ * @return {type}  Array of Objects containing all Reviews
+ */
 async function selectAllReviews(){
     const response = await axios.get(API_HOST + "/api/reviews");
     const allReviewsList = response.data;
     return allReviewsList;
 }
 
+/**
+ * retrieveAllByMovie - Returns all reviews for a specific movie.
+ *
+ * @param  {type} movieID The corresponding ID of a given movie is used as the identifier.
+ * @return {type}         Array of Objects containing the filtered reviews.
+ */
 async function retrieveAllByMovie(movieID) {
   const response = await axios.get(API_HOST + `/api/reviews/selectByMovie/${movieID}`);
   const allReviewsByMovie = response.data;
   return allReviewsByMovie;
 }
+
+/**
+ * retrieveAllByUser - Returns all reviews written by a user.
+ *
+ * @param  {type} username The foreign key used to identify the foreign key in database
+ * @return {type}          Array fo objects containing the filtered reviews
+ */
 async function retrieveAllByUser(username){
   const response = await axios.get(API_HOST + "/api/reviews/selectByUser", {params: username});
   const allReviewsByUser = response.data;
   return allReviewsByUser
 }
 
+
+/**
+ * createNewReview - Creates a new review
+ *
+ * @param  {type} review A JSON object containing the components of a review stored on database
+ * @return {type}        Returns a JSON response containing the new entry on database.
+ */
 async function createNewReview(review){
   const response = await axios.post(API_HOST + "/api/reviews/create", review);
   return response.data;
 }
 
 // --- MOVIE API CALLS -----
+
+/**
+ * retrieveDataByMovieID - Returns the information of a given movie with its corresponding ID
+ *
+ * @param  {type} movieID Int Primary Key for Movie Database
+ * @return {type}         Returns Movie Data as JSON
+ */
+
 async function retrieveDataByMovieID(movieID) {
   const response = await axios.get(API_HOST + `/api/movies/select/${movieID}`);
   return response.data;
@@ -90,10 +123,30 @@ async function retrieveDataByMovieID(movieID) {
 
 
 // --- RESERVATION API CALLS ------
+//
+/**
+ * checkReservationExists - Queries the DB for if a reservation exists in MovieReserveDB on certain date and movie
+ *
+ * @param  {type} movieID       Int Primary Key for Movie Database
+ * @param  {type} dateOfViewing Date of Reservation
+ * @return {type}               Returns empty array if none exist, or a populated array
+ */
+
 async function checkReservationExists(movieID, dateOfViewing) {
   const response = await axios.get(API_HOST + `/api/movieReserves/select/${movieID}/${dateOfViewing}`);
   return response.data;
 }
+
+/**
+ * createNewReservations - Assembles the parameter variables and creates a new entry into movieReserveDB
+ *
+ * @param  {type} movieID        Int Primary Key for Movie Database
+ * @param  {type} movieName      String name of Movie
+ * @param  {type} date           Date variable
+ * @param  {type} seatsRequested Int number of strings requested by user
+ * @param  {type} username       String name of User.
+ * @return {type}                Returns array thats populated if successful
+ */
 async function createNewReservations(movieID, movieName, date, seatsRequested, username){
   const newMovReservation = {
     movieID: movieID,
@@ -109,47 +162,61 @@ async function createNewReservations(movieID, movieName, date, seatsRequested, u
   }
   const response = await axios.post(API_HOST + `/api/movieReserves`, newMovReservation);
   return response.data;
-  // await axios.put(API_HOST + `/api/movieReserves/update/${response.data.movieReservationID}/${seatsRequested}`);
-  // await axios.post(API_HOST + `/api/userReserves`, newUserReservation);
 }
 
+/**
+ * updateExistingReservation - Finds the reservation requested and updates the number of seats available,
+ * while also creating a new entry within the userReserves table to track user's reservations.
+ *
+ * @param  {type} movieID        Int Primary Key for Movie Database
+ * @param  {type} movieName      String name of Movie
+ * @param  {type} date           Date variable
+ * @param  {type} seatsRequested Int number of strings requested by user
+ * @param  {type} username       String name of User.
+ * @param  {type} reserveID      The PK of the Movie Reserve table
+ * @return {type}                Returns array thats populated if successful
+ */
 async function updateExistingReservation(movieID, movieName, date, seatsRequested, username, reserveID){
   const newUserReservation = {
-    username: username,
+    username: username.replace(/['"]+/g, ''),
     movieID: movieID,
     movieName: movieName,
     date: date,
     noOfSeats: seatsRequested
   }
   const response = await axios.get(API_HOST + `/api/movieReserves/select/${movieID}/${date}`);
-  console.log("woooooo");
   await axios.put(API_HOST + `/api/movieReserves/update/${reserveID}/${seatsRequested}`);
-  console.log("post");
   const userReserveData = await axios.post(API_HOST + `/api/userReserves`, newUserReservation);
   console.log(userReserveData);
   return userReserveData.data;
 }
 
-async function displayAllReservations(username) {
-  const response = await axios.get(API_HOST + `/api/userReserves/${username}`);
+/**
+ * displayRelevantReservations - Retrieves all user's reservations that aren't before the current date.
+ *
+ * @param  {type} username String name of user
+ * @param  {type} today    Date of current day.
+ * @return {type}          Returns Array of Reservations.
+ */
+async function displayRelevantReservations(username, today) {
+  const response = await axios.get(API_HOST + `/api/userReserves/select/${username}`);
   return response.data;
 }
 
 
 // ---- TEST ------------
 
+
+/**
+ * testAPICall - Test Method for connecting both backend and front end. Is not intended to be used in production.
+ *
+ * @return {type}  Array of Movies.
+ */
 async function testAPICall() {
   const response = await axios.get(API_HOST + "/api/movies");
   const logData = response.data;
   return logData;
 }
-
-
-
-
-
-
-
 
 
 // ----DEPRECIATED---------------------
@@ -374,7 +441,7 @@ export {
   retrieveAllByMovie,
   createNewReservations,
   updateExistingReservation,
-  displayAllReservations,
+  displayRelevantReservations,
   checkReservationExists,
   findUser
 }

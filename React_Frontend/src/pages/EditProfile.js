@@ -9,11 +9,7 @@ function EditProfile(props) {
   const navigate = useNavigate();
   const [email, setEmail] = useState(props.email)
   const [displayUsername, setDisplayUsername] = useState(props.displayUsername)
-  
-  
-  
-  console.log(props)
-  // const setUpdate = updateVerify(props.username, username, email);
+
   return (
     <>
     <form onSubmit= { async event => {
@@ -24,7 +20,7 @@ function EditProfile(props) {
       console.log("Password: ", props.password)
       console.log(props.email, props.username);
 
-    
+
       // HERE props.displayUsername is the previous username
       // and the displayUsername is the changed username will display later
       const setUpdate = await updateVerify(props.username, displayUsername, email);
@@ -32,7 +28,7 @@ function EditProfile(props) {
 
       console.log("(1)UPDATE USERNAME : " + props.displayUsername + " => " + updatedUser.displayUsername)
       // find user info which was updated just above
-      
+
       console.log("(2)setUpdate Value : " + JSON.stringify(updatedUser))
 
       props.loginUser(props.username, updatedUser.displayUsername, updatedUser.passwordHash, updatedUser.passwordHash, updatedUser.createdTimeStamp)
@@ -50,23 +46,21 @@ function EditProfile(props) {
           <div>
             <div className="profile_body">
               <img src={profilePic} className="profilePic" alt ="profilePic"></img>
-
-              <input 
-                type="text" 
-                className="profile_body_username" 
+              <input
+                type="text"
+                className="profile_body_username"
                 placeholder={props.displayUsername}
-                value={displayUsername} 
+                value={displayUsername}
                 onChange={event => setDisplayUsername(event.target.value)
               }/>
-              
-              <input 
+              <input
                 type="email"
-                className="profile_body_email" 
+                className="profile_body_email"
                 placeholder={props.email}
-                value={email} 
+                value={email}
                 onChange={event => setEmail(event.target.value)
               }/>
-              
+
               <input className="editButton" type="submit" value="Edit"></input>
             </div>
           </div>
@@ -77,7 +71,7 @@ function EditProfile(props) {
         </div>
       </div>
     </form>
-    </>    
+    </>
   )
 }
 export default EditProfile;

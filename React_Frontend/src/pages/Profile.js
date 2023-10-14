@@ -4,7 +4,7 @@ import profileEditIcon from '../editIcon.png'
 import profileRemoval from '../remove.png'
 import { deleteVerify } from '../data/repository'
 import { useNavigate } from "react-router-dom";
-
+import ReservationDisplay from '../components/ReservationDisplay.js';
 
 function Profile(props) {
     const navigate = useNavigate();
@@ -12,7 +12,7 @@ function Profile(props) {
     const handleDelete = (event) => {
         console.log(props)
         deleteVerify(props.email, props.username, props.password, props.date)
-        localStorage.removeItem(props.email)  
+        localStorage.removeItem(props.email)
         props.logoutUser();
         navigate('/')
     }
@@ -28,7 +28,7 @@ function Profile(props) {
                         <div className="profile_body">
                             <img src={profilePic} className="profilePic" alt ="profilePic"></img>
                             <label className="profile_body_username">{props.displayUsername}</label>
-                            
+
                             <button variant="contained" className="remove_button" onClick={handleDelete} >
                                 <img src={profileRemoval} className="profileRemoval" alt="remove" />
                             </button>
@@ -50,9 +50,10 @@ function Profile(props) {
 
             </div>
         </form>
+        <ReservationDisplay username={props.username} />
         </>
     );
-    
+
 }
 
 export default Profile;

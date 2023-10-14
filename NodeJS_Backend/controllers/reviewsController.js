@@ -1,12 +1,12 @@
 const db = require("../database");
 
 
-//Read
+// Reads all reviews
 exports.findAllReviews = async (req, res) => {
   const reviews = await db.reviews.findAll();
   res.json(reviews);
 }
-
+// Reads all reviews of given Movie ID
 exports.findGivenMovieReview = async (req, res) => {
   const movieReviews = await db.reviews.findAll({
     where: {
@@ -15,7 +15,7 @@ exports.findGivenMovieReview = async (req, res) => {
   });
   res.json(movieReviews);
 }
-
+// Reads user review for given movie
 exports.findUsersReview = async (req, res) => {
   const movieReviews = await db.reviews.findAll({
     where: {
@@ -25,7 +25,7 @@ exports.findUsersReview = async (req, res) => {
   });
   res.json(movieReviews);
 }
-
+// Reads all user reviews
 exports.findAllUserReviews = async (req, res) => {
   const usersReviews = await db.reviews.findAll({
     where: {
@@ -34,7 +34,7 @@ exports.findAllUserReviews = async (req, res) => {
   })
   res.json(usersReviews);
 }
-
+// Creates new Review
 exports.createNewReview = async (req, res) => {
   const newReview = await db.reviews.create({
     rating: req.body.numRating,

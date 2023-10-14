@@ -5,6 +5,12 @@ import ReviewFormModal from '../modals/ReviewFormModal.js';
 let container;
 let utils;
 
+//Mock the useNavigate hook so tests can run
+const mockUsedNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+   ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockUsedNavigate,
+}));
 //Before each test, render the component in a test environment.
 beforeEach(() =>{
   function dummyFunction() {return};

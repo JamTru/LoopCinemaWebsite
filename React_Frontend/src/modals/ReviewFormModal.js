@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { signupVerify} from "../data/repository";
 import { Modal, Container } from 'react-bootstrap';
+import {useNavigate} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import {addReview, createNewReview} from '../data/repository.js';
 
@@ -8,27 +9,21 @@ const ReviewFormModal = (props) => {
   const [numRating, setNumRating] = useState(0);
   const [comments, setComments] = useState("");
   const [errorDetected, setErrorDetected] = useState(null);
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (comments.trim().length <= 0 || comments.trim().length > 1000) {
       setErrorDetected("Comments need to be between 0 to 1000 characters.")
     }
     else {
-      // var today = new Date();
-      // var dd = String(today.getDate()).padStart(2,'0');
-      // var mm = String(today.getMonth() + 1).padStart(2,'0');
-      // var yyyy = today.getFullYear();
-      // today = dd + "-" + mm + "-" + yyyy;
-      // addReview(numRating, comments, today, props.movie);
       const newReview = {
         numRating: parseInt(numRating),
         comment: comments,
         username: props.username.replace(/['"]+/g, ''),
         movieID: props.movieID
       }
-      console.log(newReview);
       await createNewReview(newReview);
-      props.setListOfReviews([...props.listOfReviews, newReview]);
+      navigate(0); //To refresh the page and so user can see their new review, we sneakily reload the page.
       props.onHide();
     }
   }

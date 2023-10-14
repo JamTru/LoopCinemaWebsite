@@ -13,6 +13,7 @@ const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef, mo
   const [listOfReviews, setListOfReviews] = useState([]);
 
   //------------- API CODE ------------
+  // Fetches and populates the array of reviews on initial render.
   useEffect(() => {
     async function fetchReviews() {
       const reviewsOfGivenMovie = await retrieveAllByMovie(movieID);
@@ -27,6 +28,9 @@ const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef, mo
   var mm = String(today.getMonth() + 1).padStart(2,'0');
   var yyyy = today.getFullYear();
   today = yyyy + "-" + mm + "-" + dd;
+
+  // ------------ DEPRECIATED---------------------------
+  // This code base was part of assignment 1, and is no longer incompatible with the API calls written in Assignment 2. That said, touching this will probably break something, so not editing it.
   /*This code block is designed to reduce the influx of fake reviews by restricting the time taken between each review post, so that a user must wait at least a day before posting another review. */
   var enoughTimeSinceLastReview = false;
   var duplicateDetected = false;
@@ -53,7 +57,7 @@ const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef, mo
       enoughTimeSinceLastReview = true;
     }
   }
-
+  // --------------- DEPRECIATED ---------------
   const allowReservation = isLogged ? "show" : "doNotShow";
   const allowReview = (isLogged && enoughTimeSinceLastReview) && !duplicateDetected ? "show" : "doNotShow"; //If user is both logged in and not submitted review in 24 hours, allow review button to display.
   // const userArray = JSON.parse(localStorage.getItem("users"));
