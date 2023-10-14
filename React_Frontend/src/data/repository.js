@@ -70,33 +70,7 @@ async function updateVerify(username, displayUsername, email) {
 
 async function deleteVerify(props) {
   const response = await axios.post(API_HOST + `/api/users/delete/${props.displayUsername}`)
-  
-  
   return response.data;
-  // const users_storage = getUsers(); // get the users fromm localStorage
-  // let i = 1; // i is used to count to add new account if there is no same username in the array.
-  // const users = [];
-  // // const [password, setPassword] = useState('')
-
-  // console.log(users_storage)
-  // for(const user of users_storage) {
-
-  //   if(email !== user.email){
-
-  //     console.log("CHECK New email and username : " + user.email + " " + user.username + " " + user.password)
-  //     users.push(user)
-  //     localStorage.setItem(USERS_KEY, JSON.stringify(users));
-
-  //     removeUser();
-  //     console.log(JSON.stringify(users))
-
-  //   } else{
-
-  //     console.log(i + " - Array LocalStorage");
-  //   }
-  // }
-  // i++;
-
 }
 
 
@@ -309,9 +283,10 @@ function setUser(user) {
 
 function getUser() {
   if (localStorage.getItem(USER_KEY) != null){
-    console.log("READING GetUser : " + localStorage.getItem(USER_KEY));
+    console.log("READING GetUser : " + JSON.parse(localStorage.getItem(USER_KEY)));
     return JSON.parse(localStorage.getItem(USER_KEY));
   }
+  console.log("only when localStorage is null or undefined")
   return localStorage.getItem(null);
 }
 
