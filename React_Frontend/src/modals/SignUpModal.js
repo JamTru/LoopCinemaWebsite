@@ -139,18 +139,18 @@ function SignUpModal(props) {
                         username: fields.username,
                         displayUsername: fields.username,
                         password: fields.password,
-                        email: fields.email
-
+                        email: fields.email,
+                        createdTimeStamp: props.createdTimeStamp
                     }
                     console.log("NewUser Data : ", newUser)
 
-                    setFields(newUser)
+                    
                     // Create Database First
                     await createNewUser(newUser);
                     // Brings Single user data which has just signed up
                     // Check if it is created and call
                     const user = await findUser(newUser)
-
+                    setFields(user)
                     console.log(user)
                     props.setloginUser(user.username, user.displayUsername, user.passwordHash, user.email, user.createdTimeStamp);
                     // setUser(user)
@@ -159,8 +159,9 @@ function SignUpModal(props) {
                     console.log(newUser);
 
                     // Before navigating start updating the parent.
-                    props.refreshUsers();
-
+                    
+                    
+                    navigate('./Profile.js');
                   } catch(e) {
                     setErrorMessage(e.message);
                   }

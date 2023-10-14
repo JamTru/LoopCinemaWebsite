@@ -33,7 +33,7 @@ function SignInModal(props) {
         // If verified login the user.
         if(user !== null) {
             
-            props.setloginUser(user.username, user.displayName, user.passwordHash, user.email, user.createdTimeStamp);
+            props.setloginUser(user.username, user.displayUsername, user.passwordHash, user.email, user.createdTimeStamp);
             
             // Navigate to the home page.
             navigate('./Profile.js');

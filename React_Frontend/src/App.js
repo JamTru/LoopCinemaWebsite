@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 import Content from './components/Content';
 import Footer from './components/Footer';
 import SignInModal from "./modals/SignInModal";
-import { getDate, getUsername, getEmail, getDisplayUser, getPassword, getUser, removeUser } from "./data/repository";
+import { getDate, getUsername, getEmail, getDisplayUsername, getPassword, getUser, removeUser } from "./data/repository";
 import HP_mov from './pages/HP_mov.js';
 import PR_mov from './pages/PR_mov.js';
 import SI_mov from './pages/SI_mov.js';
@@ -18,7 +18,7 @@ import EditProfile from './pages/EditProfile.js';
 function App() { 
   const [user, setUser] = useState(getUser());
   const [username, setUsername] = useState(getUsername()); // Gets user info from localStorage but when is null won't get any info
-  const [displayUsername, setDisPlayUsername] = useState(getDisplayUser());
+  const [displayUsername, setDisPlayUsername] = useState(getDisplayUsername());
   const [email, setEmail] = useState(getEmail());
   const [date, setDate] = useState(getDate());
   const [password, setPassword] = useState(getPassword());
@@ -27,7 +27,6 @@ function App() {
     setEmail(email);
     setDisPlayUsername(displayUsername);
     setUsername(username);
-    setDisplayUsername(displayUsername)
     setPassword(password);
     setEmail(email);
     setDate(date);
@@ -49,7 +48,7 @@ function App() {
   return (
     <div>
       <Router>
-        <Header email={email} username={username} displayUsername={displayUsername} password={password} logoutUser={logoutUser} loginUser={loginUser}/>
+        <Header email={email} username={username} displayUsername={displayUsername} password={password} data={date} logoutUser={logoutUser} loginUser={loginUser}/>
         <Navbar />
         <Routes>
           <Route path="/" element={<Content />} />

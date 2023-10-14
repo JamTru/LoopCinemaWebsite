@@ -11,6 +11,9 @@ const USER_KEY = "user";
 
 async function createNewUser(user){
   const response = await axios.post(API_HOST + "/api/users/create", user)
+  console.log("response data : " + JSON.stringify(response.data))
+  user = response.data;
+  setUser(user)
   return response.data;
 }
 
@@ -39,8 +42,7 @@ async function verifyUser(username, password) {
 async function findUser(user) {
   if (user){
     const response = await axios.get(API_HOST + `/api/users/${user.username}`);
-    console.log("response data : " + JSON.stringify(response.data))
-    setUser(user)
+    
     return response.data;
   } else {
     return null;
@@ -383,9 +385,10 @@ function getUsername() {
   return localStorage.getItem(null);
 }
 
-function getDisplayUser() {
+function getDisplayUsername() {
   if (localStorage.getItem(USER_KEY) != null){
-    return JSON.parse(localStorage.getItem(USER_KEY)).displayName;
+    console.log("DisPlayUsername : " + JSON.parse(localStorage.getItem(USER_KEY)).displayUsername);
+    return JSON.parse(localStorage.getItem(USER_KEY)).displayUsername;
   }
   return localStorage.getItem(null);
 }
@@ -450,7 +453,7 @@ export {
   verifyUser,
   getUser,
   getUsername,
-  getDisplayUser,
+  getDisplayUsername,
   getEmail,
   getPassword,
   getDate,
