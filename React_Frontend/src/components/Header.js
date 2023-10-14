@@ -55,7 +55,7 @@ function Header(props) {
           <img src={logo} alt="logo" className="mainLogo"></img>
           <h1 id="brandName">Loop Cinemas</h1>
         </Link>
-        {props.email === null ? //if Email doesn't exsit shwoing SignIn/Out
+        {props.username === null ? //if Email doesn't exsit shwoing SignIn/Out
           <>
             <li className="header-item">
               <button type="button" className='signUp_button' onClick={ ()=> setSignUpModalOn(true)}>

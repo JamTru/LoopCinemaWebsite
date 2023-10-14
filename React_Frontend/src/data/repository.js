@@ -26,7 +26,7 @@ async function verifyUser(username, password) {
   console.log("IN")
   console.log(username + " " + " > " + password)
   console.log("OUT")
-  const response = await axios.get(API_HOST + `/api/users/login/${username}`, { params: { username, password } });
+  const response = await axios.get(API_HOST + `/api/users/login/${username}`, { params :{ username, password }} );
   const user = response.data;
   console.log("test log:" + JSON.stringify(user))
   console.log("7")
@@ -330,38 +330,58 @@ function deleteVerify(email, username, password, date) {
 // --- Helper functions to interact with local storage ---
 
 function setUser(user) {
-  localStorage.setItem(USER_KEY, JSON.stringify(user.username));
+  localStorage.setItem(USER_KEY, JSON.stringify(user));
 }
 
 function getUser() {
-  if (localStorage.getItem(USER_KEY) !== null){
+  if (localStorage.getItem(USER_KEY) != null){
+    console.log("READING GetUser : " + localStorage.getItem(USER_KEY));
+    return JSON.parse(localStorage.getItem(USER_KEY));
+  }
+  return localStorage.getItem(null);
+}
+
+function getUsername() {
+  if (localStorage.getItem(USER_KEY) != null){
+    console.log("READING GetUsername : " + JSON.parse(localStorage.getItem(USER_KEY)).username);
     return JSON.parse(localStorage.getItem(USER_KEY)).username;
   }
   return localStorage.getItem(null);
 }
 
+function getDisplayUser() {
+  if (localStorage.getItem(USER_KEY) != null){
+    return JSON.parse(localStorage.getItem(USER_KEY)).displayName;
+  }
+  return localStorage.getItem(null);
+}
+
 function getPassword() {
-  return JSON.parse(localStorage.getItem(USER_KEY));
+  if (localStorage.getItem(USER_KEY) != null){
+    return JSON.parse(localStorage.getItem(USER_KEY)).password;
+  }
+  return localStorage.getItem(null);
 }
 
 function getEmail() {
-
-
-  if (localStorage.getItem(USER_KEY) !== null){
+  if (localStorage.getItem(USER_KEY) != null){
     return JSON.parse(localStorage.getItem(USER_KEY)).email;
   }
-  return localStorage.getItem(USER_KEY);
+  return localStorage.getItem(null);
 }
 function getDate() {
-  if (localStorage.getItem(USER_KEY) !== null){
-    return JSON.parse(localStorage.getItem(USER_KEY)).date;
+  if (localStorage.getItem(USER_KEY) != null){
+    return JSON.parse(localStorage.getItem(USER_KEY)).createdTimeStamp;
   }
-  return localStorage.getItem(USER_KEY);
+  return localStorage.getItem(null);
 }
 
 function removeUser() {
   localStorage.removeItem(USER_KEY);
 }
+
+
+// ------------------- Review ------------------------
 
 function addReview(rating, comment, dateOfCreation, movieName) {
   /*Function for handling the creation of a review object and pushing it to the local storage.*/
@@ -395,6 +415,8 @@ export {
   initUsers,
   verifyUser,
   getUser,
+  getUsername,
+  getDisplayUser,
   getEmail,
   getPassword,
   getDate,
