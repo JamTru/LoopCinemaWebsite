@@ -24,11 +24,11 @@ async function retrieveAllUser() {
 }
 
 // verifyUser does checking email and password
-async function verifyUser(username, password) {
+async function verifyUser(displayUsername, password) {
   console.log("IN")
-  console.log(username + " " + " > " + password)
+  console.log(displayUsername + " " + " > " + password)
   console.log("OUT")
-  const response = await axios.get(API_HOST + `/api/users/login/${username}`, { params :{ username, password }} );
+  const response = await axios.get(API_HOST + `/api/users/login/${displayUsername}`, { params :{ displayUsername, password }} );
   const user = response.data;
   console.log("test log:" + JSON.stringify(user))
   console.log("7")

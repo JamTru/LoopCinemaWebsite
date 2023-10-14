@@ -5,7 +5,7 @@ import { Modal,Container } from 'react-bootstrap'
 import { getUser, removeUser } from "../data/repository";
 
 function SignInModal(props) {
-    const [fields, setFields] = useState({username: "", password: "", email: "", createdTimeStamp: "" });
+    const [fields, setFields] = useState({username: "", displayUsername: "", password: "", email: "", createdTimeStamp: "" });
     const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ function SignInModal(props) {
         const value = event.target.value;
         
         // Copy fields.
-        const temp = { email: fields.email, username: fields.username, password: fields.password };
+        const temp = { email: fields.email, displayUsername: fields.displayUsername, username: fields.username, password: fields.password };
         // OR use spread operator.
         // const temp = { ...fields };
 
@@ -25,13 +25,13 @@ function SignInModal(props) {
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(fields.username + " " + fields.password)
+        console.log(fields.displayUsername + " " + fields.password)
 
-        const user = await verifyUser(fields.username, fields.password);
+        const user = await verifyUser(fields.displayUsername, fields.password);
         console.log("CHECK THE USERNAME : " + JSON.stringify(user))
         
         // If verified login the user.
-        if(user !== null) {
+        if(user != null) {
             
             props.setloginUser(user.username, user.displayUsername, user.passwordHash, user.email, user.createdTimeStamp);
             
@@ -49,7 +49,7 @@ function SignInModal(props) {
       setFields(temp);
   
       //Set error message.
-      setErrorMessage("Email and / or password invalid, please try again.");
+      setErrorMessage("Username and / or password invalid, please try again.");
     }
     return (
         <Modal
@@ -71,9 +71,9 @@ function SignInModal(props) {
                 <Modal.Body>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label htmlFor="username" className="control-label">Username</label>
-                            <input name="username" id="username" className="form-control" placeholder='username'
-                                value={fields.username} onChange={handleInputChange}/>
+                            <label htmlFor="displayUsername" className="control-label">Username</label>
+                            <input name="displayUsername" id="displayUsername" className="form-control" placeholder='username'
+                                value={fields.displayUsername} onChange={handleInputChange}/>
                         </div>
                         
                         <div className="form-group">

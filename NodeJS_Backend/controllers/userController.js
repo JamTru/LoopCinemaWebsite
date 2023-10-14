@@ -20,16 +20,31 @@ exports.createUser = async (req, res) => {
 
 // Select one user for the database if username and password are a match.
 exports.loginUser = async (req, res) => {
-  const user = await db.users.findByPk(req.params.username);
-  console.log("Request!! >> " + req.query.username + " : " + req.query.password)
+  // check the primary key exists
+  const user = await db.users.findAll({
+    where: {
+      displayUsername: req.query.displayUsername
+    }
+  })
 
-  if(user == null || await argon2.verify(user.passwordHash, req.query.password) == false){
-    // Login fail
+  console.log("Request!! >> " + req.query.displayUsername + " : " + req.query.password)
+
+  if (user.length === 0) {
+    // No other user with the same 'displayUsername'
     res.json(null)
   } else {
-    res.json(user)
-  }
+    // At least one user with the same 'displayUsername' exists
 
+    // Verify the password for the first matching user
+    if (await argon2.verify(user[0].passwordHash, req.query.password)) {
+      // Password is correct
+      console.log(">>>> what? : " + JSON.stringify(user))
+      res.json(user[0]);
+    } else {
+      // Password is incorrect
+      res.json(null);
+    }
+  }
 }
 
 //Read All Users
@@ -48,27 +63,6 @@ exports.findSingleUser = async (req, res) => {
 exports.updateUser = async (req, res) => {
   const user = await db.users.findByPk(req.params.username);
   console.log(req.body)
-  // req.body.username (New username) != req.params.username (old_username)
-  // user.username = (req.query.username);
-  // user.email = (req.query.email);
-
-  // await user.save()
-
-  // await user.update({
-  //   username : req.query.username
-  // });
-
-  // Change everyone without a last name to "Doe"
-  // await user.update( {
-  //   where: {
-  //     username: req.query.username,
-  //   },
-  // });
-
-  // db.user.set({
-  //   username: req.query.username,
-  //   email: req.query.email
-  // });
 
   if (user) {
     await user.update({
