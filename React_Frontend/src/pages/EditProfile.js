@@ -32,7 +32,7 @@ function EditProfile(props) {
       console.log("(2)setUpdate Value : " + JSON.stringify(user))
 
       props.loginUser(user.username, user.displayUsername, user.passwordHash, user.email, user.createdTimeStamp)
-
+      
       // username, password, email, date
       console.log("(3)Upaded user info : " + JSON.stringify(user))
 

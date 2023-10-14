@@ -36,12 +36,13 @@ function App() {
 
   // it removes login status and also gets rid of from USER key from localStorage
   const logoutUser = () => {
-    removeUser();
     setUsername(null);
     setDisPlayUsername(null)
     setEmail(null)
     setDate(null)
     setPassword(null)
+    removeUser();
+    
   }
 // routing pages. so whenever we go to the path we can directly connects to the related page
 // Each page we passed the props

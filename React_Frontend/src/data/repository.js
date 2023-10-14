@@ -68,6 +68,36 @@ async function updateVerify(username, displayUsername, email) {
 }
 
 
+async function deleteVerify(props) {
+  const response = await axios.post(API_HOST + `/api/users/delete/${props.displayUsername}`)
+  
+  
+  return response.data;
+  // const users_storage = getUsers(); // get the users fromm localStorage
+  // let i = 1; // i is used to count to add new account if there is no same username in the array.
+  // const users = [];
+  // // const [password, setPassword] = useState('')
+
+  // console.log(users_storage)
+  // for(const user of users_storage) {
+
+  //   if(email !== user.email){
+
+  //     console.log("CHECK New email and username : " + user.email + " " + user.username + " " + user.password)
+  //     users.push(user)
+  //     localStorage.setItem(USERS_KEY, JSON.stringify(users));
+
+  //     removeUser();
+  //     console.log(JSON.stringify(users))
+
+  //   } else{
+
+  //     console.log(i + " - Array LocalStorage");
+  //   }
+  // }
+  // i++;
+
+}
 
 
 
@@ -268,110 +298,7 @@ function getUsers() {
   return JSON.parse(data);
 }
 
-// function signupVerify(email, username, password, date) {
-//   const users_storage = getUsers(); // get the users fromm localStorage
-//   let i = 1; // i is used to count to add new account if there is no same username in the array.
-//   const users = [];
 
-//   console.log(users_storage)
-//   for(const user of users_storage) {
-//     users.push(user)
-
-//     if(email !== user.email){
-// // till last array element if there is no same email address id then it allows user to create another account
-//       if(users_storage.length === i) {
-
-
-//         console.log(users_storage.length === i)
-
-//         users.push(({email,username,password,date}))
-//         console.log("this is the users data = " + users)
-
-//         localStorage.setItem(USERS_KEY, JSON.stringify(users));
-//         setUser(email, username, date)
-//         console.log(users)
-//         return true;
-
-//       }
-//     }
-//     i++;
-//   }
-
-//   // console.log(users);
-//   return false;
-// }
-
-// updateVerify does whenever user edits email or username it updates the status
-// function updateVerify(email_old, email, username, password, date) {
-//   const users_storage = getUsers(); // get the users fromm localStorage
-
-//   // get the user from db
-
-//   // check if there is any other username is the same
-
-//   // check the value
-
-//   //
-
-//   let i = 1; // i is used to count to add new account if there is no same username in the array.
-//   const users = [];
-
-//   // const [password, setPassword] = useState('')
-
-//   console.log(users_storage)
-//   for(const user of users_storage) {
-
-//     if(email_old === user.email){
-
-//       console.log("CHECK New email and username : " + email + " " + username + " " + password)
-//       users.push(({email, username, password, date}))
-
-//       localStorage.setItem(USERS_KEY, JSON.stringify(users));
-
-//       setUser(email, username, password, date)
-//       console.log(JSON.stringify(users))
-// // it only generates new review key when there is no review with the same key and deletes previous key
-//       if (email_old !== email && localStorage.getItem(email_old) !== false) {
-//         localStorage.setItem(email, (localStorage.getItem(email_old)));
-//         localStorage.removeItem(email_old)
-//       }
-
-//     } else{
-
-//       users.push(user)
-//       console.log(i + " - Array LocalStorage");
-//     }
-//   }
-//   i++;
-
-// }
-
-function deleteVerify(email, username, password, date) {
-  const users_storage = getUsers(); // get the users fromm localStorage
-  let i = 1; // i is used to count to add new account if there is no same username in the array.
-  const users = [];
-  // const [password, setPassword] = useState('')
-
-  console.log(users_storage)
-  for(const user of users_storage) {
-
-    if(email !== user.email){
-
-      console.log("CHECK New email and username : " + user.email + " " + user.username + " " + user.password)
-      users.push(user)
-      localStorage.setItem(USERS_KEY, JSON.stringify(users));
-
-      removeUser();
-      console.log(JSON.stringify(users))
-
-    } else{
-
-      console.log(i + " - Array LocalStorage");
-    }
-  }
-  i++;
-
-}
 
 
 // --- Helper functions to interact with local storage ---

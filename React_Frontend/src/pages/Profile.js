@@ -9,12 +9,13 @@ import ReservationDisplay from '../components/ReservationDisplay.js';
 function Profile(props) {
     const navigate = useNavigate();
     // from local storage it deletes USER key data
-    const handleDelete = (event) => {
+    const handleDelete = async (event) => {
         console.log(props)
-        deleteVerify(props.email, props.username, props.password, props.date)
-        localStorage.removeItem(props.email)
         props.logoutUser();
+        localStorage.removeItem(props.email)
+        console.log("Deleted query: " + JSON.stringify(props));
         navigate('/')
+        await deleteVerify(props)
     }
     return (
         <>
@@ -33,11 +34,11 @@ function Profile(props) {
                                 <img src={profileRemoval} className="profileRemoval" alt="remove" />
                             </button>
 
-                            {/* <Link to ='./EditProfile.js'> */}
+                            
                             <button variant="contained" className="edit_button" onClick={ () => navigate('./EditProfile.js')} >
                                 <img src={profileEditIcon} className="profileEditIcon" alt="edit" />
                             </button>
-                            {/* </Link> */}
+                            
 
                             <label className="profile_body_email">{props.email}</label>
                         </div>

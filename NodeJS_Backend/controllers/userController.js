@@ -81,12 +81,13 @@ exports.updateUser = async (req, res) => {
 
 
 //Delete related Functions
-
 exports.deleteUser = async (req, res) => {
   const purgeResult = await db.users.destroy({
     where: {
-      username: req.body.username
+      displayUsername: req.params.displayUsername
     }
   })
+
+  console.log("DELETE")
   res.json(purgeResult);
 }
