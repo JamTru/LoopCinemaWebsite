@@ -23,18 +23,18 @@ function EditProfile(props) {
 
       // HERE props.displayUsername is the previous username
       // and the displayUsername is the changed username will display later
-      const setUpdate = await updateVerify(props.username, displayUsername, email);
-      const updatedUser = await findUser(props);
+      const user = await updateVerify(props.username, displayUsername, email);
+      // const updatedUser = await findUser(props);
 
-      console.log("(1)UPDATE USERNAME : " + props.displayUsername + " => " + updatedUser.displayUsername)
+      console.log("(1)UPDATE USERNAME : " + user.displayUsername + " and " + user.email)
       // find user info which was updated just above
 
-      console.log("(2)setUpdate Value : " + JSON.stringify(updatedUser))
+      console.log("(2)setUpdate Value : " + JSON.stringify(user))
 
-      props.loginUser(props.username, updatedUser.displayUsername, updatedUser.passwordHash, updatedUser.passwordHash, updatedUser.createdTimeStamp)
+      props.loginUser(user.username, user.displayUsername, user.passwordHash, user.email, user.createdTimeStamp)
 
       // username, password, email, date
-      console.log("(3)Upaded user info : " + JSON.stringify(setUpdate))
+      console.log("(3)Upaded user info : " + JSON.stringify(user))
 
       navigate('/Profile.js')
     }}>

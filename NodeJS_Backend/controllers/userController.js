@@ -66,7 +66,8 @@ exports.updateUser = async (req, res) => {
 
   if (user) {
     await user.update({
-      displayUsername: req.body.displayUsername
+      displayUsername: req.body.displayUsername,
+      email: req.body.email
     });
     await user.save();
 

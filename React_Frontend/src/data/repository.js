@@ -63,6 +63,7 @@ async function updateVerify(username, displayUsername, email) {
   const response = await axios.post(API_HOST + `/api/users/profile/${username}`, { displayUsername, email})
   const user = response.data;
   console.log("Test Update : " + JSON.stringify(user))
+  setUser(user)
   return user;
 }
 
