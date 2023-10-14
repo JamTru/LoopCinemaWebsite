@@ -20,7 +20,8 @@ exports.createUser = async (req, res) => {
 
 // Select one user for the database if username and password are a match.
 exports.loginUser = async (req, res) => {
-  const user = await db.users.findByPk(req.query.username);
+  const user = await db.users.findByPk(req.params.username);
+  console.log("Request!! >> " + req.query.username + " : " + req.query.password)
 
   if(user == null || await argon2.verify(user.passwordHash, req.query.password) == false){
     // Login fail
@@ -47,6 +48,28 @@ exports.findSingleUser = async (req, res) => {
 exports.updateUser = async (req, res) => {
   const user = await db.users.findByPk(req.params.username);
   console.log(req.body)
+  // req.body.username (New username) != req.params.username (old_username)
+  // user.username = (req.query.username);
+  // user.email = (req.query.email);
+
+  // await user.save()
+
+  // await user.update({
+  //   username : req.query.username
+  // });
+
+  // Change everyone without a last name to "Doe"
+  // await user.update( {
+  //   where: {
+  //     username: req.query.username,
+  //   },
+  // });
+
+  // db.user.set({
+  //   username: req.query.username,
+  //   email: req.query.email
+  // });
+
   if (user) {
     await user.update({
       displayUsername: req.body.displayUsername

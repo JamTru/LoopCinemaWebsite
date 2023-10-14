@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 import Content from './components/Content';
 import Footer from './components/Footer';
 import SignInModal from "./modals/SignInModal";
-import { getDate, getEmail, getPassword, getUser, removeUser, findUser } from "./data/repository";
+import { getDate, getUsername, getEmail, getDisplayUser, getPassword, getUser, removeUser } from "./data/repository";
 import HP_mov from './pages/HP_mov.js';
 import PR_mov from './pages/PR_mov.js';
 import SI_mov from './pages/SI_mov.js';
@@ -15,27 +15,34 @@ import SM_mov from './pages/SM_mov.js';
 import Profile from './pages/Profile.js';
 import EditProfile from './pages/EditProfile.js';
 
-function App() {
-  const [username, setUsername] = useState(); // Gets user info from localStorage but when is null won't get any info
-  const [displayUsername, setDisplayUsername] = useState();
-  const [email, setEmail] = useState();
-  const [date, setDate] = useState();
-  const [password, setPassword] = useState();
-  const [user, setUser] = useState();
+function App() { 
+  const [user, setUser] = useState(getUser());
+  const [username, setUsername] = useState(getUsername()); // Gets user info from localStorage but when is null won't get any info
+  const [displayUsername, setDisPlayUsername] = useState(getDisplayUser());
+  const [email, setEmail] = useState(getEmail());
+  const [date, setDate] = useState(getDate());
+  const [password, setPassword] = useState(getPassword());
   // Initializing login user infomation
   const loginUser = (username, displayUsername, password, email, date) => {
+    setEmail(email);
+    setDisPlayUsername(displayUsername);
     setUsername(username);
     setDisplayUsername(displayUsername)
     setPassword(password);
     setEmail(email);
     setDate(date);
     console.log(">>>>>>>>>> " + username)
+    console.log(" dis : " + displayUsername)
   }
 
   // it removes login status and also gets rid of from USER key from localStorage
   const logoutUser = () => {
     removeUser();
-    setEmail(null);
+    setUsername(null);
+    setDisPlayUsername(null)
+    setEmail(null)
+    setDate(null)
+    setPassword(null)
   }
 // routing pages. so whenever we go to the path we can directly connects to the related page
 // Each page we passed the props
