@@ -33,7 +33,7 @@ async function verifyUser(username, password) {
   // The login is also persistent as it is stored in local storage.
   if(user !== null)
     setUser(user);
-
+  
   return user;
 }
 
@@ -301,8 +301,8 @@ function setUser(user) {
 }
 
 function getUser() {
-  if (localStorage.getItem(USER_KEY) !== null){
-    return JSON.parse(localStorage.getItem(USER_KEY)).username;
+  if (localStorage.getItem(USER_KEY.includes("username")) !== null){
+    return JSON.parse(localStorage.getItem(USER_KEY));
   }
   return localStorage.getItem(null);
 }
