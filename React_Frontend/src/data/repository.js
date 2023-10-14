@@ -39,6 +39,16 @@ async function verifyUser(username, password) {
   return user;
 }
 
+async function signupVerify(user){
+  const response = await axios.get(API_HOST + `/api/users/${user.username}`);
+  console.log("signupVerify : " + JSON.stringify(response.data))
+  // When username exists, return the actual data
+  if(response.data != null) {
+    return "User exists"
+  }
+  return null
+}
+
 async function findUser(user) {
   if (user){
     const response = await axios.get(API_HOST + `/api/users/${user.username}`);
@@ -257,38 +267,38 @@ function getUsers() {
   return JSON.parse(data);
 }
 
-function signupVerify(email, username, password, date) {
-  const users_storage = getUsers(); // get the users fromm localStorage
-  let i = 1; // i is used to count to add new account if there is no same username in the array.
-  const users = [];
+// function signupVerify(email, username, password, date) {
+//   const users_storage = getUsers(); // get the users fromm localStorage
+//   let i = 1; // i is used to count to add new account if there is no same username in the array.
+//   const users = [];
 
-  console.log(users_storage)
-  for(const user of users_storage) {
-    users.push(user)
+//   console.log(users_storage)
+//   for(const user of users_storage) {
+//     users.push(user)
 
-    if(email !== user.email){
-// till last array element if there is no same email address id then it allows user to create another account
-      if(users_storage.length === i) {
+//     if(email !== user.email){
+// // till last array element if there is no same email address id then it allows user to create another account
+//       if(users_storage.length === i) {
 
 
-        console.log(users_storage.length === i)
+//         console.log(users_storage.length === i)
 
-        users.push(({email,username,password,date}))
-        console.log("this is the users data = " + users)
+//         users.push(({email,username,password,date}))
+//         console.log("this is the users data = " + users)
 
-        localStorage.setItem(USERS_KEY, JSON.stringify(users));
-        setUser(email, username, date)
-        console.log(users)
-        return true;
+//         localStorage.setItem(USERS_KEY, JSON.stringify(users));
+//         setUser(email, username, date)
+//         console.log(users)
+//         return true;
 
-      }
-    }
-    i++;
-  }
+//       }
+//     }
+//     i++;
+//   }
 
-  // console.log(users);
-  return false;
-}
+//   // console.log(users);
+//   return false;
+// }
 
 // updateVerify does whenever user edits email or username it updates the status
 // function updateVerify(email_old, email, username, password, date) {

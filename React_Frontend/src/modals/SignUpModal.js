@@ -114,14 +114,14 @@ function SignUpModal(props) {
         // const signupVerified = signupVerify(fields.email, fields.username, fields.password, (formatAESTDate(new Date(currentDate))));
         console.log("Username (fields.username) : " + fields.username)
 
-        const signupVerified = await findUser(fields.username);
+        const signupVerified = await signupVerify(fields);
         // to Check loginUser is in props
         if ("setloginUser" in props) {
             // we have loginUser
             console.log("We have that prop in SignInMOdal ")
             console.log(props)
 
-            console.log("SignupVerified variable : " + JSON.stringify(signupVerified))
+            console.log("SignupVerified variable : " + (signupVerified))
         } else {
             console.log("loginUser wasn't in props!")
             console.log(props)
@@ -180,7 +180,7 @@ function SignUpModal(props) {
         setFields(temp);
 
         //Set error message.
-        setErrorMessage("Email already exists or Username is empty, please try again.");
+        setErrorMessage("Username already exists or Username is empty, please try again.");
     }
     function formatAESTDate(date) {
         const options = { weekday: 'short', month: 'short', day: '2-digit', year: 'numeric' };
