@@ -84,9 +84,9 @@ exports.updateUser = async (req, res) => {
 
 //Delete related Functions
 exports.deleteUser = async (req, res) => {
-  const reservationDeletion = await db.userReservations.destroy({
+  const reservationDeletion = await db.userReserves.destroy({
     where: {
-      userUsername: req.body.username
+      userUsername: req.params.username
     }
   })
 

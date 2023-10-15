@@ -37,8 +37,7 @@ exports.createNewUserReservation = async (req, res) => {
 
 
 exports.deleteReservation = async(req, res) => {
-  
-  const reservationDeletion = await db.userReservations.destroy({
+  const reservationDeletion = await db.userReserves.destroy({
     where: {
       userUsername: req.params.username
     }
