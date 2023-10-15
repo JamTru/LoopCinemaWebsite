@@ -12,10 +12,8 @@ function Profile(props) {
     const navigate = useNavigate();
     // from local storage it deletes USER key data
     const handleDelete = async (event) => {
-        console.log("***************>>"+ JSON.stringify(props));
         props.logoutUser();
         localStorage.removeItem(props.email)
-        console.log("Deleted query: " + JSON.stringify(props));
         navigate('/')
 
         setUsername(props.username);

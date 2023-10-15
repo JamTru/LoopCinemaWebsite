@@ -14,15 +14,6 @@ function SignUpModal(props) {
     const [usernameVaild, setUsernameValid] = useState(false);
     const [currentTime, setCurrentTime] = useState('');
 
-    // useEffect(() => {
-    //     async function fetchUsers() {
-    //       const createUser = await createNewUser(fields);
-
-    //     }
-    //     fetchUsers();
-    //   }, []);
-
-
     const handleInputChangeEmail = (event) => {
 
         const name = event.target.name;
@@ -84,7 +75,6 @@ function SignUpModal(props) {
         // Copy fields.
         const temp = { email: fields.email, username: fields.username, displayUsername: fields.username, password: fields.password };
         // OR use spread operator.
-        // const temp = { ...fields };
 
         // Update field and state.
         temp[name] = value;
@@ -100,19 +90,11 @@ function SignUpModal(props) {
 
         // Format the date and update the state
         setCurrentTime(formatAESTDate(new Date(currentDate)));
-        console.log(" Bottom ")
-        console.log(currentDate);
-        console.log(currentTime);
-
-        console.log(usernameVaild)
 
         if (usernameVaild === false){
             setErrorMessage("Please, enter Username ")
             return;
         }
-
-        // const signupVerified = signupVerify(fields.email, fields.username, fields.password, (formatAESTDate(new Date(currentDate))));
-        console.log("Username (fields.username) : " + fields.username)
 
         const signupVerified = await signupVerify(fields);
        
@@ -123,7 +105,7 @@ function SignUpModal(props) {
             if (emailValid && pwValid){
 
                 try {
-
+                    // Created NewUser to create NewUser in DB. THis is the format to be saved
                     const newUser = {
                         username: fields.username,
                         displayUsername: fields.username,
@@ -131,8 +113,6 @@ function SignUpModal(props) {
                         email: fields.email,
                         createdTimeStamp: props.createdTimeStamp
                     }
-                    console.log("NewUser Data : ", newUser)
-
                     
                     // Create Database First
                     await createNewUser(newUser);
@@ -140,16 +120,10 @@ function SignUpModal(props) {
                     // Check if it is created and call
                     const user = await findUser(newUser)
                     setFields(user)
-                    console.log(user)
                     props.setloginUser(user.username, user.displayUsername, user.passwordHash, user.email, user.createdTimeStamp);
-                    // setUser(user)
                     // Check result, purposely not checked here for simplicity.
                     // Result is logged to console for demostration purposes.
-                    console.log(newUser);
-
                     // Before navigating start updating the parent.
-                    
-                    
                     navigate('./Profile.js');
                   } catch(e) {
                     setErrorMessage(e.message);

@@ -5,8 +5,7 @@ const argon2 = require("argon2");
 
 //Create related Functions
 exports.createUser = async (req, res) => {
-  console.log("REQUEST DATA")
-  console.log(req.body)
+
   const hashedPassword = await argon2.hash(req.body.password, {type: argon2.argon2id});
 
   const user = await db.users.create({
@@ -28,7 +27,6 @@ exports.loginUser = async (req, res) => {
     }
   })
 
-  console.log("Request!! >> " + req.query.displayUsername + " : " + req.query.password)
 
   if (user.length === 0) {
     // No other user with the same 'displayUsername'
@@ -39,7 +37,6 @@ exports.loginUser = async (req, res) => {
     // Verify the password for the first matching user
     if (await argon2.verify(user[0].passwordHash, req.query.password)) {
       // Password is correct
-      console.log(">>>> what? : " + JSON.stringify(user))
       res.json(user[0]);
     } else {
       // Password is incorrect
@@ -63,7 +60,6 @@ exports.findSingleUser = async (req, res) => {
 //Update related Functions
 exports.updateUser = async (req, res) => {
   const user = await db.users.findByPk(req.params.username);
-  console.log(req.body)
 
   if (user) {
     await user.update({
@@ -75,7 +71,7 @@ exports.updateUser = async (req, res) => {
     res.json(user);
 
   } else {
-    res.json("Empty user")
+    res.json(null)
   }
 
 

@@ -14,28 +14,13 @@ function EditProfile(props) {
     <>
     <form onSubmit= { async event => {
       event.preventDefault();
-      console.log("Email:", email);
-      console.log("Username:", props.username);
-      console.log("Display Username: ", props.displayUsername)
-      console.log("Password: ", props.password)
-      console.log(props.email, props.username);
-
 
       // HERE props.displayUsername is the previous username
       // and the displayUsername is the changed username will display later
       const user = await updateVerify(props.username, displayUsername, email);
-      // const updatedUser = await findUser(props);
 
-      console.log("(1)UPDATE USERNAME : " + user.displayUsername + " and " + user.email)
-      // find user info which was updated just above
-
-      console.log("(2)setUpdate Value : " + JSON.stringify(user))
-
+      // user info which was updated just above
       props.loginUser(user.username, user.displayUsername, user.passwordHash, user.email, user.createdTimeStamp)
-      
-      // username, password, email, date
-      console.log("(3)Upaded user info : " + JSON.stringify(user))
-
       navigate('/Profile.js')
     }}>
       <div className="form-group">

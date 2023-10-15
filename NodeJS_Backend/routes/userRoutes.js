@@ -17,7 +17,7 @@ module.exports = (express, app) => {
   // Edit user profile.
   router.post("/profile/:username", controller.updateUser);
   
-  // Delete a query.
+  // Delete a user query.
   router.post("/delete/:displayUsername", controller.deleteUser);
 
   // Add routes to server.

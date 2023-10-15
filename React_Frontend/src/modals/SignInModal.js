@@ -17,7 +17,6 @@ function SignInModal(props) {
         // Copy fields.
         const temp = { email: fields.email, displayUsername: fields.displayUsername, username: fields.username, password: fields.password };
         // OR use spread operator.
-        // const temp = { ...fields };
 
         // Update field and state.
         temp[name] = value;
@@ -25,11 +24,7 @@ function SignInModal(props) {
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(fields.displayUsername + " " + fields.password)
-
-        const user = await verifyUser(fields.displayUsername, fields.password);
-        console.log("CHECK THE USERNAME : " + JSON.stringify(user))
-        
+        const user = await verifyUser(fields.displayUsername, fields.password);        
         // If verified login the user.
         if(user != null) {
             
@@ -39,8 +34,6 @@ function SignInModal(props) {
             navigate('./Profile.js');
             
             props.onHide(false)
-
-            // return;
         }
         
       // Reset password field to blank.

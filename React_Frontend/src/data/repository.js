@@ -1,4 +1,3 @@
-import { useState } from "react";
 import axios from "axios";
 
 // ---- CONSTANTS -----
@@ -8,15 +7,15 @@ const USER_KEY = "user";
 
 
 // ------ USER API CALLS ----
-
+// Create New User
 async function createNewUser(user){
   const response = await axios.post(API_HOST + "/api/users/create", user)
-  console.log("response data : " + JSON.stringify(response.data))
   user = response.data;
   setUser(user)
   return response.data;
 }
 
+// Retrieve All Users
 async function retrieveAllUser() {
   const response = await axios.get(API_HOST + "/api/users");
   const userdata = response.data;
@@ -25,13 +24,10 @@ async function retrieveAllUser() {
 
 // verifyUser does checking email and password
 async function verifyUser(displayUsername, password) {
-  console.log("IN")
-  console.log(displayUsername + " " + " > " + password)
-  console.log("OUT")
+
   const response = await axios.get(API_HOST + `/api/users/login/${displayUsername}`, { params :{ displayUsername, password }} );
   const user = response.data;
-  console.log("test log:" + JSON.stringify(user))
-  console.log("7")
+
   // The login is also persistent as it is stored in local storage.
   if(user !== null)
     setUser(user);
@@ -39,9 +35,10 @@ async function verifyUser(displayUsername, password) {
   return user;
 }
 
+// Verifying Sing up if there is user data or not
 async function signupVerify(user){
   const response = await axios.get(API_HOST + `/api/users/${user.username}`);
-  console.log("signupVerify : " + JSON.stringify(response.data))
+
   // When username exists, return the actual data
   if(response.data != null) {
     return "User exists"
@@ -49,27 +46,26 @@ async function signupVerify(user){
   return null
 }
 
+// Find Specific user
 async function findUser(user) {
   if (user){
     const response = await axios.get(API_HOST + `/api/users/${user.username}`);
-
     return response.data;
   } else {
     return null;
   }
 }
 
+// Update user details (displayUsername and email)
 async function updateVerify(username, displayUsername, email) {
   const response = await axios.post(API_HOST + `/api/users/profile/${username}`, { displayUsername, email})
   const user = response.data;
-  console.log("Test Update : " + JSON.stringify(user))
   setUser(user)
   return user;
 }
 
 
 async function deleteVerify(username, displayUsername, email) {
-  console.log(username + " dis : " + displayUsername + " : " + email)
   const response = await axios.post(API_HOST + `/api/users/delete/${displayUsername}`, {username, email})
   return response.data;
 }
@@ -250,29 +246,6 @@ async function testAPICall() {
 
 // ----DEPRECIATED---------------------
 // Initialise local storage "users" with data, if the data is already set this function returns immediately.
-function initUsers() {
-  // Stop if data is already initialised.
-  if(localStorage.getItem(USERS_KEY) !== null)
-    return;
-
-  // User data is hard-coded, passwords are in plain-text.
-  const users = [
-    {
-      email: "mbolger@gmail.com",
-      username: "mbolger",
-      password: "abc123",
-      date: "Thu, 24 Aug 2023"
-    },
-    {
-      email: "shekhar@gmail.com",
-      username: "shekhar",
-      password: "def456",
-      date: "Thu, 24 Aug 2023"
-    }
-  ];
-  // Set data into local storage.
-  // localStorage.setItem(USERS_KEY, JSON.stringify(users));
-}
 
 function getUsers() {
   // Extract user data from local storage.
@@ -374,7 +347,6 @@ function addReview(rating, comment, dateOfCreation, movieName) {
 
 export {
   createNewUser,
-  initUsers,
   verifyUser,
   getUser,
   getUsername,
