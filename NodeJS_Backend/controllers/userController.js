@@ -84,30 +84,11 @@ exports.updateUser = async (req, res) => {
 
 //Delete related Functions
 exports.deleteUser = async (req, res) => {
-  const purgeResult = await db.users.destroy({
-    where: {
-      displayUsername: req.params.displayUsername
-    }
-  })
-
-  res.json(purgeResult);
-}
-
-exports.deleteReview = async(req, res) => {
   const reservationDeletion = await db.userReservations.destroy({
     where: {
       userUsername: req.body.username
     }
   })
-  const findReview = await db.reviews.destroy({
-    where: {
-      userUsername: req.params.username
-    }
-  })
-  const purgeResult = await db.users.destroy({
-    where: {
-      displayUsername: req.params.username
-    }
-  })
-  res.json(findReview, reservationDeletion, findReview);
+
+  res.json(reservationDeletion);
 }

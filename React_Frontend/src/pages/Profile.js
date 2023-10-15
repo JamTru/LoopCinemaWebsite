@@ -17,8 +17,12 @@ function Profile(props) {
         localStorage.removeItem(props.email)
         console.log("Deleted query: " + JSON.stringify(props));
         navigate('/')
+        
         setUsername(props.username);
 
+        
+        await deleteReservation(username)
+        await deleteReview(username)
         await deleteVerify(props.username, props.displayUsername, props.email);
     }
     return (
