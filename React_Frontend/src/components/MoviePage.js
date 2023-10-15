@@ -79,8 +79,8 @@ const MoviePage = ({name, summary, rating, genre, release, trailer, imageRef, mo
         </div>
       </div>
       <YoutubeEmbed embedID={trailer} />
-      <ReviewFormModal show={reviewModalOn} onHide={()=> setReviewModalOn(false)} movie={name} reviewsState={listOfReviews} reviewsStateFunction={setListOfReviews} movieID={movieID} username={localStorage.getItem("user")} />
-      <ReservationModal show={reservationModalOn} onHide={()=> setReservationModalOn(false)} currentDate={today} movieID={movieID} movieName={name} username={localStorage.getItem("user")} />
+      <ReviewFormModal show={reviewModalOn} onHide={()=> setReviewModalOn(false)} movie={name} reviewsState={listOfReviews} reviewsStateFunction={setListOfReviews} movieID={movieID} username={JSON.parse(localStorage.getItem("user"))} />
+      <ReservationModal show={reservationModalOn} onHide={()=> setReservationModalOn(false)} currentDate={today} movieID={movieID} movieName={name} username={JSON.parse(localStorage.getItem("user"))} />
       <div className="background">
         <h2 className={allowReservation}>Book a spot at our cinema today!</h2>
         <button type="button" onClick={() => setReservationModalOn(true)} className={allowReservation}> Book today!</button>

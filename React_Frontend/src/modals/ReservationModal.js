@@ -47,8 +47,8 @@ const ReservationModal = (props) => {
     // checks if a reservation exissts for current observed date.
     if (reserveExists.length == 0){
       // If reservation exists
-      const reserveData = await createNewReservations(props.movieID, props.movieName, date, seatsReserved, props.username);
-      const updateResponse = await updateExistingReservation(props.movieID, props.movieName, date, seatsReserved, props.username, reserveData.movieReservationID);
+      const reserveData = await createNewReservations(props.movieID, props.movieName, date, seatsReserved, props.username.username);
+      const updateResponse = await updateExistingReservation(props.movieID, props.movieName, date, seatsReserved, props.username.username, reserveData.movieReservationID);
       props.onHide();
     } else {
       if(reserveExists[0].noOfSeatsRemaining >= seatsReserved){
@@ -59,6 +59,7 @@ const ReservationModal = (props) => {
       }
     }
   }
+  console.log(props.username.username)
   return (
     <Modal show={props.show} onHide={props.onHide}>
       <Modal.Header closeButton>

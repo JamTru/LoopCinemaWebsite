@@ -3,6 +3,10 @@
 
 Written by Jamie Truong and Daniel Yang
 
+Github Link: https://github.com/rmit-fwp-s2-23/s3888752_s3947728
+
+### Potential Problems
+Under the Package.json, we had to add an additional command to the test script using the line ```--transformIgnorePatterns 'node_modules/(?!Assignment 2)/'``` as the tests relied on mocking useNavigate for our modals, and this was the best solution to solve a particular problem. If this causes weird wacky due to missing node_modules as part of submission requirement, it's kinda not our fault?
 
 ## Available Scripts
 

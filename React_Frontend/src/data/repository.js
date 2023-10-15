@@ -35,7 +35,7 @@ async function verifyUser(displayUsername, password) {
   // The login is also persistent as it is stored in local storage.
   if(user !== null)
     setUser(user);
-  
+
   return user;
 }
 
@@ -52,7 +52,7 @@ async function signupVerify(user){
 async function findUser(user) {
   if (user){
     const response = await axios.get(API_HOST + `/api/users/${user.username}`);
-    
+
     return response.data;
   } else {
     return null;
@@ -195,7 +195,7 @@ async function createNewReservations(movieID, movieName, date, seatsRequested, u
  */
 async function updateExistingReservation(movieID, movieName, date, seatsRequested, username, reserveID){
   const newUserReservation = {
-    username: username.replace(/['"]+/g, ''),
+    username: username,
     movieID: movieID,
     movieName: movieName,
     date: date,
