@@ -84,11 +84,14 @@ exports.updateUser = async (req, res) => {
 
 //Delete related Functions
 exports.deleteUser = async (req, res) => {
-  const reservationDeletion = await db.userReserves.destroy({
+  const userDeletion = await db.users.destroy({
     where: {
+<<<<<<< Updated upstream
       userUsername: req.params.displayUsername
+=======
+      username: req.body.username
+>>>>>>> Stashed changes
     }
-  })
-
-  res.json(reservationDeletion);
+  });
+  res.json(userDeletion);
 }
