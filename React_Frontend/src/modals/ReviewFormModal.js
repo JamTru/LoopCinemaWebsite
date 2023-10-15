@@ -19,7 +19,7 @@ const ReviewFormModal = (props) => {
       const newReview = {
         numRating: parseInt(numRating),
         comment: comments,
-        username: props.username.replace(/['"]+/g, ''),
+        username: props.username.username.replace(/['"]+/g, ''),
         movieID: props.movieID
       }
       await createNewReview(newReview);
