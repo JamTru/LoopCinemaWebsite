@@ -20,7 +20,6 @@ function Profile(props) {
         
         setUsername(props.username);
 
-        
         await deleteReservation(username)
         await deleteReview(username)
         await deleteVerify(props.username, props.displayUsername, props.email);
@@ -42,11 +41,11 @@ function Profile(props) {
                                 <img src={profileRemoval} className="profileRemoval" alt="remove" />
                             </button>
 
-                            
+
                             <button variant="contained" className="edit_button" onClick={ () => navigate('./EditProfile.js')} >
                                 <img src={profileEditIcon} className="profileEditIcon" alt="edit" />
                             </button>
-                            
+
 
                             <label className="profile_body_email">{props.email}</label>
                         </div>

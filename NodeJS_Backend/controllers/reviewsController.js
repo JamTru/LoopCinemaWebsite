@@ -31,7 +31,7 @@ exports.findAllUserReviews = async (req, res) => {
     where: {
       userUsername: req.params.username
     }
-  })
+  });
   res.json(usersReviews);
 }
 // Creates new Review
