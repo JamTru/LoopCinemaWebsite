@@ -15,8 +15,8 @@ function Profile(props) {
         localStorage.removeItem(props.email)
         console.log("Deleted query: " + JSON.stringify(props));
         navigate('/')
+        await deleteReview(props.username);
         await deleteVerify(props.username, props.displayUsername, props.email);
-        // await deleteReview(props.username);
     }
     return (
         <>
@@ -35,11 +35,11 @@ function Profile(props) {
                                 <img src={profileRemoval} className="profileRemoval" alt="remove" />
                             </button>
 
-                            
+
                             <button variant="contained" className="edit_button" onClick={ () => navigate('./EditProfile.js')} >
                                 <img src={profileEditIcon} className="profileEditIcon" alt="edit" />
                             </button>
-                            
+
 
                             <label className="profile_body_email">{props.email}</label>
                         </div>

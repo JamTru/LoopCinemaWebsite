@@ -102,14 +102,12 @@ exports.deleteReview = async(req, res) => {
   // })
 
 
-  const findReview = await db.reviews.findAll({
+  const usersReviews = await db.reviews.destroy({
     where: {
-      displayUsername: req.params.username
-    }
-  })
-  console.log("DELETE Review " + JSON.stringify(req.params.username))
-  
-  await findReview.distroy();
-  
-  res.json(findReview);
+      userUsername: req.params.username
+    },
+  });
+
+
+  res.json(usersReviews);
 }
