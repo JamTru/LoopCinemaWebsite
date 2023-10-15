@@ -68,10 +68,12 @@ async function updateVerify(username, displayUsername, email) {
 }
 
 
-async function deleteVerify(props) {
-  const response = await axios.post(API_HOST + `/api/users/delete/${props.displayUsername}`)
+async function deleteVerify(username, displayUsername, email) {
+  console.log(username + " dis : " + displayUsername + " : " + email)
+  const response = await axios.post(API_HOST + `/api/users/delete/${displayUsername}`, {username, email})
   return response.data;
 }
+
 
 
 

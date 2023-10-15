@@ -1,3 +1,4 @@
+const { json } = require("sequelize");
 const db = require("../database");
 const argon2 = require("argon2");
 
@@ -77,34 +78,21 @@ exports.updateUser = async (req, res) => {
     res.json("Empty user")
   }
 
+
 }
 
 
 //Delete related Functions
 exports.deleteUser = async (req, res) => {
-  const userDeleteResult = await db.users.destroy({
+  const purgeResult = await db.users.destroy({
     where: {
       displayUsername: req.params.displayUsername
     }
-  });
-
-  const reviewDeleteResult = await db.reviews.destroy({
-    where: {
-      userUsername: req.query.username
-    }
-  });
-
-  const reservationDeleteResult = await db.userReservation.destroy({
-    where: {
-      userUsername: req.query.username
-    }
-  });
-
-  console.log("DELETE")
-  
-  res.json({
-    userDeleteResult,
-    reviewDeleteResult,
-    reservationDeleteResult
   })
+
+  console.log("DELETE " + JSON.stringify(req.body))
+
+
+
+  res.json(purgeResult);
 }
