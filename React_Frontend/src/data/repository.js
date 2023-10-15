@@ -75,7 +75,12 @@ async function deleteVerify(username, displayUsername, email) {
 }
 
 async function deleteReview(username){
-  const response = await axios.post(API_HOST + `/api/users/delete/review/${username}`)
+  const response = await axios.post(API_HOST + `/api/reviews/delete/${username}`)
+  return response.data;
+}
+
+async function deleteReservation(username){
+  const response = await axios.post(API_HOST + `/api/userReserves/delete/${username}`)
   return response.data;
 }
 
@@ -391,5 +396,6 @@ export {
   displayRelevantReservations,
   checkReservationExists,
   findUser,
-  deleteReview
+  deleteReview,
+  deleteReservation
 }

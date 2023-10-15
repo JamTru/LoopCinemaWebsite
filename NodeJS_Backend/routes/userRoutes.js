@@ -19,7 +19,6 @@ module.exports = (express, app) => {
   
   // Delete a query.
   router.post("/delete/:displayUsername", controller.deleteUser);
-  router.post("/delete/review/:username", controller.deleteReview);
 
   // Add routes to server.
   app.use("/api/users", router);

@@ -90,26 +90,24 @@ exports.deleteUser = async (req, res) => {
     }
   })
 
-  console.log("DELETE User " + JSON.stringify(req.body))
   res.json(purgeResult);
 }
 
 exports.deleteReview = async(req, res) => {
-  // const purgeResult = await db.reviews.destroy({
-  //   where: {
-  //     displayUsername: req.params.username
-  //   }
-  // })
-
-
-  const findReview = await db.reviews.findAll({
+  const reservationDeletion = await db.userReservations.destroy({
+    where: {
+      userUsername: req.body.username
+    }
+  })
+  const findReview = await db.reviews.destroy({
+    where: {
+      userUsername: req.params.username
+    }
+  })
+  const purgeResult = await db.users.destroy({
     where: {
       displayUsername: req.params.username
     }
   })
-  console.log("DELETE Review " + JSON.stringify(req.params.username))
-  
-  await findReview.distroy();
-  
-  res.json(findReview);
+  res.json(findReview, reservationDeletion, findReview);
 }

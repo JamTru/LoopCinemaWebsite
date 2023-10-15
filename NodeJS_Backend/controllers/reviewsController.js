@@ -44,3 +44,13 @@ exports.createNewReview = async (req, res) => {
   });
   res.json(newReview);
 }
+
+exports.deleteReview = async (req, res) => {
+  const findReview = await db.reviews.destroy({
+    where: {
+      userUsername: req.params.username
+    }
+  })
+  
+  res.json(findReview);
+}

@@ -12,6 +12,8 @@ module.exports = (express, app) => {
   router.get("/getSpecificReview/:movieID/:username", controller.findGivenMovieReview);
   //
   router.post("/create", controller.createNewReview);
+
+  router.post("/delete/:username", controller.deleteReview);
   // Add routes to server.
   app.use("/api/reviews", router);
 };

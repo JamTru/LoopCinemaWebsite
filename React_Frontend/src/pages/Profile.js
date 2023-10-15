@@ -2,11 +2,13 @@ import React  from 'react';
 import profilePic from '../profilePic.png'
 import profileEditIcon from '../editIcon.png'
 import profileRemoval from '../remove.png'
-import { deleteVerify, deleteReview } from '../data/repository'
+import { useState } from 'react';
+import { deleteVerify, deleteReview, deleteReservation } from '../data/repository'
 import { useNavigate } from "react-router-dom";
 import ReservationDisplay from '../components/ReservationDisplay.js';
 
 function Profile(props) {
+    const [username, setUsername] = useState();
     const navigate = useNavigate();
     // from local storage it deletes USER key data
     const handleDelete = async (event) => {
@@ -15,8 +17,9 @@ function Profile(props) {
         localStorage.removeItem(props.email)
         console.log("Deleted query: " + JSON.stringify(props));
         navigate('/')
+        setUsername(props.username);
+
         await deleteVerify(props.username, props.displayUsername, props.email);
-        // await deleteReview(props.username);
     }
     return (
         <>

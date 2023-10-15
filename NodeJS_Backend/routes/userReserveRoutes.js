@@ -11,6 +11,8 @@ module.exports = (express, app) => {
   // Add Reservation to Database
   router.post("/", controller.createNewUserReservation);
 
+  router.post("/delete/:username", controller.deleteReservation);
+
   // Add routes to server.
   app.use("/api/userReserves", router);
 };
