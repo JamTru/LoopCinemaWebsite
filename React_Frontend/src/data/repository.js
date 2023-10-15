@@ -268,16 +268,13 @@ function setUser(user) {
 
 function getUser() {
   if (localStorage.getItem(USER_KEY) != null){
-    console.log("READING GetUser : " + JSON.parse(localStorage.getItem(USER_KEY)));
     return JSON.parse(localStorage.getItem(USER_KEY));
   }
-  console.log("only when localStorage is null or undefined")
   return localStorage.getItem(null);
 }
 
 function getUsername() {
   if (localStorage.getItem(USER_KEY) != null){
-    console.log("READING GetUsername : " + JSON.parse(localStorage.getItem(USER_KEY)).username);
     return JSON.parse(localStorage.getItem(USER_KEY)).username;
   }
   return localStorage.getItem(null);
@@ -285,7 +282,6 @@ function getUsername() {
 
 function getDisplayUsername() {
   if (localStorage.getItem(USER_KEY) != null){
-    console.log("DisPlayUsername : " + JSON.parse(localStorage.getItem(USER_KEY)).displayUsername);
     return JSON.parse(localStorage.getItem(USER_KEY)).displayUsername;
   }
   return localStorage.getItem(null);
