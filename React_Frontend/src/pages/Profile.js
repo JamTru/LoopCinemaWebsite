@@ -2,7 +2,7 @@ import React  from 'react';
 import profilePic from '../profilePic.png'
 import profileEditIcon from '../editIcon.png'
 import profileRemoval from '../remove.png'
-import { deleteVerify } from '../data/repository'
+import { deleteVerify, deleteReview } from '../data/repository'
 import { useNavigate } from "react-router-dom";
 import ReservationDisplay from '../components/ReservationDisplay.js';
 
@@ -16,6 +16,7 @@ function Profile(props) {
         console.log("Deleted query: " + JSON.stringify(props));
         navigate('/')
         await deleteVerify(props.username, props.displayUsername, props.email);
+        // await deleteReview(props.username);
     }
     return (
         <>
@@ -45,7 +46,7 @@ function Profile(props) {
                     </div>
                     <div className="profile_footer">
                         <hr></hr>
-                        <label>{props.date}</label>
+                        <label>Created : {props.date.substring(0,10)}</label>
                     </div>
                 </div>
 
