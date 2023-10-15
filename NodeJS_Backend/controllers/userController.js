@@ -86,7 +86,7 @@ exports.updateUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   const userDeletion = await db.users.destroy({
     where: {
-      username: req.body.username
+      displayUsername: req.params.displayUsername
     }
   });
   res.json(userDeletion);
